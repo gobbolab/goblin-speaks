@@ -1,0 +1,59 @@
+name: Compile and Auto-Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-release-arm:
+    runs-on: ubuntu-22.04-arm 
+    
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch 
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' 
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc patchelf build-essential
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install nuitka
+          pip install -r requirements.txt 
+
+      - name: Compile Python to C
+        run: |
+          # Nuitka will natively compile this into an ARM64 binary 
+          python -m nuitka --standalone --onefile main.py
+          
+          # Optional: Rename the output so users know it's for ARM
+          mv main.bin main-arm64.bin
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          # Uploading the renamed ARM64 binary
+          files: main-arm64.bin 
+          generate_release_notes: true
