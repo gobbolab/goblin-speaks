@@ -43,22 +43,19 @@ jobs:
 
       - name: Compile Python to C
         run: |
-          # 1. Find the exact paths of the JSON files anywhere under the Blinka directory
-          BLINKA_PATH=$(python -c "import adafruit_blinka; import os; print(os.path.dirname(adafruit_blinka.__file__))")
-          BOARD_JSON=$(find "$BLINKA_PATH" -name "board_imports.json" | head -n 1)
-          MC_JSON=$(find "$BLINKA_PATH" -name "microcontroller_imports.json" | head -n 1)
+          # 1. Manually download the required JSON files from the official repo
+          # This avoids relying on the 'pip' installation structure
+          curl -o board_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/board_imports.json
+          curl -o microcontroller_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/microcontroller_imports.json
           
-          echo "Found board_imports at: $BOARD_JSON"
-          echo "Found microcontroller_imports at: $MC_JSON"
-          
-          # 2. Run Nuitka using the discovered paths
+          # 2. Run Nuitka using these local files
           python -m nuitka --standalone \
             --include-package=adafruit_blinka \
             --include-package=adafruit_servokit \
             --include-package=RPi \
             --include-module=pygame \
-            --include-data-file="$BOARD_JSON"=adafruit_blinka/board_imports.json \
-            --include-data-file="$MC_JSON"=adafruit_blinka/microcontroller_imports.json \
+            --include-data-file=board_imports.json=adafruit_blinka/board_imports.json \
+            --include-data-file=microcontroller_imports.json=adafruit_blinka/microcontroller_imports.json \
             --output-dir=build \
             main.py
 
