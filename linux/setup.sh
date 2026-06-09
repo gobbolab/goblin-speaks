@@ -42,7 +42,7 @@ mkdir -p "$APP_DIR"
 # 4. Download the launcher script
 echo "[+] Downloading launcher.sh..."
 # The -f flag ensures curl fails cleanly if a 404 error occurs
-if curl -sL -f "$RAW_URL/launcher.sh" -o "$APP_DIR/launcher.sh"; then
+if curl -sL -f "$RAW_URL/linux/launcher.sh" -o "$APP_DIR/launcher.sh"; then
     chmod +x "$APP_DIR/launcher.sh"
     echo "[✓] launcher.sh downloaded and made executable."
 else
@@ -52,7 +52,7 @@ fi
 
 # 5. Download the systemd service file
 echo "[+] Downloading goblin.service..."
-if curl -sL -f "$RAW_URL/goblin.service" -o /etc/systemd/system/goblin.service; then
+if curl -sL -f "$RAW_URL/linux/goblin.service" -o /etc/systemd/system/goblin.service; then
     echo "[✓] goblin.service downloaded."
 else
     echo "[!] Error: Could not download goblin.service."
