@@ -43,17 +43,22 @@ jobs:
 
       - name: Compile Python to C
         run: |
-          # Nuitka will natively compile this into an ARM64 binary 
-          python -m nuitka --standalone --onefile main.py
-          
-          # Optional: Rename the output so users know it's for ARM
-          mv main.bin main-arm64.bin
+          python -m nuitka --standalone \
+            --include-package=adafruit_blinka \
+            --include-package=adafruit_servokit \
+            --include-module=pygame \
+            --output-dir=build \
+            main.py
+
+      - name: Compress Build
+        run: |
+          # Compress the directory into a tarball
+          tar -czvf goblin-app.tar.gz -C build/main.dist .
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          # Uploading the renamed ARM64 binary
-          files: main-arm64.bin 
+          files: goblin-app.tar.gz
           generate_release_notes: true

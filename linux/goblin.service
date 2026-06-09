@@ -7,7 +7,7 @@ After=network-online.target
 Type=forking
 User=goblin
 WorkingDirectory=/home/goblin/goblin-speaks
-ExecStart=/usr/bin/tmux new-session -d -s goblin '/home/goblin/goblin-speaks/launcher.sh'
+ExecStart=/usr/bin/tmux -S /tmp/goblin-tmux new-session -d -s goblin /bin/bash /home/goblin/goblin-speaks/launcher.sh
 ExecStop=/usr/bin/tmux kill-session -t goblin
 
 [Install]

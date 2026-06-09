@@ -2,38 +2,42 @@
 
 # Configuration
 REPO="gobbolab/goblin-speaks"
-BIN_NAME="main-arm64.bin"
+TARBALL="goblin-app.tar.gz"
 APP_DIR="/home/goblin/goblin-speaks"
+EXEC="./main"
 
-# Ensure we are in the correct directory
 cd "$APP_DIR" || exit 1
 
-echo "Checking for latest release from $REPO..."
+echo "Checking for updates..."
 
-# Use GitHub API to find the download URL for the latest main-arm64.bin
-DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | grep "browser_download_url.*$BIN_NAME" | cut -d '"' -f 4)
+# 1. Attempt to get the download URL
+DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | grep "browser_download_url.*$TARBALL" | cut -d '"' -f 4)
 
+# 2. Only attempt download if URL is found
 if [ -n "$DOWNLOAD_URL" ]; then
-    echo "Found new version. Downloading from $DOWNLOAD_URL..."
+    echo "New release found. Downloading..."
     
-    # Download to a temporary file first so we don't break the existing one if internet drops
-    if curl -L -s -o "$BIN_NAME.new" "$DOWNLOAD_URL"; then
-        mv "$BIN_NAME.new" "$BIN_NAME"
-        chmod +x "$BIN_NAME"
-        echo "Update complete."
+    # Download to a temporary file first
+    if curl -L -s -o "$TARBALL.tmp" "$DOWNLOAD_URL"; then
+        # If download succeeded, overwrite the old tarball
+        mv "$TARBALL.tmp" "$TARBALL"
+        # Extract the new release
+        tar -xzvf "$TARBALL" > /dev/null
+        chmod +x "$EXEC"
+        echo "Update applied successfully."
     else
-        echo "Download failed. Falling back to existing binary."
-        rm -f "$BIN_NAME.new"
+        echo "Download failed. Cleaning up..."
+        rm -f "$TARBALL.tmp"
     fi
 else
-    echo "Could not reach GitHub or find release. Falling back to existing binary."
+    echo "No new release or cannot reach GitHub. Proceeding with current version."
 fi
 
-# Execute the application
-if [ -x "./$BIN_NAME" ]; then
-    echo "Starting $BIN_NAME..."
-    ./$BIN_NAME
+# 3. Fallback logic: check if executable exists, even if the update failed
+if [ -x "$EXEC" ]; then
+    echo "Starting application..."
+    "$EXEC"
 else
-    echo "Error: $BIN_NAME not found or not executable. Exiting."
+    echo "Error: No executable found to run. Exiting."
     exit 1
 fi
