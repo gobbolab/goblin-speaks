@@ -3,54 +3,16 @@ Code for the bartop sized goblin fortune teller machine
 
 ## Raspberry PI Setup
 
-### Add Goblin User
+The setup.sh script will install the goblin speaks softare on a Raspberry Pi.
+
+It will take the following actions:
+- Install system dependencies
+- Create a new user named `goblin`
+- Create the application directory `home/goblin/goblin-speaks`
+- Download the launcher script
+- Download the systemd service file
+- Configure systemd to start the goblin-speaks program in a tmux session on startup
 
 ```
-sudo adduser goblin
-sudo usermod -aG goblin
-sudo usermod -aG video,audio,gpio,i2c,spi,dialout goblin
+curl -sL https://raw.githubusercontent.com/gobbolab/goblin-speaks/main/linux/setup.sh | sudo bash
 ```
-
-### Add App Directory
-
-As the goblin user
-
-```
-cd ~
-mkdir goblin-speaks
-```
-
-Save the `launcher.sh` file inside the newly created directory.
-
-Make `launcher.sh` executable.
-
-```
-sudo chmod +x launcher.sh
-```
-
-### Install tmux
-
-```
-sudo apt-get update
-sudo apt-get install tmux
-```
-
-### Setup Systemd Service
-
-```
-sudo nano /etc/systemd/system/goblin.service
-```
-
-Paste the goblin.service file contents into this file.
-
-Then enable the service:
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable goblin.service
-sudo systemctl start goblin.service
-```
-
-### Attaching to tmux
-
-`tmux attach -t goblin`
