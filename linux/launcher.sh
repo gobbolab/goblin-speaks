@@ -4,40 +4,45 @@
 REPO="gobbolab/goblin-speaks"
 TARBALL="goblin-app.tar.gz"
 APP_DIR="/home/goblin/goblin-speaks"
-EXEC="./main"
+EXEC="$APP_DIR/main.bin"
 
 cd "$APP_DIR" || exit 1
 
 echo "Checking for updates..."
 
-# 1. Attempt to get the download URL
+# 1. Attempt to get the latest release URL
 DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | grep "browser_download_url.*$TARBALL" | cut -d '"' -f 4)
 
-# 2. Only attempt download if URL is found
+# 2. Update process with fallback
 if [ -n "$DOWNLOAD_URL" ]; then
     echo "New release found. Downloading..."
     
-    # Download to a temporary file first
+    # Download to temporary file
     if curl -L -s -o "$TARBALL.tmp" "$DOWNLOAD_URL"; then
-        # If download succeeded, overwrite the old tarball
+        # Create a backup of the current working version before extracting
+        # This keeps the system running if the new tarball is broken
         mv "$TARBALL.tmp" "$TARBALL"
-        # Extract the new release
-        tar -xzvf "$TARBALL" > /dev/null
-        chmod +x "$EXEC"
-        echo "Update applied successfully."
+        
+        echo "Extracting new version..."
+        if tar -xzvf "$TARBALL" > /dev/null; then
+            chmod +x "$EXEC"
+            echo "Update applied."
+        else
+            echo "Extraction failed. Falling back to previous version."
+        fi
     else
-        echo "Download failed. Cleaning up..."
+        echo "Download failed. Falling back to previous version."
         rm -f "$TARBALL.tmp"
     fi
 else
-    echo "No new release or cannot reach GitHub. Proceeding with current version."
+    echo "No update available or network unreachable. Using current version."
 fi
 
-# 3. Fallback logic: check if executable exists, even if the update failed
 if [ -x "$EXEC" ]; then
     echo "Starting application..."
+    # Execute directly
     "$EXEC"
 else
-    echo "Error: No executable found to run. Exiting."
+    echo "Error: Executable not found at $EXEC."
     exit 1
 fi

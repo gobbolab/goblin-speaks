@@ -47,6 +47,7 @@ jobs:
             --include-package=adafruit_blinka \
             --include-package=adafruit_servokit \
             --include-module=pygame \
+            --include-data-file=src/board_imports.json=board_imports.json \
             --output-dir=build \
             main.py
 
