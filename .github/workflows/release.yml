@@ -46,6 +46,7 @@ jobs:
           # 1. Get the path to the installed adafruit_blinka package
           BLINKA_PATH=$(python -c "import adafruit_blinka; import os; print(os.path.dirname(adafruit_blinka.__file__))")
           echo "Blinka package path: $BLINKA_PATH"
+          ls -F "$BLINKA_PATH"
           
           # 2. Run Nuitka and include the JSON files from the root of that package directory
           python -m nuitka --standalone \
