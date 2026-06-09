@@ -48,6 +48,7 @@ jobs:
             --include-package=adafruit_servokit \
             --include-package=RPi \
             --include-module=pygame \
+            --include-data-dir=$BLINKA_PATH=adafruit_blinka \
             --output-dir=build \
             main.py
 
