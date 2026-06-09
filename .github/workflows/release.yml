@@ -47,6 +47,7 @@ jobs:
           # This avoids relying on the 'pip' installation structure
           curl -o board_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/board_imports.json
           curl -o microcontroller_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/microcontroller_imports.json
+          cat board_imports.json
           
           # 2. Run Nuitka using these local files
           python -m nuitka --standalone \
@@ -54,8 +55,8 @@ jobs:
             --include-package=adafruit_servokit \
             --include-package=RPi \
             --include-module=pygame \
-            --include-data-file=board_imports.json=adafruit_blinka/board_imports.json \
-            --include-data-file=microcontroller_imports.json=adafruit_blinka/microcontroller_imports.json \
+            --include-data-file=board_imports.json=board_imports.json \
+            --include-data-file=microcontroller_imports.json=microcontroller_imports.json \
             --output-dir=build \
             main.py
 
