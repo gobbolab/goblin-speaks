@@ -56,7 +56,7 @@ jobs:
             --include-package=RPi \
             --include-module=pygame \
             --include-data-file=board_imports.json=board_imports.json \
-            --include-data-file=microcontroller_imports.json=microcontroller_imports.json \
+            # --include-data-file=microcontroller_imports.json=microcontroller_imports.json \
             --include-data-file=microcontroller_imports.json=microcontroller/microcontroller_imports.json \
             --output-dir=build \
             main.py
