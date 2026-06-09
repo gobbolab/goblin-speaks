@@ -3,7 +3,7 @@
 # Configuration
 REPO="gobbolab/goblin-speaks"
 BIN_NAME="main-arm64.bin"
-APP_DIR="/home/pi/goblin-speaks"
+APP_DIR="/home/goblin/goblin-speaks"
 
 # Ensure we are in the correct directory
 cd "$APP_DIR" || exit 1
