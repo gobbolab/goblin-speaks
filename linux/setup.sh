@@ -77,3 +77,4 @@ systemctl restart goblin.service
 
 echo "=== Setup Complete! ==="
 echo "Check the live application status with: systemctl status goblin.service"
+echo "Attach to the application terminal with: tmux attach -t goblin"
