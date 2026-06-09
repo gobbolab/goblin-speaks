@@ -43,15 +43,18 @@ jobs:
 
       - name: Compile Python to C
         run: |
+          # 1. Get the path to the installed adafruit_blinka package
           BLINKA_PATH=$(python -c "import adafruit_blinka; import os; print(os.path.dirname(adafruit_blinka.__file__))")
-
+          echo "Blinka package path: $BLINKA_PATH"
+          
+          # 2. Run Nuitka and include the JSON files from the root of that package directory
           python -m nuitka --standalone \
             --include-package=adafruit_blinka \
             --include-package=adafruit_servokit \
             --include-package=RPi \
             --include-module=pygame \
-            --include-data-file="$BLINKA_PATH/src/board_imports.json"=adafruit_blinka/board_imports.json \
-            --include-data-file="$BLINKA_PATH/src/microcontroller_imports.json"=adafruit_blinka/microcontroller_imports.json \
+            --include-data-file="$BLINKA_PATH/board_imports.json"=adafruit_blinka/board_imports.json \
+            --include-data-file="$BLINKA_PATH/microcontroller_imports.json"=adafruit_blinka/microcontroller_imports.json \
             --output-dir=build \
             main.py
 
