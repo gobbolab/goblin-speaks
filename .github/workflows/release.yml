@@ -43,6 +43,8 @@ jobs:
 
       - name: Compile Python to C
         run: |
+          BLINKA_PATH=$(python -c "import adafruit_blinka; import os; print(os.path.dirname(adafruit_blinka.__file__))")
+
           python -m nuitka --standalone \
             --include-package=adafruit_blinka \
             --include-package=adafruit_servokit \
