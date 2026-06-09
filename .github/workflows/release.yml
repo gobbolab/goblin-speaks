@@ -46,6 +46,7 @@ jobs:
           python -m nuitka --standalone \
             --include-package=adafruit_blinka \
             --include-package=adafruit_servokit \
+            --include-package=RPi \
             --include-module=pygame \
             --include-data-file=src/board_imports.json=board_imports.json \
             --output-dir=build \
