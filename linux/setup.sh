@@ -50,6 +50,11 @@ else
     exit 1
 fi
 
+# 5. Create the global PATH terminal command
+echo "[+] Creating global 'goblin-speaks' terminal command..."
+ln -sf "$APP_DIR/goblin-speaks" /usr/local/bin/goblin-speaks
+echo "[✓] Global command linked to /usr/local/bin/goblin-speaks"
+
 # 5. Download the systemd service file
 echo "[+] Downloading goblin.service..."
 if curl -sL -f "$RAW_URL/linux/goblin.service" -o /etc/systemd/system/goblin.service; then

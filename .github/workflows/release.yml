@@ -20,13 +20,6 @@ jobs:
         with:
           fetch-depth: 0 
 
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: patch 
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -53,6 +46,7 @@ jobs:
           
           # 2. Run Nuitka using these local files
           python -m nuitka --standalone \
+            --output-filename=goblin-speaks \
             --include-package=adafruit_blinka \
             --include-package=adafruit_servokit \
             --include-package=RPi \
@@ -67,6 +61,13 @@ jobs:
         run: |
           # Compress the directory into a tarball
           tar -czvf goblin-app.tar.gz -C build/main.dist .
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch 
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
