@@ -2,3 +2,4 @@ RPi.GPIO
 adafruit-circuitpython-servokit
 Adafruit-Blinka
 pygame
+typer

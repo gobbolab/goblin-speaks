@@ -24,6 +24,11 @@ class AudioPlayer:
 
 
     def play_random(self):
+        """
+        Plays a random sound file from the sound list.
+        Returns the duration of the of the sound being played.
+        This call is non blocking.
+        """
         if not self.sound_list:
             print("Warning: No sounds loaded to play.")
             return 0.0
