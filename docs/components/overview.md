@@ -14,6 +14,7 @@ A humanoid animatronic body which supports two SG-90 stepper motors, the first f
 
 [Details](goblin-speaks-head.md)
 
+
 # Object Dispensers
 
 These are the available object dispensers in the framework.
@@ -26,6 +27,7 @@ Capable of holding roughly one deck of standard poker sized playing cards.
 
 [Details](goblin-speaks-card-dispenser.md)
 
+
 # Coin Readers
 
 ## Goblin Speaks Coin Reader (Gobbo Lab)
@@ -33,6 +35,7 @@ Capable of holding roughly one deck of standard poker sized playing cards.
 A dumb coin reader which uses IR light sensors to detect when something (hopefully a coin) comes down the chute.
 
 [Details](goblin-speaks-coin-reader.md)
+
 
 # Heads
 

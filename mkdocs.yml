@@ -1,6 +1,8 @@
 site_name: Goblin Speaks Docs
 theme:
   name: material
+  palette:
+    scheme: slate
   features:
     - content.code.copy
 
