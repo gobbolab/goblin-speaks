@@ -6,9 +6,9 @@ description: Goblin Speaks documentation home.
 
 # Goblin Speaks Fortune Teller Project
 
-![Gypsy grandma machine](images/gypsy-grandma.jpg)
-
 Inspired by the penny arcade machines of the 1930s and novelty fortune teller machines like Zoltar, the Goblin Speaks project aims to deliver a framework of open source components and software which anyone can leverage to build their own working fortune teller machine.
+
+![Gypsy grandma machine](images/gypsy-grandma.jpg)
 
 These machines are designed to be "bartop" or "goblin" sized, rather than full life sized cabinets. (But really build it whatever size you like, I'm not your mom.)
 The scope of project is to provide all of the mechanical aspects of the machine, such as animatronics, card dispensers software etc. 
