@@ -11,7 +11,7 @@ Inspired by the penny arcade machines of the 1930s and novelty fortune teller ma
 ![Gypsy grandma machine](images/gypsy-grandma.jpg)
 
 These machines are designed to be "bartop" or "goblin" sized, rather than full life sized cabinets. (But really build it whatever size you like, I'm not your mom.)
-The scope of project is to provide all of the mechanical aspects of the machine, such as animatronics, card dispensers software etc. 
+The scope of project is to provide all of the core aspects of the machine, such as animatronics, card dispensers software etc. 
 Actual physical construction of the cabinet and any other accessories or decorations will be up to the builder.
 
 The Goblin Speaks machine is built around the Raspberry Pi single board computer.
@@ -39,7 +39,7 @@ For a machine to be considered completed it must meet the following criteria:
 
 #### Use of Goblin Speaks Framework
 
-The machine muse use at least some piece of the Goblin Speaks framework such as components, software, model files etc..
+The machine must use at least some piece of the Goblin Speaks framework such as components, software, model files etc.
 How much or how little the framework is used is up to you.
 These machines can come in all shapes and sizes so there is no need to be picky on what is or is not considered a Goblin Speaks machine.
 If the machine operates, meets these criteria, and you consider it a Goblin Speaks machine, than it is a Goblin Speaks machine.
@@ -61,16 +61,16 @@ For example a fortune card, small toy or token.
 
 ## Components
 
-You can learn more about the available components which can be used to build a Goblin Speaks machine [here](components.md).
+You can learn more about the available components which can be used to build a Goblin Speaks machine [here](components/overview.md).
 
 ## Software
 
-The Goblin Speaks fortune teller system is designed to run on Raspberry Pi.
+The framework software is designed to run on Raspberry Pi.
 Learn more [here](software.md).
 
 See the code on the github repository: https://github.com/gobbolab/goblin-speaks
 
 ## Contributing
 
-If you make your own improved version of one of our components, have a new feature to add to the software, or have something unique for your machine that you want to be part of the project just open a PR with all the details. 
+If you design your own component, have a new feature for the software, or anything else you think should be part of the project, just open a PR with all the details. 
 Code and 3D model files should be shared with a permissible license that allows others to use and iterate the designs.
