@@ -4,9 +4,9 @@ title: Home
 description: Goblin Speaks documentation home.
 ---
 
-# Goblin Speaks Fortune Teller Project
+# Goblin Speaks Fortune Teller Framework
 
-Inspired by the penny arcade machines of the 1930s and novelty fortune teller machines like Zoltar, the Goblin Speaks project aims to deliver a framework of open source components and software which anyone can leverage to build their own working fortune teller machine.
+Inspired by the penny arcade machines of the 1930s and novelty fortune teller machines like Zoltar, this project aims to deliver a framework of open source components and software which anyone can leverage to build their own working fortune teller machine.
 
 ![Gypsy grandma machine](images/gypsy-grandma.jpg)
 
@@ -30,7 +30,12 @@ Here is a video of the in progress prototype:
 Builders who complete a Goblin Speaks machine can apply for a serial number for the completed machine.
 More details on this process will be available once the first iteration of the machine is completed.
 
-For a machine to be completed it must meet the following criteria:
+For a machine to be considered completed it must meet the following criteria:
+
+- Use of Goblin Speaks Framework
+- Support one mode of activation
+- Play a show for the player/audience
+- Dispense an object
 
 #### Use of Goblin Speaks Framework
 
@@ -39,12 +44,12 @@ How much or how little the framework is used is up to you.
 These machines can come in all shapes and sizes so there is no need to be picky on what is or is not considered a Goblin Speaks machine.
 If the machine operates, meets these criteria, and you consider it a Goblin Speaks machine, than it is a Goblin Speaks machine.
 
-#### Activation Mode
+#### Mode of Activation
 
-The machine must support some kind of activation mode.
+The machine must support some kind of mode of activation.
 This could be a coin mechanism, motion sensor, a button or whatever else you decide for your machine.
 
-#### Play Mode
+#### Playing a Show
 
 The machine must perform some kind of show for the player once activated.
 This could mean activating an animatronic, playing audio, activating lights etc.
@@ -56,7 +61,7 @@ For example a fortune card, small toy or token.
 
 ## Components
 
-You can learn more about the available components used to build a Goblin Speaks machine [here](components.md).
+You can learn more about the available components which can be used to build a Goblin Speaks machine [here](components.md).
 
 ## Software
 
