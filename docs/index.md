@@ -6,6 +6,8 @@ description: Goblin Speaks documentation home.
 
 # Goblin Speaks Fortune Teller Project
 
+![Gypsy grandma machine](images/gypsy-grandma.jpg)
+
 Inspired by the penny arcade machines of the 1930s and novelty fortune teller machines like Zoltar, the Goblin Speaks project aims to deliver a framework of open source components and software which anyone can leverage to build their own working fortune teller machine.
 
 These machines are designed to be "bartop" or "goblin" sized, rather than full life sized cabinets. (But really build it whatever size you like, I'm not your mom.)
@@ -30,24 +32,24 @@ More details on this process will be available once the first iteration of the m
 
 For a machine to be completed it must meet the following criteria:
 
-### Use of Goblin Speaks Framework
+#### Use of Goblin Speaks Framework
 
 The machine muse use at least some piece of the Goblin Speaks framework such as components, software, model files etc..
 How much or how little the framework is used is up to you.
 These machines can come in all shapes and sizes so there is no need to be picky on what is or is not considered a Goblin Speaks machine.
 If the machine operates, meets these criteria, and you consider it a Goblin Speaks machine, than it is a Goblin Speaks machine.
 
-### Activation Mode
+#### Activation Mode
 
 The machine must support some kind of activation mode.
 This could be a coin mechanism, motion sensor, a button or whatever else you decide for your machine.
 
-### Play Mode
+#### Play Mode
 
 The machine must perform some kind of show for the player once activated.
 This could mean activating an animatronic, playing audio, activating lights etc.
 
-### Dispense Object
+#### Dispense Object
 
 The machine must dispense some kind of phsyical object to the player once the show is over.
 For example a fortune card, small toy or token.
