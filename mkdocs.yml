@@ -1,0 +1,8 @@
+site_name: Goblin Speaks Docs
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Software: software.md
+  - Components: components.md

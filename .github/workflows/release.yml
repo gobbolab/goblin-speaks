@@ -36,15 +36,12 @@ jobs:
           pip install nuitka
           pip install -r requirements.txt 
 
-      - name: Compile Python to C
+- name: Compile Python to C
         run: |
-          # 1. Manually download the required JSON files from the official repo
-          # This avoids relying on the 'pip' installation structure
+          BLINKA_PATH=$(python -c "import adafruit_blinka; import os; print(os.path.dirname(adafruit_blinka.__file__))")
           curl -o board_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/board_imports.json
           curl -o microcontroller_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/microcontroller_imports.json
-          cat board_imports.json
           
-          # 2. Run Nuitka using these local files
           python -m nuitka --standalone \
             --output-filename=goblin-speaks \
             --include-package=adafruit_blinka \
@@ -52,11 +49,10 @@ jobs:
             --include-package=RPi \
             --include-package=typer \
             --include-module=pygame \
-            --include-data-file=board_imports.json=board_imports.json \
-            --include-data-file=microcontroller_imports.json=microcontroller_imports.json \
-            --include-data-file=microcontroller_imports.json=microcontroller/microcontroller_imports.json \
+            --include-data-file=board_imports.json=adafruit_blinka/board_imports.json \
+            --include-data-file=microcontroller_imports.json=adafruit_blinka/microcontroller_imports.json \
             --output-dir=build \
-            main.py
+            src/main.py
 
       - name: Compress Build
         run: |
