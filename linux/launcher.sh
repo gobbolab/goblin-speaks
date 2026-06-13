@@ -4,7 +4,7 @@
 REPO="gobbolab/goblin-speaks"
 TARBALL="goblin-app.tar.gz"
 APP_DIR="/home/goblin/goblin-speaks"
-EXEC="$APP_DIR/main.bin"
+EXEC="$APP_DIR/goblin-speaks"
 
 cd "$APP_DIR" || exit 1
 
@@ -41,7 +41,7 @@ fi
 if [ -x "$EXEC" ]; then
     echo "Starting application..."
     # Execute directly
-    "$EXEC"
+    "$EXEC run"
 else
     echo "Error: Executable not found at $EXEC."
     exit 1
