@@ -1,7 +1,4 @@
-# animatronic/gs_body.py
 from .base import Animatronic
-# Assuming you have a servo library available
-from motor.servo import Servo 
 
 class GSBody(Animatronic):
     def __init__(self, arm_pin, mouth_pin, *args, **kwargs):

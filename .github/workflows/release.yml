@@ -50,10 +50,14 @@ jobs:
 
       - name: Compile Python to C
         run: |
-          BLINKA_PATH=$(python -c "import adafruit_blinka; import os; print(os.path.dirname(adafruit_blinka.__file__))")
-          curl -o board_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/board_imports.json
-          curl -o microcontroller_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/microcontroller_imports.json
+          # 1. Find exactly where pip installed adafruit_blinka on the runner
+          BLINKA_DIR=$(python -c "import adafruit_blinka; import os; print(os.path.dirname(adafruit_blinka.__file__))")
           
+          # 2. Curl the files DIRECTLY into that Python library folder
+          curl -o $BLINKA_DIR/board_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/board_imports.json
+          curl -o $BLINKA_DIR/microcontroller_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/microcontroller_imports.json
+          
+          # 3. Tell Nuitka to grab the entire package and its data natively
           python -m nuitka --standalone \
             --output-filename=goblin-speaks \
             --include-package=adafruit_blinka \
@@ -61,12 +65,9 @@ jobs:
             --include-package=RPi \
             --include-package=typer \
             --include-module=pygame \
+            --include-package-data=adafruit_blinka \
             --output-dir=build \
             src/main.py
-
-          mkdir -p build/goblin-speaks.dist/adafruit_blinka
-          cp board_imports.json build/goblin-speaks.dist/adafruit_blinka/
-          cp microcontroller_imports.json build/goblin-speaks.dist/adafruit_blinka/
 
       - name: Compress Build
         run: |
