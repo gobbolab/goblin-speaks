@@ -20,6 +20,13 @@ jobs:
         with:
           fetch-depth: 0 
 
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch 
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -35,6 +42,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install nuitka
           pip install -r src/requirements.txt 
+
+      - name: Inject Version Number
+        run: |
+          echo "__version__ = '${{ steps.tag_version.outputs.new_tag }}'" > src/version.py
+          cat src/version.py
 
       - name: Compile Python to C
         run: |
@@ -58,13 +70,6 @@ jobs:
         run: |
           # Compress the directory into a tarball
           tar -czvf goblin-app.tar.gz -C build/main.dist .
-
-      - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: patch 
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2

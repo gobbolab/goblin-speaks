@@ -7,6 +7,7 @@ import board
 import digitalio
 import dispenser
 from audio_player import AudioPlayer
+from version import __version__
 
 audio_player = AudioPlayer()
 
@@ -133,4 +134,5 @@ def test():
     run_test_menu()
 
 if __name__ == "__main__":
+    print(f"Goblin Speaks Fortune Teller Framework - {__version__}")
     app()
