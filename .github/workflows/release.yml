@@ -54,7 +54,7 @@ jobs:
           curl -o board_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/board_imports.json
           curl -o microcontroller_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/microcontroller_imports.json
           
-          # 2. Compile Nuitka WITHOUT any data-file or package-data flags
+          # 2. Compile Nuitka
           python -m nuitka --standalone \
             --output-filename=goblin-speaks \
             --include-package=adafruit_blinka \
@@ -65,13 +65,13 @@ jobs:
             --output-dir=build \
             src/main.py
             
-          # 3. Force copy the files directly to the root of the output folder
-          cp board_imports.json build/goblin-speaks.dist/
-          cp microcontroller_imports.json build/goblin-speaks.dist/
+          # 3. Force copy the files to the correct main.dist folder
+          cp board_imports.json build/main.dist/
+          cp microcontroller_imports.json build/main.dist/
           
           # 4. Create the required subfolder and copy the file inside it
-          mkdir -p build/goblin-speaks.dist/microcontroller
-          cp microcontroller_imports.json build/goblin-speaks.dist/microcontroller/
+          mkdir -p build/main.dist/microcontroller
+          cp microcontroller_imports.json build/main.dist/microcontroller/
 
       - name: Compress Build
         run: |
