@@ -11,6 +11,6 @@ nav:
   - Software: software.md
   - Components:
       - Overview: components/overview.md
-      - Goblin Speaks Animatronic Body: components/goblin-speaks-body.md
+      - Goblin Speaks Animatronic Body: components/goblin-speaks-animatronic-body.md
       - Goblin Speaks Card Dispenser: components/goblin-speaks-card-dispenser.md
       - Goblin Speaks Head: components/goblin-speaks-head.md
