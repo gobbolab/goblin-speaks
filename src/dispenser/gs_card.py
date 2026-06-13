@@ -19,4 +19,4 @@ class GSCardDispenser(Dispenser):
         Dispenses a fortune card.
         """
     print("Dispensing card...")
-    self.motor.move_backward(3000)
+    self.motor.move_backward(2800)
