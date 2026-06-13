@@ -61,8 +61,8 @@ jobs:
             --include-package=RPi \
             --include-package=typer \
             --include-module=pygame \
-            --include-data-file=board_imports.json=adafruit_blinka/board_imports.json \
-            --include-data-file=microcontroller_imports.json=adafruit_blinka/microcontroller_imports.json \
+            --include-data-file=$GITHUB_WORKSPACE/board_imports.json=adafruit_blinka/board_imports.json \
+            --include-data-file=$GITHUB_WORKSPACE/microcontroller_imports.json=adafruit_blinka/microcontroller_imports.json \
             --output-dir=build \
             src/main.py
 
