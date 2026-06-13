@@ -1,4 +1,3 @@
-# animatronic/base.py
 from abc import ABC, abstractmethod
 
 class Animatronic(ABC):
