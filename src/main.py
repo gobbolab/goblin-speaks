@@ -1,11 +1,11 @@
 from adafruit_servokit import ServoKit
-from stepper import Stepper
 import typer
 import threading
 import time
 import pygame
 import board
 import digitalio
+import dispenser
 from audio_player import AudioPlayer
 
 audio_player = AudioPlayer()
@@ -24,7 +24,7 @@ arm_duration = 0.5
 arm_steps = 200
 arm_delay = 1
 
-card = Stepper(board.D17, board.D18, board.D27, board.D22)
+card = dispenser.GSCardDispenser(board.D17, board.D18, board.D19, board.D20)
 
 app = typer.Typer(help="Goblin Speaks fortune teller software")
 
@@ -66,13 +66,6 @@ def arm_animation(druation):
         smooth_servo_movement(arm, arm_end, arm_start, arm_duration, arm_steps)
         time.sleep(1)
 
-def dispense_card():
-    """
-    Dispenses a fortune card.
-    """
-    print("Dispensing card...")
-    card.move_backward(3000)
-
 def play():
     """
     Executes one play of the machine.
@@ -103,7 +96,7 @@ def play():
 
     print("Audio/animations complete...")
     
-    dispense_card()
+    card.dispense()
 
     print("Play finished.")
 
@@ -121,7 +114,7 @@ def run_test_menu():
             # play()
         elif choice == "2":
             print("Testing card dispenser...")
-            # dispense_card()
+            card.dispense()
         elif choice == "3":
             print("Testing voice...")
             # play_voice()
