@@ -1,6 +1,7 @@
 from .base import Animatronic
 from adafruit_servokit import ServoKit
 import threading
+import time
 
 mouth_movement_delay = 0.2
 mouth_closed_angle = 70

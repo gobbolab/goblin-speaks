@@ -35,7 +35,7 @@ class AudioPlayer:
             return 0.0
         
         sound = random.choice(self.sound_list)
-        duration = random_sound.get_length()        
+        duration = sound.get_length()        
         sound.play()
 
         return duration

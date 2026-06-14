@@ -1,5 +1,4 @@
 import typer
-import time
 import pygame
 import board
 import digitalio
