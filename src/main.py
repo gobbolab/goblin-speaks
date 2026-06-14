@@ -10,7 +10,7 @@ from version import __version__
 audio_player = AudioPlayer()
 
 animatronic = animatronic.GSBody(0, 1)
-card = dispenser.GSCardDispenser(board.D17, board.D18, board.D19, board.D20)
+card = dispenser.GSCardDispenser(board.D17, board.D18, board.D27, board.D22)
 
 app = typer.Typer(help="Goblin Speaks fortune teller software")
 
