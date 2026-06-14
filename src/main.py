@@ -24,7 +24,7 @@ def play():
     """
     print("Starting play...")
 
-    duration = audio_player.playrandom()
+    duration = audio_player.play_random()
     animatronic.animate(duration)
 
     print("Audio/animations complete...")
@@ -34,26 +34,30 @@ def play():
     print("Play finished.")
 
 def run_test_menu():
+    menu_options = {
+        "1": ("Play", play),
+        "2": ("Test Animatronic", animatronic.test),
+        "3": ("Test Card", card.dispense),
+        "4": ("Test Audio", audio_player.play_random),
+        "0": ("Exit", None)
+    }
+
     while True:
         print("\nMenu:")
-        print("1. Play")
-        print("2. Test Card")
-        print("3. Test Audio")
-        print("0. Exit")
+        for key, (description, _) in menu_options.items():
+            print(f"{key}. {description}")
+
         choice = input("Enter your choice: ")
 
-        if choice == "1":
-            print("Starting play...")
-            # play()
-        elif choice == "2":
-            print("Testing card dispenser...")
-            card.dispense()
-        elif choice == "3":
-            print("Testing voice...")
-            # play_voice()
-        elif choice == "0":
+        if choice == "0":
             print("Exiting...")
-            return
+            break
+
+        selected_option = menu_options.get(choice)
+
+        if selected_option:
+            description, func = selected_option
+            func() 
         else:
             print("Invalid input.")
 

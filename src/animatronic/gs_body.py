@@ -54,7 +54,8 @@ class GSBody(Animatronic):
         Runs a quick diagnostic sweep of the servos.
         """
         print("Testing arm and mouth servos...")
-        return True
+        self.__animate_arm(5)
+        self.__animate_mouth(5)
 
     def __animate_mouth(self, duration):
         print("Starting mouth animation...")
