@@ -41,7 +41,7 @@ fi
 if [ -x "$EXEC" ]; then
     echo "Starting application..."
     # Execute directly
-    "$EXEC run"
+    exec "$EXEC" run "$@"
 else
     echo "Error: Executable not found at $EXEC."
     exit 1
