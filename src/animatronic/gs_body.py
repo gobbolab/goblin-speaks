@@ -1,28 +1,35 @@
 from .base import Animatronic
 from adafruit_servokit import ServoKit
+from src.config import Config
 import threading
 import time
 
-mouth_movement_delay = 0.2
-mouth_closed_angle = 70
-mouth_open_angle = 180
-
-arm_start = 0
-arm_end = 10
-arm_duration = 0.5
-arm_steps = 200
-arm_delay = 1
-
 class GSBody(Animatronic):
-    def __init__(self, arm_pin, mouth_pin, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
-        Initializes the GSBody with arm and mouth servo pins.
+        Initializes the GSBody with configuration from goblin-speaks-config.yml
         """
-        kit = ServoKit(channels=16)
-
-        self.arm = kit.servo[arm_pin]
-        self.mouth = kit.servo[mouth_pin]
+        config = Config()
         
+        # Load servo pin configuration with defaults
+        self.arm_pin = config.get('animatronic.gs_body.arm_pin', 0)
+        self.mouth_pin = config.get('animatronic.gs_body.mouth_pin', 1)
+        
+        # Load mouth animation parameters with defaults
+        self.mouth_movement_delay = config.get('animatronic.gs_body.mouth_movement_delay', 0.2)
+        self.mouth_closed_angle = config.get('animatronic.gs_body.mouth_closed_angle', 70)
+        self.mouth_open_angle = config.get('animatronic.gs_body.mouth_open_angle', 180)
+        
+        # Load arm animation parameters with defaults
+        self.arm_start = config.get('animatronic.gs_body.arm_start', 0)
+        self.arm_end = config.get('animatronic.gs_body.arm_end', 10)
+        self.arm_duration = config.get('animatronic.gs_body.arm_duration', 0.5)
+        self.arm_steps = config.get('animatronic.gs_body.arm_steps', 200)
+        self.arm_delay = config.get('animatronic.gs_body.arm_delay', 1)
+        
+        kit = ServoKit(channels=16)
+        self.arm = kit.servo[self.arm_pin]
+        self.mouth = kit.servo[self.mouth_pin]
 
     def animate(self, duration: float):
         """
@@ -63,20 +70,20 @@ class GSBody(Animatronic):
         start_time = time.time()
         
         while (time.time() - start_time) < duration:
-            self.mouth.angle = mouth_open_angle
-            time.sleep(mouth_movement_delay)
-            self.mouth.angle = mouth_closed_angle
-            time.sleep(mouth_movement_delay)
+            self.mouth.angle = self.mouth_open_angle
+            time.sleep(self.mouth_movement_delay)
+            self.mouth.angle = self.mouth_closed_angle
+            time.sleep(self.mouth_movement_delay)
 
     def __animate_arm(self, duration):
         print("Starting arm animation...")
         start_time = time.time()
         
         while (time.time() - start_time) < duration:
-            self.__smooth_servo_movement(self.arm, arm_start, arm_end, arm_duration, arm_steps)
-            time.sleep(1)
-            self.__smooth_servo_movement(self.arm, arm_end, arm_start, arm_duration, arm_steps)
-            time.sleep(1)
+            self.__smooth_servo_movement(self.arm, self.arm_start, self.arm_end, self.arm_duration, self.arm_steps)
+            time.sleep(self.arm_delay)
+            self.__smooth_servo_movement(self.arm, self.arm_end, self.arm_start, self.arm_duration, self.arm_steps)
+            time.sleep(self.arm_delay)
 
     def __smooth_servo_movement(self, servo, start_angle, end_angle, duration, steps=50):
         angle_increment = (end_angle - start_angle) / steps

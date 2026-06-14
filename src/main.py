@@ -9,8 +9,8 @@ from version import __version__
 
 audio_player = AudioPlayer()
 
-animatronic = animatronic.GSBody(0, 1)
-card = dispenser.GSCardDispenser(board.D17, board.D18, board.D27, board.D22)
+animatronic = animatronic.AnimatronicFactory.create()
+dispenser = dispenser.DispenserFactory.create()
 
 app = typer.Typer(help="Goblin Speaks fortune teller software")
 
@@ -28,7 +28,7 @@ def play():
 
     print("Audio/animations complete...")
     
-    card.dispense()
+    dispenser.dispense()
 
     print("Play finished.")
 
@@ -36,7 +36,7 @@ def run_test_menu():
     menu_options = {
         "1": ("Play", play),
         "2": ("Test Animatronic", animatronic.test),
-        "3": ("Test Card", card.dispense),
+        "3": ("Test Dispenser", dispenser.dispense),
         "4": ("Test Audio", audio_player.play_random),
         "0": ("Exit", None)
     }
@@ -62,7 +62,7 @@ def run_test_menu():
 
 @app.command()
 def run():
-    typer.echo("Application is running!")
+    typer.echo("Run mode not implemented")
 
 @app.command()
 def test():
