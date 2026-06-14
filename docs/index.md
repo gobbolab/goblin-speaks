@@ -44,17 +44,17 @@ How much or how little the framework is used is up to you.
 These machines can come in all shapes and sizes so there is no need to be picky on what is or is not considered a Goblin Speaks machine.
 If the machine operates, meets these criteria, and you consider it a Goblin Speaks machine, than it is a Goblin Speaks machine.
 
-#### Mode of Activation
+##### Mode of Activation
 
 The machine must support some kind of mode of activation.
 This could be a coin mechanism, motion sensor, a button or whatever else you decide for your machine.
 
-#### Playing a Show
+##### Playing a Show
 
 The machine must perform some kind of show for the player once activated.
 This could mean activating an animatronic, playing audio, activating lights etc.
 
-#### Dispense Object
+##### Dispense Object
 
 The machine must dispense some kind of phsyical object to the player once the show is over.
 For example a fortune card, small toy or token.
