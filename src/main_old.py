@@ -1,5 +1,5 @@
 # source env/bin/activate
-# kick build
+# kick buil
 
 from adafruit_servokit import ServoKit
 from stepper import Stepper
