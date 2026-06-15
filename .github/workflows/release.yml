@@ -62,6 +62,7 @@ jobs:
             --include-package=RPi \
             --include-package=typer \
             --include-module=pygame \
+            --include-module=pyyaml \
             --output-dir=build \
             src/main.py
             

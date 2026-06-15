@@ -3,3 +3,4 @@ adafruit-circuitpython-servokit
 Adafruit-Blinka
 pygame
 typer
+pyyaml
