@@ -16,7 +16,9 @@ The Goblin Speaks software is a Python-based application designed to run on Rasp
 - **Audio playback**: Handles random audio selection and playback via the [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class
 - **Command-line interface**: Provides CLI commands for machine operation and testing
 
-The software is built using the `typer` framework, which provides a clean command-line interface. Under the default setup, runs as a systemd service in a tmux terminal session, allowing the Raspberry Pi to continue operating normally while the Goblin Speaks application runs in the background.
+The software is built using the `typer` framework, which provides a clean command-line interface. Under the default setup, it runs as a systemd service in a tmux terminal session, allowing the Raspberry Pi to continue operating normally while the Goblin Speaks application runs in the background.
+
+The framework is designed to be highly moddable. Each core component (Animatronics, Dispensers, Players) is defined by an abstract interface. You can create your own custom components (like dispenser for a different type of prize) by simply implementing the required interface and plugging it into the framework. This allows for endless customization of the fortune teller's physical hardware and software flow.
 
 ## Raspberry Pi Setup
 
@@ -133,10 +135,12 @@ Pull requests are welcome for new component types or improvements to existing on
 There are currently two types of components in the framework:
 
 1. **Hardware Components**: These represent physical hardware devices connected to the machine.
+
    - Animatronics (Animated armatures for characters and creatures in the machine)
    - Dispensers (Used to dispense fortune cards or other objects)
 
 2. **Software Components**: These manage the logic and flow of the machine entirely in software.
+
    - Players (Orchestrators that combine audio, animatronics, and dispensers to execute the fortune telling sequence)
 
 ### Adding a New Animatronic Implementation
