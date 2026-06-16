@@ -7,11 +7,6 @@ import animatronic
 from audio_player import AudioPlayer
 from version import __version__
 
-audio_player = AudioPlayer()
-
-animatronic = animatronic.AnimatronicFactory.create()
-dispenser = dispenser.DispenserFactory.create()
-
 app = typer.Typer(help="Goblin Speaks fortune teller software")
 
 def play():
@@ -69,5 +64,20 @@ def test():
     run_test_menu()
 
 if __name__ == "__main__":
-    print(f"Goblin Speaks Fortune Teller Framework - {__version__}")
+    print(r"""
+     _____       _     _ _         _____                  _        
+    |  __ \     | |   | (_)       /  ___|                | |       
+    | |  \/ ___ | |__ | |_ _ __   \ `--. _ __   ___  __ _| | _____ 
+    | | __ / _ \| '_ \| | | '_ \   `--. \ '_ \ / _ \/ _` | |/ / __|
+    | |_\ \ (_) | |_) | | | | | | /\__/ / |_) |  __/ (_| |   <\__ \
+     \____/\___/|_.__/|_|_|_| |_| \____/| .__/ \___|\__,_|_|\_\___/
+                                        | |                        
+                                        |_|                        
+          """)
+    print(f"Fortune Teller Framework - {__version__}")
+
+    audio_player = AudioPlayer()
+    animatronic = animatronic.AnimatronicFactory.create()
+    dispenser = dispenser.DispenserFactory.create()
+
     app()
