@@ -134,12 +134,12 @@ The framework is designed to be modular and moddable, allowing you to design and
 Pull requests are welcome for new component types or improvements to existing ones.
 There are currently two types of components in the framework:
 
-1. **Hardware Components**: These represent physical hardware devices connected to the machine.
+**Hardware Components**: These represent physical hardware devices connected to the machine.
 
    - Animatronics (Animated armatures for characters and creatures in the machine)
    - Dispensers (Used to dispense fortune cards or other objects)
 
-2. **Software Components**: These manage the logic and flow of the machine entirely in software.
+**Software Components**: These manage the logic and flow of the machine entirely in software.
 
    - Players (Orchestrators that combine audio, animatronics, and dispensers to execute the fortune telling sequence)
 
