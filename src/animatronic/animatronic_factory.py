@@ -1,6 +1,5 @@
 from src.config import Config
 from .gs_body import GSBody
-from .animatronic_factory import AnimatronicFactory
 
 class AnimatronicFactory:
     """Factory for creating animatronic instances based on configuration"""
