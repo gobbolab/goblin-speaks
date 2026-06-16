@@ -10,6 +10,7 @@ description: Details on software used to run the Goblin Speaks Fortune Teller Fr
 
 The Goblin Speaks software is a Python-based application designed to run on Raspberry Pi. It orchestrates various aspects of the fortune teller machine including:
 
+- **Play orchestration**: Manages the sequence of events (audio, animation, dispensing) via the [`Player`](https://github.com/gobbolab/goblin-speaks/tree/main/src/player) module. The `DefaultPlayer` handles selecting a random audio file, triggering the animatronic for the duration of the audio, and then dispensing a card.
 - **Animatronics control**: Manages servo motors for mouth and arm animations via the [`GSBody`](https://github.com/gobbolab/goblin-speaks/blob/main/src/animatronic/gs_body.py) class
 - **Card dispensing**: Controls the stepper motor-driven card dispenser via the [`GSCardDispenser`](https://github.com/gobbolab/goblin-speaks/blob/main/src/dispenser/gs_card.py) class
 - **Audio playback**: Handles random audio selection and playback via the [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class
@@ -129,10 +130,14 @@ Place your fortune teller audio files in `/home/goblin/goblin-speaks/` for the a
 
 The framework is designed to be modular and moddable, allowing you to design and integrate your own components.
 Pull requests are welcome for new component types or improvements to existing ones.
-There are currently two supported types of components:
+There are currently two types of components in the framework:
 
-- Animatronics (Animated armatures for characters and creatures in the machine)
-- Dispensers (Used to dispense fortune cards or other objects)
+1. **Hardware Components**: These represent physical hardware devices connected to the machine.
+   - Animatronics (Animated armatures for characters and creatures in the machine)
+   - Dispensers (Used to dispense fortune cards or other objects)
+
+2. **Software Components**: These manage the logic and flow of the machine entirely in software.
+   - Players (Orchestrators that combine audio, animatronics, and dispensers to execute the fortune telling sequence)
 
 ### Adding a New Animatronic Implementation
 
