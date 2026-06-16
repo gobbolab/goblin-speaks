@@ -64,6 +64,10 @@ def test():
     run_test_menu()
 
 if __name__ == "__main__":
+    audio_player = AudioPlayer()
+    animatronic = animatronic.AnimatronicFactory.create()
+    dispenser = dispenser.DispenserFactory.create()
+
     print(r"""
      _____       _     _ _         _____                  _        
     |  __ \     | |   | (_)       /  ___|                | |       
@@ -75,9 +79,5 @@ if __name__ == "__main__":
                                         |_|                        
           """)
     print(f"Fortune Teller Framework - {__version__}")
-
-    audio_player = AudioPlayer()
-    animatronic = animatronic.AnimatronicFactory.create()
-    dispenser = dispenser.DispenserFactory.create()
 
     app()
