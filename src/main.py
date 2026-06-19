@@ -1,3 +1,4 @@
+import time
 import typer
 import pygame
 import board
@@ -15,7 +16,9 @@ app = typer.Typer(help="Goblin Speaks fortune teller software")
 
 @app.command()
 def run():
-    print("Not yet implemented.")
+    print("Not yet implemented. Shutting down...")
+    time.sleep(5)
+    exit(0)
 
 @app.command()
 def test():
