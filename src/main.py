@@ -17,13 +17,15 @@ app = typer.Typer(help="Goblin Speaks fortune teller software")
 @app.command()
 def run():
     print("Not yet implemented. Shutting down...")
-    time.sleep(5)
+    player.shutdown()
     exit(0)
 
 @app.command()
 def test():
     menu = TestMenu(player)
     menu.run()
+    player.shutdown()
+    exit(0)
 
 if __name__ == "__main__":
     audio_player = AudioPlayer()

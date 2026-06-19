@@ -29,3 +29,7 @@ class BasePlayer(ABC):
         def _callback():
             print("\n*** Activator triggered successfully! ***\n")
         self.activator.start(_callback)
+
+    def shutdown(self):
+        self.activator.shutdown()
+        
