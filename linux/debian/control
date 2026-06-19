@@ -1,0 +1,11 @@
+Package: goblin-speaks
+Version: 0.0.0
+Architecture: arm64
+Section: misc
+Priority: optional
+Maintainer: gobbolab
+Depends: tmux
+Description: Goblin Speaks Fortune Teller Framework
+ A Python-based fortune teller machine application for Raspberry Pi.
+ Orchestrates animatronics, card dispensing, audio playback, and coin
+ activation for an interactive fortune teller experience.

@@ -76,16 +76,47 @@ jobs:
           mkdir -p build/main.dist/microcontroller
           cp microcontroller_imports.json build/main.dist/microcontroller/
 
-      - name: Compress Build
+      - name: Package as .deb
         run: |
-          # Compress the directory into a tarball
-          tar -czvf goblin-app.tar.gz -C build/main.dist .
+          TAG="${{ steps.tag_version.outputs.new_tag }}"
+          TAG_CLEAN="${TAG#v}"
+          PKG_NAME="goblin-speaks_${TAG_CLEAN}_arm64"
+          PKG_DIR="$PKG_NAME"
+          APP_DEST="$PKG_DIR/opt/goblin-speaks"
+          
+          # 1. Create package staging directory structure
+          mkdir -p "$APP_DEST"
+          mkdir -p "$PKG_DIR/home/goblin/goblin-speaks"
+          mkdir -p "$PKG_DIR/DEBIAN"
+          mkdir -p "$PKG_DIR/usr/lib/systemd/system"
+          
+          # 2. Copy compiled binary and all shared libs into package
+          cp -r build/main.dist/. "$APP_DEST/"
+          
+          # 3. Copy the launcher script to the data directory
+          cp linux/launcher.sh "$PKG_DIR/home/goblin/goblin-speaks/launcher.sh"
+          
+          # 4. Copy the systemd service file
+          cp linux/goblin.service "$PKG_DIR/usr/lib/systemd/system/goblin.service"
+          
+          # 5. Write control file with correct version (strip leading 'v' for Debian compliance)
+          sed "s/^Version: .*/Version: ${TAG_CLEAN}/" linux/debian/control > "$PKG_DIR/DEBIAN/control"
+          
+          # 6. Copy and chmod maintainer scripts
+          cp linux/debian/postinst "$PKG_DIR/DEBIAN/postinst"
+          cp linux/debian/prerm    "$PKG_DIR/DEBIAN/prerm"
+          cp linux/debian/postrm   "$PKG_DIR/DEBIAN/postrm"
+          chmod 755 "$PKG_DIR/DEBIAN/postinst" "$PKG_DIR/DEBIAN/prerm" "$PKG_DIR/DEBIAN/postrm"
+          
+          # 7. Build the .deb
+          dpkg-deb --build "$PKG_DIR" "${PKG_NAME}.deb"
+          echo "DEB_FILE=${PKG_NAME}.deb" >> $GITHUB_ENV
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-          files: goblin-app.tar.gz
+          files: ${{ env.DEB_FILE }}
           prerelease: true
           generate_release_notes: true

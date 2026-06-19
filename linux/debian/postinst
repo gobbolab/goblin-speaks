@@ -1,0 +1,43 @@
+#!/bin/bash
+set -e
+
+USERNAME="goblin"
+BIN_DIR="/opt/goblin-speaks"
+DATA_DIR="/home/$USERNAME/goblin-speaks"
+
+if [ "$1" = "configure" ]; then
+
+    # Create the goblin user if it doesn't exist
+    if ! id "$USERNAME" &>/dev/null; then
+        echo "[+] Creating user '$USERNAME'..."
+        useradd -m -s /bin/bash "$USERNAME"
+        echo "[✓] User '$USERNAME' created."
+    else
+        echo "[✓] User '$USERNAME' already exists."
+    fi
+
+    # Ensure the data directory exists and has correct ownership
+    # (audio files and runtime data live here)
+    echo "[+] Setting up data directory $DATA_DIR..."
+    mkdir -p "$DATA_DIR"
+    chown -R "$USERNAME:$USERNAME" "$DATA_DIR"
+    echo "[✓] Ownership set."
+
+    # Create the global goblin-speaks command symlink
+    echo "[+] Creating global 'goblin-speaks' terminal command..."
+    ln -sf "$BIN_DIR/goblin-speaks" /usr/local/bin/goblin-speaks
+    echo "[✓] Global command linked."
+
+    # Make the launcher script executable
+    chmod +x "$DATA_DIR/launcher.sh"
+
+    # Enable and start the systemd service
+    echo "[+] Enabling and starting goblin.service..."
+    systemctl daemon-reload
+    systemctl enable goblin.service
+    systemctl restart goblin.service
+    echo "[✓] goblin.service is active."
+
+fi
+
+exit 0

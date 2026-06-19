@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    # Remove the global symlink
+    echo "[+] Removing global 'goblin-speaks' command..."
+    rm -f /usr/local/bin/goblin-speaks
+    echo "[✓] Symlink removed."
+
+    # Reload systemd so it forgets the removed unit
+    systemctl daemon-reload || true
+fi
+
+exit 0

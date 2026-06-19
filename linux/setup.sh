@@ -9,76 +9,28 @@ if [ "$EUID" -ne 0 ]; then
   exit 1
 fi
 
-# Configuration Variables
-USERNAME="goblin"
-APP_DIR="/home/$USERNAME/goblin-speaks"
-RAW_URL="https://raw.githubusercontent.com/gobbolab/goblin-speaks/main"
+REPO="gobbolab/goblin-speaks"
 
 echo "=== Starting Goblin Speaks Setup ==="
 
-# 1. Install system dependencies (tmux)
-echo "[+] Checking for required packages..."
-if ! command -v tmux &> /dev/null; then
-    echo "[+] Installing tmux..."
-    apt-get update
-    apt-get install -y tmux
-    echo "[✓] tmux installed."
-else
-    echo "[✓] tmux is already installed."
-fi
+# 1. Fetch the latest .deb download URL (including prereleases)
+echo "[+] Fetching latest release from GitHub..."
+DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases" | grep "browser_download_url.*\.deb" | head -n 1 | cut -d '"' -f 4)
 
-# 2. Create the user idempotently
-if id "$USERNAME" &>/dev/null; then
-    echo "[✓] User '$USERNAME' already exists."
-else
-    echo "[+] Creating user '$USERNAME'..."
-    useradd -m -s /bin/bash "$USERNAME"
-fi
-
-# 3. Create the application directory
-echo "[+] Ensuring application directory exists..."
-mkdir -p "$APP_DIR"
-
-# 4. Download the launcher script
-echo "[+] Downloading launcher.sh..."
-# The -f flag ensures curl fails cleanly if a 404 error occurs
-if curl -sL -f "$RAW_URL/linux/launcher.sh" -o "$APP_DIR/launcher.sh"; then
-    chmod +x "$APP_DIR/launcher.sh"
-    echo "[✓] launcher.sh downloaded and made executable."
-else
-    echo "[!] Error: Could not download launcher.sh. Check the URL."
+if [ -z "$DOWNLOAD_URL" ]; then
+    echo "[!] Error: Could not find a release to download. Check https://github.com/$REPO/releases"
     exit 1
 fi
 
-# 5. Create the global PATH terminal command
-echo "[+] Creating global 'goblin-speaks' terminal command..."
-ln -sf "$APP_DIR/goblin-speaks" /usr/local/bin/goblin-speaks
-echo "[✓] Global command linked to /usr/local/bin/goblin-speaks"
+echo "[+] Downloading: $DOWNLOAD_URL"
+DEB_FILE="/tmp/goblin-speaks.deb"
+curl -L -s -o "$DEB_FILE" "$DOWNLOAD_URL"
+echo "[✓] Download complete."
 
-# 5. Download the systemd service file
-echo "[+] Downloading goblin.service..."
-if curl -sL -f "$RAW_URL/linux/goblin.service" -o /etc/systemd/system/goblin.service; then
-    echo "[✓] goblin.service downloaded."
-else
-    echo "[!] Error: Could not download goblin.service."
-    echo "    Make sure the service file is pushed to your GitHub repository."
-    exit 1
-fi
-
-# 6. Set strict ownership
-# This ensures the goblin user has full control over its directory
-echo "[+] Setting ownership to $USERNAME:$USERNAME..."
-chown -R "$USERNAME:$USERNAME" "$APP_DIR"
-
-# 7. Configure systemd (Idempotent by nature)
-echo "[+] Reloading systemd daemon..."
-systemctl daemon-reload
-
-echo "[+] Enabling goblin.service to start on boot..."
-systemctl enable goblin.service
-
-echo "[+] Restarting goblin.service to apply changes..."
-systemctl restart goblin.service
+# 2. Install the .deb — apt resolves dependencies (e.g. tmux) and postinst handles user/systemd setup
+echo "[+] Installing package..."
+apt install -y "$DEB_FILE"
+rm -f "$DEB_FILE"
 
 echo "=== Setup Complete! ==="
 echo "Check the live application status with: systemctl status goblin.service"

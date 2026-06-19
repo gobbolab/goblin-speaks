@@ -13,4 +13,4 @@ class GSCoin(Activator):
         # Note: Depending on your specific IR sensor model and wiring, you may need to
         # change this to `when_released = callback` if it triggers when the beam is restored.
         self.sensor.when_pressed = callback
-        print("Activator is ready. Waiting for IR trigger...")
+        print("GS_Coin Activator is ready. Waiting for IR trigger...")

@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+if [ "$1" = "remove" ] || [ "$1" = "upgrade" ] || [ "$1" = "deconfigure" ]; then
+    echo "[+] Stopping and disabling goblin.service..."
+    systemctl stop goblin.service || true
+    systemctl disable goblin.service || true
+    echo "[✓] goblin.service stopped."
+fi
+
+exit 0
