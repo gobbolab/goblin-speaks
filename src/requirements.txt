@@ -4,3 +4,4 @@ Adafruit-Blinka
 pygame
 typer
 pyyaml
+gpiozero

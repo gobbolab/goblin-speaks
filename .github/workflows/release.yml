@@ -60,6 +60,7 @@ jobs:
             --include-package=adafruit_blinka \
             --include-package=adafruit_servokit \
             --include-package=RPi \
+            --include-package=gpiozero \
             --include-package=typer \
             --include-module=pygame \
             --include-module=yaml \

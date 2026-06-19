@@ -2,12 +2,14 @@ from abc import ABC, abstractmethod
 from audio_player import AudioPlayer
 from animatronic.base import Animatronic
 from dispenser.base import Dispenser
+from activator.base import Activator
 
 class BasePlayer(ABC):
-    def __init__(self, audio_player: AudioPlayer, animatronic: Animatronic, dispenser: Dispenser):
+    def __init__(self, audio_player: AudioPlayer, animatronic: Animatronic, dispenser: Dispenser, activator: Activator):
         self.audio_player = audio_player
         self.animatronic = animatronic
         self.dispenser = dispenser
+        self.activator = activator
 
     @abstractmethod
     def play(self):
@@ -21,3 +23,9 @@ class BasePlayer(ABC):
 
     def test_audio(self):
         self.audio_player.play_random()
+
+    def test_activator(self):
+        print("Testing activator... waiting for trigger.")
+        def _callback():
+            print("\n*** Activator triggered successfully! ***\n")
+        self.activator.start(_callback)
