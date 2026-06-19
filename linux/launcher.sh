@@ -10,8 +10,8 @@ cd "$APP_DIR" || exit 1
 
 echo "Checking for updates..."
 
-# 1. Attempt to get the latest release URL
-DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases/latest" | grep "browser_download_url.*$TARBALL" | cut -d '"' -f 4)
+# 1. Attempt to get the latest release URL (including prereleases)
+DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/$REPO/releases" | grep "browser_download_url.*$TARBALL" | head -n 1 | cut -d '"' -f 4)
 
 # 2. Update process with fallback
 if [ -n "$DOWNLOAD_URL" ]; then
