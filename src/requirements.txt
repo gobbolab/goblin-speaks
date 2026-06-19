@@ -5,3 +5,4 @@ pygame
 typer
 pyyaml
 gpiozero
+rpi-lgpio
