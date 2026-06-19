@@ -27,6 +27,10 @@ class GSBody(Animatronic):
         self.arm_steps = config.get('animatronic.gs_body.arm_steps', 200)
         self.arm_delay = config.get('animatronic.gs_body.arm_delay', 1)
         
+        # Load test parameters with defaults
+        self.arm_test_duration = config.get('animatronic.gs_body.arm_test_duration', 3)
+        self.mouth_test_duration = config.get('animatronic.gs_body.mouth_test_duration', 3)
+        
         kit = ServoKit(channels=16)
         self.arm = kit.servo[self.arm_pin]
         self.mouth = kit.servo[self.mouth_pin]
@@ -59,11 +63,11 @@ class GSBody(Animatronic):
 
     def test(self):
         """
-        Runs a quick diagnostic sweep of the servos.
+        Runs a quick diagnostic sweep of animatronic.
         """
-        print("Testing arm and mouth servos...")
-        self.__animate_arm(5)
-        self.__animate_mouth(5)
+        print(f"Testing arm (for {self.arm_test_duration}s) and mouth (for {self.mouth_test_duration}s) servos...")
+        self.__animate_arm(self.arm_test_duration)
+        self.__animate_mouth(self.mouth_test_duration)
 
     def __animate_mouth(self, duration):
         print("Starting mouth animation...")
