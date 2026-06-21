@@ -21,6 +21,9 @@ class BasePlayer(ABC):
     def test_dispenser(self):
         self.dispenser.dispense()
 
+    def step_dispenser(self):
+        self.dispenser.step(10)
+
     def test_audio(self):
         self.audio_player.play_random()
 

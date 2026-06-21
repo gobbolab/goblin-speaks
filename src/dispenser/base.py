@@ -7,3 +7,9 @@ class Dispenser(ABC):
         Abstract method that must be overridden by all concrete subclasses.
         """
         pass
+
+    def step(self, steps):
+        """
+        Abstract method that must be overridden by all concrete subclasses.
+        """
+        pass

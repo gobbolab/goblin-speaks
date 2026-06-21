@@ -9,8 +9,9 @@ class TestMenu:
             "1": ("Play", self.player.play),
             "2": ("Test Animatronic", self.player.test_animatronic),
             "3": ("Test Dispenser", self.player.test_dispenser),
-            "4": ("Test Audio", self.player.test_audio),
-            "5": ("Test Activator", self.player.test_activator),
+            "4": ("Step Dispenser", self.player.step_dispenser),
+            "5": ("Test Audio", self.player.test_audio),
+            "6": ("Test Activator", self.player.test_activator),
             "0": ("Exit", None)
         }
 
