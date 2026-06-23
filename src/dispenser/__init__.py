@@ -4,5 +4,6 @@ from .dispenser_factory import DispenserFactory
 
 __all__ = [
     "Dispenser",
-    "GSCardDispenser"
+    "GSCardDispenser",
+    "DispenserFactory"
 ]
