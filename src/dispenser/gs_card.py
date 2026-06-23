@@ -26,8 +26,8 @@ class GSCardDispenser(Dispenser):
         print(f"Pin_2: {pin2}")
         print(f"Pin_3: {pin3}")
         print(f"Pin_4: {pin4}")
-        print(f"Steps:" {self.steps})
-        print(f"Delay:" {self.delay})
+        print(f"Steps: {self.steps}")
+        print(f"Delay: {self.delay}")
         print("")
         
 
