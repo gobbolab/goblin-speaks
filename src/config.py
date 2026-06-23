@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Any, Dict
 
 class Config:
-    """Loads and manages application configuration from goblin-speaks-config.yml"""
+    """Loads and manages application configuration from config.yml"""
     
     _instance = None
     _config: Dict[str, Any] = {}
@@ -15,8 +15,8 @@ class Config:
         return cls._instance
     
     def _load_config(self):
-        """Load configuration from goblin-speaks-config.yml if it exists"""
-        config_path = Path("goblin-speaks-config.yml")
+        """Load configuration from config.yml if it exists"""
+        config_path = Path("/etc/goblin-speaks/config.yml")
         
         if config_path.exists():
             try:

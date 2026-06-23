@@ -19,6 +19,18 @@ class GSCardDispenser(Dispenser):
         self.steps = config.get('dispenser.gs_card.steps', 2048)
         self.delay = config.get('dispenser.gs_card.delay', 0.002)
 
+        
+        print("=== Dispenser GS_Card Initialized ===")
+        print("Values Loaded:")
+        print(f"Pin_1: {pin1}")
+        print(f"Pin_2: {pin2}")
+        print(f"Pin_3: {pin3}")
+        print(f"Pin_4: {pin4}")
+        print(f"Steps:" {self.steps})
+        print(f"Delay:" {self.delay})
+        print("")
+        
+
     def dispense(self):
         """
         Dispenses a fortune card.
