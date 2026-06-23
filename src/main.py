@@ -1,4 +1,5 @@
 import typer
+import sys
 import dispenser
 import animatronic
 from audio_player import AudioPlayer
@@ -14,14 +15,14 @@ app = typer.Typer(help="Goblin Speaks fortune teller software")
 def run():
     print("Not yet implemented. Shutting down...")
     player.shutdown()
-    exit(0)
+    sys.exit(0)
 
 @app.command()
 def test():
     menu = TestMenu(player)
     menu.run()
     player.shutdown()
-    exit(0)
+    sys.exit(0)
 
 @app.command()
 def update():
