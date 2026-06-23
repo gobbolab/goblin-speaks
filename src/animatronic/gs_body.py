@@ -11,25 +11,39 @@ class GSBody(Animatronic):
         """
         config = Config()
         
+        # Helper function to automatically prefix keys
+        def get_conf(key, default):
+            return config.get(f'animatronic.gs_body.{key}', default)
+        
         # Load servo pin configuration with defaults
-        self.arm_pin = config.get('animatronic.gs_body.arm_pin', 0)
-        self.mouth_pin = config.get('animatronic.gs_body.mouth_pin', 1)
+        self.arm_pin   = get_conf('arm_pin', 0)
+        self.mouth_pin = get_conf('mouth_pin', 1)
         
         # Load mouth animation parameters with defaults
-        self.mouth_movement_delay = config.get('animatronic.gs_body.mouth_movement_delay', 0.2)
-        self.mouth_closed_angle = config.get('animatronic.gs_body.mouth_closed_angle', 70)
-        self.mouth_open_angle = config.get('animatronic.gs_body.mouth_open_angle', 180)
+        self.mouth_movement_delay = get_conf('mouth_movement_delay', 0.2)
+        self.mouth_closed_angle   = get_conf('mouth_closed_angle', 70)
+        self.mouth_open_angle     = get_conf('mouth_open_angle', 180)
         
         # Load arm animation parameters with defaults
-        self.arm_start = config.get('animatronic.gs_body.arm_start', 0)
-        self.arm_end = config.get('animatronic.gs_body.arm_end', 10)
-        self.arm_duration = config.get('animatronic.gs_body.arm_duration', 0.5)
-        self.arm_steps = config.get('animatronic.gs_body.arm_steps', 200)
-        self.arm_delay = config.get('animatronic.gs_body.arm_delay', 1)
+        self.arm_start    = get_conf('arm_start', 0)
+        self.arm_end      = get_conf('arm_end', 10)
+        self.arm_duration = get_conf('arm_duration', 0.5)
+        self.arm_steps    = get_conf('arm_steps', 200)
+        self.arm_delay    = get_conf('arm_delay', 1)
         
         # Load test parameters with defaults
-        self.arm_test_duration = config.get('animatronic.gs_body.arm_test_duration', 3)
-        self.mouth_test_duration = config.get('animatronic.gs_body.mouth_test_duration', 3)
+        self.arm_test_duration   = get_conf('arm_test_duration', 3)
+        self.mouth_test_duration = get_conf('mouth_test_duration', 3)
+
+        # --- Log Loaded Values ---
+        print("Values Loaded:")
+        print(f"Arm Pin: {self.arm_pin}")
+        print(f"Mouth Pin: {self.mouth_pin}")
+        print(f"Mouth Delay: {self.mouth_movement_delay}s")
+        print(f"Mouth Angles: {self.mouth_closed_angle}° (Closed) -> {self.mouth_open_angle}° (Open)")
+        print(f"Arm Angles: {self.arm_start}° (Start) -> {self.arm_end}° (End)")
+        print(f"Arm Motion: {self.arm_duration}s duration, {self.arm_steps} steps, {self.arm_delay}s delay")
+        print(f"Test Durations: Arm {self.arm_test_duration}s, Mouth {self.mouth_test_duration}s\n")
         
         kit = ServoKit(channels=16)
         self.arm = kit.servo[self.arm_pin]
