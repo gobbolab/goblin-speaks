@@ -31,5 +31,5 @@ class DispenserFactory:
             raise ValueError(f"Unknown dispenser type: {dispenser_type}")
         
         dispenser_class = DispenserFactory._dispensers[dispenser_type]
-        print(f"Creating dispenser: {dispenser_type}")
+        print(f"Creating Dispenser: {dispenser_type}")
         return dispenser_class()

@@ -52,6 +52,6 @@ if __name__ == "__main__":
                                         | |                        
                                         |_|                        
           """)
-    print(f"Fortune Teller Framework - {__version__}")
+    print(f"          Fortune Teller Framework - {__version__}")
 
     app()
