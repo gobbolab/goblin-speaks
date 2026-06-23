@@ -3,6 +3,8 @@ import typer
 import pygame
 import board
 import digitalio
+import subprocess
+import sys
 import dispenser
 import animatronic
 from audio_player import AudioPlayer
@@ -26,6 +28,23 @@ def test():
     menu.run()
     player.shutdown()
     exit(0)
+
+@app.command()
+def update():
+    """
+    Pulls the latest release of Goblin Speaks and runs the installer.
+    """
+    typer.secho("Starting update process...", fg=typer.colors.CYAN)
+    
+    install_cmd = "curl -sL https://raw.githubusercontent.com/gobbolab/goblin-speaks/main/linux/setup.sh | sudo bash"
+    
+    try:
+        subprocess.run(install_cmd, shell=True, check=True)
+        typer.secho("Update successfully applied!", fg=typer.colors.GREEN)
+        sys.exit(0)
+    except subprocess.CalledProcessError as e:
+        typer.secho(f"The update script failed with exit code {e.returncode}.", fg=typer.colors.RED)
+        raise typer.Exit(code=1)
 
 if __name__ == "__main__":
     audio_player = AudioPlayer()
