@@ -17,4 +17,5 @@ class GSCoin(Activator):
 
     def shutdown(self):
         self.sensor.close()
+        del self.sensor
         print("GS_Coin Activator is shut down.")
