@@ -1,5 +1,6 @@
 import os
 import random
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 
 class AudioPlayer:
@@ -21,7 +22,7 @@ class AudioPlayer:
                 except pygame.error as e:
                     print(f"Error loading {filename}: {e}")
 
-        print(f"Loading complete.\nLoaded {len(self.sound_list)} sounds.")
+        print(f"Loading complete.\nLoaded {len(self.sound_list)} sounds.\n")
 
 
     def play_random(self):

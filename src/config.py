@@ -29,6 +29,8 @@ class Config:
         else:
             print("No config file found. Using default values.")
             self._config = {}
+        
+        print("")
     
     def get(self, key: str, default: Any = None) -> Any:
         """Get a configuration value with optional default"""
