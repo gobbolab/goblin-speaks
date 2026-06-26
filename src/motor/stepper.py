@@ -22,14 +22,20 @@ class Stepper:
             pin.direction = digitalio.Direction.OUTPUT
         
         # Stepper sequence for full step
+        # self.sequence = [
+        #     [1, 0, 0, 0],
+        #     [1, 1, 0, 0],
+        #     [0, 1, 0, 0],
+        #     [0, 1, 1, 0],
+        #     [0, 0, 1, 0],
+        #     [0, 0, 1, 1],
+        #     [0, 0, 0, 1],
+        #     [1, 0, 0, 1]
+        # ]
         self.sequence = [
-            [1, 0, 0, 0],
             [1, 1, 0, 0],
-            [0, 1, 0, 0],
             [0, 1, 1, 0],
-            [0, 0, 1, 0],
             [0, 0, 1, 1],
-            [0, 0, 0, 1],
             [1, 0, 0, 1]
         ]
         self.step_index = 0
