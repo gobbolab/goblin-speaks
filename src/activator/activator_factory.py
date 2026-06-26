@@ -1,11 +1,11 @@
 from src.config import Config
-from .gs_coin import GSCoin
+from .gs_button import GSButton
 
 class ActivatorFactory:
     """Factory for creating activator instances based on configuration"""
     
     _activators = {
-        'gs_coin': GSCoin,
+        'gs_button': GSButton,
     }
     
     @staticmethod
@@ -13,7 +13,7 @@ class ActivatorFactory:
         config = Config()
         
         if activator_type is None:
-            activator_type = config.get('activator.type', 'gs_coin')
+            activator_type = config.get('activator.type', 'gs_button')
         
         if activator_type not in ActivatorFactory._activators:
             raise ValueError(f"Unknown activator type: {activator_type}")

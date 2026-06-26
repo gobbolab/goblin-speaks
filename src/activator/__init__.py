@@ -1,5 +1,5 @@
 from .base import Activator
-from .gs_coin import GSCoin
+from .gs_button import GSButton
 from .activator_factory import ActivatorFactory
 
-__all__ = ['Activator', 'GSCoin', 'ActivatorFactory']
+__all__ = ['Activator', 'GSButton', 'ActivatorFactory']
