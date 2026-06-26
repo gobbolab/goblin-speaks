@@ -25,8 +25,10 @@ if [ "$1" = "configure" ]; then
 
     # Create default sound directories for the audio player
     echo "[+] Creating default sound directories..."
-    mkdir -p "$BIN_DIR/sounds/activation"
+    mkdir -p "$BIN_DIR/sounds/pre_show"
     mkdir -p "$BIN_DIR/sounds/show"
+    mkdir -p "$BIN_DIR/sounds/post_show"
+    mkdir -p "$BIN_DIR/sounds/activation"
     chown -R "$USERNAME:$USERNAME" "$BIN_DIR/sounds"
     echo "[✓] Sound directories created."
 

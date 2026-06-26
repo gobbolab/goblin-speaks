@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from audio_player import AudioPlayer
+from audio_player import AudioPlayer, SoundType
 from animatronic.base import Animatronic
 from dispenser.base import Dispenser
 from activator.base import Activator
@@ -29,7 +29,7 @@ class BasePlayer(ABC):
         self.dispenser.step(10)
 
     def test_audio(self):
-        self.audio_player.play_show_sound()
+        self.audio_player.play(SoundType.ACTIVATION)
 
     def test_activator(self):
         print("Testing activator... waiting for trigger.")

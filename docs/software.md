@@ -124,16 +124,22 @@ sudo systemctl restart goblin.service
 
 ## Audio Player
 
-The [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class handles all sound playback for the machine. It uses `pygame.mixer` for low-latency MP3 playback and manages two independent sound libraries: one for the show sequence and one for activation events.
+The [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class handles all sound playback for the machine. It uses `pygame.mixer` for low-latency MP3 playback and manages four independent sound banks, each with its own directory and playback mode.
+
+Sound banks are selected using the `SoundType` enum, which is the single entry point for all playback:
+
+```python
+audio_player.play(SoundType.SHOW)
+```
 
 ### Sound Categories
 
-The audio player maintains two separate sound lists, each with its own directory and playback mode:
-
-| Category | Purpose | Default Directory |
+| `SoundType` | Purpose | Default Directory |
 |---|---|---|
-| **Show sounds** | Played during the main fortune-telling sequence | `/opt/goblin-speaks/sounds/show` |
-| **Activation sounds** | Played when the machine is triggered/activated | `/opt/goblin-speaks/sounds/activation` |
+| `PRE_SHOW` | Played before the main fortune-telling sequence begins | `/opt/goblin-speaks/sounds/pre_show` |
+| `SHOW` | Played during the main fortune-telling sequence | `/opt/goblin-speaks/sounds/show` |
+| `POST_SHOW` | Played after the main sequence completes | `/opt/goblin-speaks/sounds/post_show` |
+| `ACTIVATION` | Played when the machine is triggered/activated | `/opt/goblin-speaks/sounds/activation` |
 
 On startup, the player scans each directory for `.mp3` files and loads them into memory. The number of sounds found in each category is printed to the logs.
 
@@ -146,26 +152,30 @@ Each sound category independently supports two playback modes:
 
 ### Configuration
 
-The audio player is configured via `goblin-speaks-config.yml`. The following keys are supported:
+The audio player is configured via `goblin-speaks-config.yml`. All keys are optional — the defaults shown below are used if a key is absent.
 
 ```yaml
 audio_player:
+  pre_show_sound_dir: /opt/goblin-speaks/sounds/pre_show
+  pre_show_sound_mode: sequential       # sequential | random
   show_sound_dir: /opt/goblin-speaks/sounds/show
-  show_sound_mode: sequential        # sequential | random
+  show_sound_mode: sequential           # sequential | random
+  post_show_sound_dir: /opt/goblin-speaks/sounds/post_show
+  post_show_sound_mode: sequential      # sequential | random
   activation_sound_dir: /opt/goblin-speaks/sounds/activation
-  activation_sound_mode: sequential  # sequential | random
+  activation_sound_mode: sequential     # sequential | random
 ```
-
-All keys are optional. If omitted, the defaults shown above are used.
 
 ### Adding Audio Files
 
 Place `.mp3` files in the appropriate directory:
 
+- **Pre-show sounds**: `/opt/goblin-speaks/sounds/pre_show/`
 - **Show sounds**: `/opt/goblin-speaks/sounds/show/`
+- **Post-show sounds**: `/opt/goblin-speaks/sounds/post_show/`
 - **Activation sounds**: `/opt/goblin-speaks/sounds/activation/`
 
-Both directories are created automatically during package installation. Restart the service after adding new files for them to be loaded:
+All four directories are created automatically during package installation. Restart the service after adding new files for them to be loaded:
 
 ```bash
 sudo systemctl restart goblin.service

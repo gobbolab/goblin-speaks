@@ -1,40 +1,80 @@
 import os
 import random
+from dataclasses import dataclass, field
+from enum import Enum
+
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 from src.config import Config
 
+
+class SoundType(Enum):
+    PRE_SHOW = "pre_show"
+    SHOW = "show"
+    POST_SHOW = "post_show"
+    ACTIVATION = "activation"
+
+
+@dataclass
+class _SoundBank:
+    sounds: list = field(default_factory=list)
+    mode: str = "sequential"
+    index: int = 0
+
+
 class AudioPlayer:
     def __init__(self):
         config = Config()
-        
-        self.activation_sound_dir = config.get('audio_player.activation_sound_dir', '/opt/goblin-speaks/sounds/activation')
-        self.show_sound_dir = config.get('audio_player.show_sound_dir', '/opt/goblin-speaks/sounds/show')
-        self.show_sound_mode = config.get('audio_player.show_sound_mode', 'sequential')
-        self.activation_sound_mode = config.get('audio_player.activation_sound_mode', 'sequential')
 
-        print("Intializing Audio Player")
+        def get_conf(key, default):
+            return config.get(f'audio_player.{key}', default)
+
+        # --- Config ---
+        pre_show_dir   = get_conf('pre_show_sound_dir',   '/opt/goblin-speaks/sounds/pre_show')
+        show_dir       = get_conf('show_sound_dir',       '/opt/goblin-speaks/sounds/show')
+        post_show_dir  = get_conf('post_show_sound_dir',  '/opt/goblin-speaks/sounds/post_show')
+        activation_dir = get_conf('activation_sound_dir', '/opt/goblin-speaks/sounds/activation')
+
+        pre_show_mode   = get_conf('pre_show_sound_mode',   'sequential')
+        show_mode       = get_conf('show_sound_mode',       'sequential')
+        post_show_mode  = get_conf('post_show_sound_mode',  'sequential')
+        activation_mode = get_conf('activation_sound_mode', 'sequential')
+
+        print("Initializing Audio Player")
         print("Values Loaded:")
-        print(f"Show Sound Dir: {self.show_sound_dir}")
-        print(f"Show Sound Mode: {self.show_sound_mode}")
-        print(f"Activation Sound Dir: {self.activation_sound_dir}")
-        print(f"Activation Sound Mode: {self.activation_sound_mode}")
+        print(f"Pre-Show Sound Dir: {pre_show_dir}")
+        print(f"Pre-Show Sound Mode: {pre_show_mode}")
+        print(f"Show Sound Dir: {show_dir}")
+        print(f"Show Sound Mode: {show_mode}")
+        print(f"Post-Show Sound Dir: {post_show_dir}")
+        print(f"Post-Show Sound Mode: {post_show_mode}")
+        print(f"Activation Sound Dir: {activation_dir}")
+        print(f"Activation Sound Mode: {activation_mode}")
         print("")
 
         pygame.mixer.pre_init(44100, -16, 1, 2048)
         if not pygame.mixer.get_init():
             pygame.mixer.init()
 
+        print("Loading pre-show sounds...")
         print("Loading show sounds...")
-        self.show_sound_list = self._load_sounds(self.show_sound_dir)
+        print("Loading post-show sounds...")
         print("Loading activation sounds...")
-        self.activation_sound_list = self._load_sounds(self.activation_sound_dir)
 
-        # Initialize indices for sequential mode
-        self.show_sound_index = 0
-        self.activation_sound_index = 0
+        self._banks: dict[SoundType, _SoundBank] = {
+            SoundType.PRE_SHOW:   _SoundBank(self._load_sounds(pre_show_dir),   pre_show_mode),
+            SoundType.SHOW:       _SoundBank(self._load_sounds(show_dir),       show_mode),
+            SoundType.POST_SHOW:  _SoundBank(self._load_sounds(post_show_dir),  post_show_mode),
+            SoundType.ACTIVATION: _SoundBank(self._load_sounds(activation_dir), activation_mode),
+        }
 
-        print(f"Loading complete.\nShow sounds: {len(self.show_sound_list)}\nActivation sounds: {len(self.activation_sound_list)}\n")
+        print(
+            f"Loading complete.\n"
+            f"Pre-show sounds: {len(self._banks[SoundType.PRE_SHOW].sounds)}\n"
+            f"Show sounds: {len(self._banks[SoundType.SHOW].sounds)}\n"
+            f"Post-show sounds: {len(self._banks[SoundType.POST_SHOW].sounds)}\n"
+            f"Activation sounds: {len(self._banks[SoundType.ACTIVATION].sounds)}\n"
+        )
 
     def _load_sounds(self, directory):
         sound_list = []
@@ -48,45 +88,24 @@ class AudioPlayer:
                     print(f"Error loading {filename}: {e}")
         return sound_list
 
-    def play_show_sound(self):
+    def play(self, sound_type: SoundType) -> float:
         """
-        Plays a sound based on the show sound mode.
-        Returns the duration of the sound being played.
-        This call is non blocking.
+        Plays the next sound from the specified sound bank.
+        Returns the duration of the sound in seconds.
+        This call is non-blocking.
         """
-        if not self.show_sound_list:
-            print("Warning: No show sounds loaded to play.")
+        bank = self._banks[sound_type]
+
+        if not bank.sounds:
+            print(f"Warning: No {sound_type.value} sounds loaded to play.")
             return 0.0
-        
-        if self.show_sound_mode == 'random':
-            sound = random.choice(self.show_sound_list)
+
+        if bank.mode == 'random':
+            sound = random.choice(bank.sounds)
         else:
-            sound = self.show_sound_list[self.show_sound_index]
-            self.show_sound_index = (self.show_sound_index + 1) % len(self.show_sound_list)
+            sound = bank.sounds[bank.index]
+            bank.index = (bank.index + 1) % len(bank.sounds)
 
-
-        duration = sound.get_length()        
+        duration = sound.get_length()
         sound.play()
-
-        return duration
-
-    def play_activation_sound(self):
-        """
-        Plays a sound based on the activation sound mode.
-        Returns the duration of the sound being played.
-        This call is non blocking.
-        """
-        if not self.activation_sound_list:
-            print("Warning: No activation sounds loaded to play.")
-            return 0.0
-        
-        if self.activation_sound_mode == 'random':
-            sound = random.choice(self.activation_sound_list)
-        else:
-            sound = self.activation_sound_list[self.activation_sound_index]
-            self.activation_sound_index = (self.activation_sound_index + 1) % len(self.activation_sound_list)
-
-        duration = sound.get_length()        
-        sound.play()
-
         return duration

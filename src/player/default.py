@@ -1,4 +1,5 @@
 from .base import BasePlayer
+from audio_player import SoundType
 
 class DefaultPlayer(BasePlayer):
     def play(self):
@@ -9,7 +10,7 @@ class DefaultPlayer(BasePlayer):
         3. Dispenses card when audio complete
         """
         print("Starting play...")
-        duration = self.audio_player.play_random()
+        duration = self.audio_player.play(SoundType.SHOW)
         self.animatronic.animate(duration)
         print("Audio/animations complete...")
         self.dispenser.dispense()
