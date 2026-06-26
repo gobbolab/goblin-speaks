@@ -6,9 +6,9 @@ description: A 3D-printable stepper motor card dispenser designed to dispense st
 
 # Goblin Speaks Card Dispenser
 
-The Goblin Speaks Card Dispenser is a 3D-printable hardware component designed to reliably dispense single cards from a loaded deck. It is sized for **standard poker-sized cards** (63 × 88 mm), making it compatible with popular trading card games such as Magic: The Gathering, Pokémon, and standard playing card decks.
+The Goblin Speaks Card Dispenser is a 3D-printable hardware component designed to reliably dispense single cards from a loaded deck. It is sized for **standard poker-sized cards** (63 × 88 mm), the same sized used by games like Magic: The Gathering and Pokemon. There are plenty of printing services out there which can print custom poker sized cards, allowing you to design and dispense your own custom fortune cards.
 
-The dispenser is driven by a **28BYJ-48 stepper motor** controlled by a **ULN2003 driver board**, providing precise, repeatable motion without the need for encoders or feedback sensors. A short forward retract after each dispense helps reliably separate the ejected card from the remaining deck.
+The dispenser is driven by a **28BYJ-48 stepper motor** controlled by a **ULN2003 driver board**.
 
 The dispenser integrates directly with the Goblin Speaks framework via the [`GSCardDispenser`](https://github.com/gobbolab/goblin-speaks/blob/main/src/dispenser/gs_card.py) class.
 
