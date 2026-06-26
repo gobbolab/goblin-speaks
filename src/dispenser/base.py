@@ -7,6 +7,7 @@ class Dispenser(ABC):
     def __init__(self):
         config = Config()
         self.dispense_delay = config.get('dispenser.dispense_delay', 1.0)
+        print("Values Loaded:")
         print(f"Dispense Delay: {self.dispense_delay}")
 
     def dispense(self, count: int = 1):

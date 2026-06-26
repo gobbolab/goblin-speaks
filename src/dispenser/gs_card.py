@@ -24,7 +24,6 @@ class GSCardDispenser(Dispenser):
 
         self.motor = motor.Stepper(pin1, pin2, pin3, pin4)
 
-        print("Values Loaded:")
         print(f"Pin_1: {pin1}")
         print(f"Pin_2: {pin2}")
         print(f"Pin_3: {pin3}")
