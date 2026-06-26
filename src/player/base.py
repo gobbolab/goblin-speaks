@@ -25,7 +25,7 @@ class BasePlayer(ABC):
         self.dispenser.step(10)
 
     def test_audio(self):
-        self.audio_player.play_random()
+        self.audio_player.play_show_sound()
 
     def test_activator(self):
         print("Testing activator... waiting for trigger.")

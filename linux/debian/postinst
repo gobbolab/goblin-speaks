@@ -23,6 +23,13 @@ if [ "$1" = "configure" ]; then
     chown -R "$USERNAME:$USERNAME" "$DATA_DIR"
     echo "[✓] Ownership set."
 
+    # Create default sound directories for the audio player
+    echo "[+] Creating default sound directories..."
+    mkdir -p "$BIN_DIR/sounds/activation"
+    mkdir -p "$BIN_DIR/sounds/show"
+    chown -R "$USERNAME:$USERNAME" "$BIN_DIR/sounds"
+    echo "[✓] Sound directories created."
+
     # Create the global goblin-speaks command symlink
     echo "[+] Creating global 'goblin-speaks' terminal command..."
     ln -sf "$BIN_DIR/goblin-speaks" /usr/local/bin/goblin-speaks
