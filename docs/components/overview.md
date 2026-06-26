@@ -5,7 +5,7 @@ description: Details on the standard components used to build a Goblin Speaks ma
 ---
 # Components Overview
 
-This page provides an overview of available components which can be used to assemble your machine.
+This page provides an overview of officially supported components which can be used to assemble your machine.
 
 ## Animatronic Bodies
 
@@ -26,7 +26,7 @@ Use these to dispense fortune cards or other objects to players of the machine.
 
 ### Goblin Speaks Card Dispenser (Gobbo Lab)
 
-A spring loaded card dispenser which uses a small stepper motor to dispense cards.
+A top loaded card dispenser which uses a small stepper motor to dispense cards.
 Capable of holding roughly one deck of standard poker sized playing cards.
 
 [Details](goblin-speaks-card-dispenser.md)
