@@ -122,11 +122,54 @@ If you need to restart the application:
 sudo systemctl restart goblin.service
 ```
 
-## Audio Files
+## Audio Player
 
-The application loads MP3 audio files from its working directory. When the application starts, it will scan for all `.mp3` files and display them in the logs. These audio files are selected randomly during play.
+The [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class handles all sound playback for the machine. It uses `pygame.mixer` for low-latency MP3 playback and manages two independent sound libraries: one for the show sequence and one for activation events.
 
-Place your fortune teller audio files in `/home/goblin/goblin-speaks/` for the application to discover them automatically.
+### Sound Categories
+
+The audio player maintains two separate sound lists, each with its own directory and playback mode:
+
+| Category | Purpose | Default Directory |
+|---|---|---|
+| **Show sounds** | Played during the main fortune-telling sequence | `/opt/goblin-speaks/sounds/show` |
+| **Activation sounds** | Played when the machine is triggered/activated | `/opt/goblin-speaks/sounds/activation` |
+
+On startup, the player scans each directory for `.mp3` files and loads them into memory. The number of sounds found in each category is printed to the logs.
+
+### Playback Modes
+
+Each sound category independently supports two playback modes:
+
+- **`sequential`** *(default)*: Sounds are played in order, cycling back to the first after the last one plays. This ensures every sound gets equal airtime.
+- **`random`**: A sound is chosen at random each time. Useful for more unpredictable variation.
+
+### Configuration
+
+The audio player is configured via `goblin-speaks-config.yml`. The following keys are supported:
+
+```yaml
+audio_player:
+  show_sound_dir: /opt/goblin-speaks/sounds/show
+  show_sound_mode: sequential        # sequential | random
+  activation_sound_dir: /opt/goblin-speaks/sounds/activation
+  activation_sound_mode: sequential  # sequential | random
+```
+
+All keys are optional. If omitted, the defaults shown above are used.
+
+### Adding Audio Files
+
+Place `.mp3` files in the appropriate directory:
+
+- **Show sounds**: `/opt/goblin-speaks/sounds/show/`
+- **Activation sounds**: `/opt/goblin-speaks/sounds/activation/`
+
+Both directories are created automatically during package installation. Restart the service after adding new files for them to be loaded:
+
+```bash
+sudo systemctl restart goblin.service
+```
 
 ## Contributing
 
