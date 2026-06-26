@@ -74,6 +74,7 @@ The stepper motor is driven via the ULN2003 board, which connects to four GPIO p
 | `dispense_steps` | `2048` | Number of stepper steps for the forward card-push stroke. 2048 steps = one full revolution of the 28BYJ-48 in half-step mode. Adjust if your printed mechanism needs more or less travel. |
 | `retract_steps` | `512` | Number of steps to retract after dispensing. Reduces drag on the remaining deck and prevents double-feeds. |
 | `step_delay` | `0.002` | Delay in seconds between each motor step. Lower values = faster motor movement. Going too low may cause the motor to stall. |
+| `dispense_delay` | `1.0` | *(Base Dispenser)* Seconds to wait between dispenses when multiple cards are requested. Defined in the base `Dispenser` class and applies to all dispenser types. |
 
 ### Configuration
 
@@ -81,6 +82,7 @@ The dispenser is configured via `goblin-speaks-config.yml` under the `dispenser.
 
 ```yaml
 dispenser:
+  dispense_delay: 1.0       # seconds between dispenses when count > 1 (base Dispenser)
   gs_card:
     pin_1: 17             
     pin_2: 18              

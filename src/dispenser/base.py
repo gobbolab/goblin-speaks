@@ -1,15 +1,35 @@
+import time
 from abc import ABC, abstractmethod
+from src.config import Config
+
 
 class Dispenser(ABC):
-    @abstractmethod
-    def dispense(self):
+    def __init__(self):
+        config = Config()
+        self.dispense_delay = config.get('dispenser.dispense_delay', 1.0)
+        print(f"Dispense Delay: {self.dispense_delay}")
+
+    def dispense(self, count: int = 1):
         """
-        Abstract method that must be overridden by all concrete subclasses.
+        Dispenses one or more items, with a configurable delay between each.
+        Subclasses implement _dispense_one() for the actual dispense logic.
+        """
+        for i in range(count):
+            self._dispense_one()
+            if count > 1 and i < count - 1:
+                time.sleep(self.dispense_delay)
+
+    @abstractmethod
+    def _dispense_one(self):
+        """
+        Performs a single dispense action.
+        Must be implemented by all concrete subclasses.
         """
         pass
 
     def step(self, steps):
         """
-        Abstract method that must be overridden by all concrete subclasses.
+        Move the dispenser mechanism a set number of steps.
+        May be overridden by concrete subclasses that support it.
         """
         pass

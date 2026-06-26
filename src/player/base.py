@@ -19,7 +19,11 @@ class BasePlayer(ABC):
         self.animatronic.test()
 
     def test_dispenser(self):
-        self.dispenser.dispense()
+        try:
+            count = int(input("Number of items to dispense [1]: ").strip() or 1)
+        except ValueError:
+            count = 1
+        self.dispenser.dispense(count)
 
     def step_dispenser(self):
         self.dispenser.step(10)

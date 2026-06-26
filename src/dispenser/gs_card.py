@@ -8,6 +8,7 @@ class GSCardDispenser(Dispenser):
         """
         Initializes the GS Card Dispenser with 4 specific hardware pins.
         """
+        super().__init__()
         config = Config()
         
         def get_conf(key, default):
@@ -34,9 +35,9 @@ class GSCardDispenser(Dispenser):
         print("")
         
 
-    def dispense(self):
+    def _dispense_one(self):
         """
-        Dispenses a fortune card.
+        Performs a single card dispense.
         """
         print("Dispensing card...")
         self.motor.move_backward(self.dispense_steps, self.step_delay)
