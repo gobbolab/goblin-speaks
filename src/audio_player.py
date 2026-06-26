@@ -13,18 +13,28 @@ class AudioPlayer:
         self.show_sound_mode = config.get('audio_player.show_sound_mode', 'sequential')
         self.activation_sound_mode = config.get('audio_player.activation_sound_mode', 'sequential')
 
+        print("Intializing Audio Player")
+        print("Values Loaded:")
+        print(f"Show Sound Dir: {self.show_sound_dir}")
+        print(f"Show Sound Mode: {self.show_sound_mode}")
+        print(f"Activation Sound Dir: {self.activation_sound_dir}")
+        print(f"Activation Sound Mode: {self.activation_sound_mode}")
+        print("")
+
         pygame.mixer.pre_init(44100, -16, 1, 2048)
         if not pygame.mixer.get_init():
             pygame.mixer.init()
-        
+
+        print("Loading show sounds...")
         self.show_sound_list = self._load_sounds(self.show_sound_dir)
+        print("Loading activation sounds...")
         self.activation_sound_list = self._load_sounds(self.activation_sound_dir)
 
         # Initialize indices for sequential mode
         self.show_sound_index = 0
         self.activation_sound_index = 0
 
-        print(f"Loading complete.\nShow sounds: {len(self.show_sound_list)}\nActivation sounds: {len(self.activation_sound_list)}")
+        print(f"Loading complete.\nShow sounds: {len(self.show_sound_list)}\nActivation sounds: {len(self.activation_sound_list)}\n")
 
     def _load_sounds(self, directory):
         sound_list = []
