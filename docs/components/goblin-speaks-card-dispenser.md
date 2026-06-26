@@ -26,21 +26,28 @@ The printable model for the card dispenser is available on Printables:
 
 | Qty | Part | Notes |
 |-----|------|-------|
-| 1 | 28BYJ-48 Stepper Motor | 5V, commonly sold with ULN2003 driver |
-| 1 | ULN2003 Stepper Motor Driver Board | Usually bundled with the motor |
-| 6 | Dupont jumper wires | For connecting driver board to GPIO pins |
 | 1 | 3D printed dispenser body | See model link above |
 | 1 | 3D printed dispenser wheel | See model link above |
 | 1 | 3D printed dispenser back | See model link above |
+| 1 | 3D printed o-ring wheel | See model link above |
+| 1 | 28BYJ-48 Stepper Motor | 5V, commonly sold with ULN2003 driver |
+| 1 | ULN2003 Stepper Motor Driver Board | Usually bundled with the motor |
+| 6 | Dupont jumper wires | For connecting driver board to GPIO pins |
 | 2 | M3 Heat-set Inserts | For mounting the motor to the printed body |
 | 2 | M3 screws | For mounting the motor to the printed body |
-| 2 | Nmm Rubber O-rings | For friction on the card dispenser wheel |
+| 2 | 25mm x 2.4mm (Inner Diameter x Cross Section) Rubber O-rings | For friction on the card dispenser wheel |
 
 ---
 
 ## Build Steps
 
-> 🚧 **Build instructions coming soon.**
+1. Glue the back to the main dispenser body. Ensure it is facing the right way, the side of the dispenser with the tab is the top. The tab on the back should slide underneath the dispenser card tray.
+2. Use a soldering iron to insert the 2 M3 Heat-set inserts into the holes on the side of the dispenser.
+3. Slide the two o-rings into the indented slots on the o-ring wheel.
+4. Slide the o-ring wheel onto the shaft of the stepper motor.
+5. Use the M3 screws to attach the stepper motor to the dispenser by threading them into the heat-set insterts.
+6. Place a card into the hopper of the dispenser and slide it out the gate over the o-ring wheel by pressing with two fingers on the rear of the dispenser and pushing forward. You should be able to push the card under the gate and feel tension as you pull it through. If the card won't move through the gate at all, you need to lower the motor position.
+7. Run a few tests of the dispenser to check tension. If the tension is too tight, a card wont be able to make it through the gate. If the tension is two low, multiple cards might pass the gate at the same time.
 
 ---
 
