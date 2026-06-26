@@ -122,9 +122,16 @@ If you need to restart the application:
 sudo systemctl restart goblin.service
 ```
 
+## Configuration
+
+A wide range of settings are available to configure a Goblin Speaks machine.
+These values are held in a yaml file located in `/opt/goblin-speaks/config.yml`
+Using the config file is entirely optional as all values have fallback defaults.
+Details on the available config values and their defaults can be found in the docs for each configurable component of the framework.
+
 ## Audio Player
 
-The [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class handles all sound playback for the machine. It uses `pygame.mixer` for low-latency MP3 playback and manages four independent sound banks, each with its own directory and playback mode.
+The [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class handles all sound playback for the machine. It uses `pygame.mixer` for low-latency audio playback and manages four independent sound banks, each with its own directory and playback mode.
 
 Sound banks are selected using the `SoundType` enum, which is the single entry point for all playback:
 
@@ -136,12 +143,12 @@ audio_player.play(SoundType.SHOW)
 
 | `SoundType` | Purpose | Default Directory |
 |---|---|---|
-| `PRE_SHOW` | Played before the main fortune-telling sequence begins | `/opt/goblin-speaks/sounds/pre_show` |
-| `SHOW` | Played during the main fortune-telling sequence | `/opt/goblin-speaks/sounds/show` |
-| `POST_SHOW` | Played after the main sequence completes | `/opt/goblin-speaks/sounds/post_show` |
 | `ACTIVATION` | Played when the machine is triggered/activated | `/opt/goblin-speaks/sounds/activation` |
+| `PRE_SHOW` | Played before the main fortune-telling sequence begins. ("Come close while Goblin tells your fortune.") | `/opt/goblin-speaks/sounds/pre_show` |
+| `SHOW` | Played during the main fortune-telling sequence. ("Goblin sees great treasure in your future!") | `/opt/goblin-speaks/sounds/show` |
+| `POST_SHOW` | Played after the main sequence completes. ("How about giving Goblin more money for more fortunes?") | `/opt/goblin-speaks/sounds/post_show` |
 
-On startup, the player scans each directory for `.mp3` files and loads them into memory. The number of sounds found in each category is printed to the logs.
+On startup, the audio player scans each directory for `.mp3` files and loads them into memory. The number of sounds found in each category is printed to the logs.
 
 ### Playback Modes
 
@@ -152,7 +159,7 @@ Each sound category independently supports two playback modes:
 
 ### Configuration
 
-The audio player is configured via `goblin-speaks-config.yml`. All keys are optional — the defaults shown below are used if a key is absent.
+The audio player is configured via `config.yml`. All keys are optional — the defaults shown below are used if a key is absent.
 
 ```yaml
 audio_player:
