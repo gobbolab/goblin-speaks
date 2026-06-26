@@ -55,8 +55,8 @@ dispenser:
 
 ## Methods
 
-### `dispense()`
-Dispenses a single card by running the full forward stroke followed by the retract. This is the method called automatically by the player during the fortune-telling sequence.
+### `dispense(count=1)`
+Dispenses `count` cards by running the full forward stroke followed by the retract. If more than one card is being dispensed, it will wait `dispense_delay` seconds between each card dispense. This is the method called by the player during the fortune-telling sequence.
 
 ### `step(steps)`
 Moves the motor backward by an arbitrary number of steps. Useful for manual calibration and testing via the `goblin-speaks test` CLI command.
