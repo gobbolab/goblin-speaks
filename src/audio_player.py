@@ -88,6 +88,20 @@ class AudioPlayer:
                     print(f"Error loading {filename}: {e}")
         return sound_list
 
+    def _select_sound(self, bank: _SoundBank):
+        """
+        Selects and returns the next sound from a bank according to its mode.
+        Returns None if the bank is empty.
+        """
+        if not bank.sounds:
+            return None
+        if bank.mode == 'random':
+            return random.choice(bank.sounds)
+        else:
+            sound = bank.sounds[bank.index]
+            bank.index = (bank.index + 1) % len(bank.sounds)
+            return sound
+
     def play(self, sound_type: SoundType) -> float:
         """
         Plays the next sound from the specified sound bank.
@@ -95,17 +109,42 @@ class AudioPlayer:
         This call is non-blocking.
         """
         bank = self._banks[sound_type]
+        sound = self._select_sound(bank)
 
-        if not bank.sounds:
+        if sound is None:
             print(f"Warning: No {sound_type.value} sounds loaded to play.")
             return 0.0
-
-        if bank.mode == 'random':
-            sound = random.choice(bank.sounds)
-        else:
-            sound = bank.sounds[bank.index]
-            bank.index = (bank.index + 1) % len(bank.sounds)
 
         duration = sound.get_length()
         sound.play()
         return duration
+
+    def play_sequence(self, sound_types: list[SoundType]) -> float:
+        """
+        Plays a sequence of sound banks in order on a background thread.
+        Sounds are selected upfront; the total duration is returned immediately
+        so the caller can start the animatronic before playback begins.
+        Empty banks are skipped silently.
+        This call is non-blocking.
+        """
+        import threading
+        import time
+
+        selected = []
+        for sound_type in sound_types:
+            sound = self._select_sound(self._banks[sound_type])
+            if sound is not None:
+                selected.append(sound)
+
+        total_duration = sum(s.get_length() for s in selected)
+
+        def _run():
+            for i, sound in enumerate(selected):
+                sound.play()
+                time.sleep(sound.get_length())
+
+        if selected:
+            thread = threading.Thread(target=_run, daemon=True)
+            thread.start()
+
+        return total_duration
