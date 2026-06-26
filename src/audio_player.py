@@ -79,7 +79,7 @@ class AudioPlayer:
     def _load_sounds(self, directory):
         sound_list = []
         for filename in os.listdir(directory):
-            if filename.lower().endswith('.mp3'):
+            if filename.lower().endswith(('.mp3', '.wav')):
                 try:
                     loaded = pygame.mixer.Sound(os.path.join(directory, filename))
                     sound_list.append(loaded)
