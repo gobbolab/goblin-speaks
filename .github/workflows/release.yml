@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '**.py'
+      - '.github/workflows/release.yml'
 
 jobs:
   build-and-release-arm:
@@ -58,7 +59,7 @@ jobs:
           python -m PyInstaller \
             --name=goblin-speaks \
             --onedir \
-            --hidden-import=adafruit_blinka \
+            --collect-submodules=adafruit_blinka \
             --hidden-import=adafruit_servokit \
             --hidden-import=RPi \
             --hidden-import=lgpio \
