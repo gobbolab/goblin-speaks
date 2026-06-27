@@ -40,7 +40,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install nuitka
+          pip install pyinstaller
           pip install -r src/requirements.txt 
 
       - name: Inject Version Number
@@ -48,33 +48,33 @@ jobs:
           echo "__version__ = '${{ steps.tag_version.outputs.new_tag }}'" > src/version.py
           cat src/version.py
 
-      - name: Compile Python to C
+      - name: Build with PyInstaller
         run: |
           # 1. Download the JSON files directly to the GitHub runner workspace
           curl -o board_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/board_imports.json
           curl -o microcontroller_imports.json https://raw.githubusercontent.com/adafruit/Adafruit_Blinka/main/src/microcontroller_imports.json
           
-          # 2. Compile Nuitka
-          python -m nuitka --standalone \
-            --output-filename=goblin-speaks \
-            --include-package=adafruit_blinka \
-            --include-package=adafruit_servokit \
-            --include-package=RPi \
-            --include-package=lgpio \
-            --include-package=gpiozero \
-            --include-package=typer \
-            --include-module=pygame \
-            --include-module=yaml \
-            --output-dir=build \
+          # 2. Build with PyInstaller
+          python -m PyInstaller \
+            --name=goblin-speaks \
+            --onedir \
+            --hidden-import=adafruit_blinka \
+            --hidden-import=adafruit_servokit \
+            --hidden-import=RPi \
+            --hidden-import=lgpio \
+            --hidden-import=gpiozero \
+            --hidden-import=typer \
+            --hidden-import=pygame \
+            --hidden-import=yaml \
             src/main.py
             
-          # 3. Force copy the files to the correct main.dist folder
-          cp board_imports.json build/main.dist/
-          cp microcontroller_imports.json build/main.dist/
+          # 3. Force copy the files to the correct dist folder
+          cp board_imports.json dist/goblin-speaks/
+          cp microcontroller_imports.json dist/goblin-speaks/
           
           # 4. Create the required subfolder and copy the file inside it
-          mkdir -p build/main.dist/microcontroller
-          cp microcontroller_imports.json build/main.dist/microcontroller/
+          mkdir -p dist/goblin-speaks/microcontroller
+          cp microcontroller_imports.json dist/goblin-speaks/microcontroller/
 
       - name: Package as .deb
         run: |
@@ -91,7 +91,7 @@ jobs:
           mkdir -p "$PKG_DIR/usr/lib/systemd/system"
           
           # 2. Copy compiled binary and all shared libs into package
-          cp -r build/main.dist/. "$APP_DEST/"
+          cp -r dist/goblin-speaks/. "$APP_DEST/"
           
           # 3. Copy the launcher script to the data directory
           cp linux/launcher.sh "$PKG_DIR/home/goblin/goblin-speaks/launcher.sh"
