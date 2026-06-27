@@ -24,7 +24,7 @@ The framework is designed to be highly moddable. Each core component (Animatroni
 
 The software is designed to run on Raspberry Pi. A setup script is provided in the `linux/` directory which automates the installation and configuration process.
 
-[Read more about Raspberry Pi Setup](software/raspberry-pi-setup.md)
+[Read more about Raspberry Pi Setup](raspberry-pi-setup.md)
 
 ## Configuration
 
@@ -37,11 +37,11 @@ Details on the available config values and their defaults can be found in the do
 
 The `AudioPlayer` class handles all sound playback for the machine. It uses `pygame.mixer` for low-latency audio playback and manages four independent sound banks, each with its own directory and playback mode.
 
-[Read more about the Audio Player](software/audio-player.md)
+[Read more about the Audio Player](audio-player.md)
 
 ## Contributing
 
 The framework is designed to be modular and moddable, allowing you to design and integrate your own components.
 Pull requests are welcome for new component types or improvements to existing ones.
 
-[Read more about Contributing](software/contributing.md)
+[Read more about Contributing](contributing.md)
