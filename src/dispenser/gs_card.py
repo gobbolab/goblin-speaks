@@ -44,7 +44,7 @@ class GSCardDispenser(Dispenser):
 
     def step(self, steps):
         """
-        Move the dispenser motor a specified number of steps
+        Move the dispenser motor a set number of steps
         """
         print("Stepping dispenser motor...")
         self.motor.move_backward(steps)
