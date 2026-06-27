@@ -29,7 +29,7 @@ The software is designed to run on Raspberry Pi. A setup script is provided in t
 ## Configuration
 
 A wide range of settings are available to configure a Goblin Speaks machine.
-These values are held in a yaml file located in `/opt/goblin-speaks/config.yml`
+These values are held in a yaml file located in `/etc/goblin-speaks/config.yml`
 Using the config file is entirely optional as all values have fallback defaults.
 Details on the available config values and their defaults can be found in the docs for each configurable component of the framework.
 
