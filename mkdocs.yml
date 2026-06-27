@@ -8,8 +8,15 @@ theme:
 
 nav:
   - Home: index.md
-  - Software: software.md
-  - Components:
+  - Software:
+      - Overview: software/overview.md
+      - Raspberry Pi Setup: software/raspberry-pi-setup.md
+      - Audio Player: software/audio-player.md
+      - Components:
+          - Dispenser: software/components/dispenser.md
+          - GSCardDispenser: software/components/gs-card.md
+      - Contributing: software/contributing.md
+  - Physical Components:
       - Overview: components/overview.md
       - Goblin Speaks Animatronic Body: components/goblin-speaks-animatronic-body.md
       - Goblin Speaks Card Dispenser: components/goblin-speaks-card-dispenser.md
