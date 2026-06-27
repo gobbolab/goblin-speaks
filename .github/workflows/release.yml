@@ -69,12 +69,12 @@ jobs:
             src/main.py
             
           # 3. Force copy the files to the correct dist folder
-          cp board_imports.json dist/goblin-speaks/
-          cp microcontroller_imports.json dist/goblin-speaks/
+          cp board_imports.json dist/goblin-speaks/_internal/
+          cp microcontroller_imports.json dist/goblin-speaks/_internal/
           
           # 4. Create the required subfolder and copy the file inside it
-          mkdir -p dist/goblin-speaks/microcontroller
-          cp microcontroller_imports.json dist/goblin-speaks/microcontroller/
+          mkdir -p dist/goblin-speaks/_internal/microcontroller
+          cp microcontroller_imports.json dist/goblin-speaks/_internal/microcontroller/
 
       - name: Package as .deb
         run: |
