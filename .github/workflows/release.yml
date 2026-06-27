@@ -63,7 +63,7 @@ jobs:
             --hidden-import=adafruit_servokit \
             --hidden-import=RPi \
             --hidden-import=lgpio \
-            --hidden-import=gpiozero \
+            --collect-submodules=gpiozero \
             --hidden-import=typer \
             --hidden-import=pygame \
             --hidden-import=yaml \
