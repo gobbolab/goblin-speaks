@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Software
+title: Software Overview
 description: Details on software used to run the Goblin Speaks Fortune Teller Framework.
 ---
 
