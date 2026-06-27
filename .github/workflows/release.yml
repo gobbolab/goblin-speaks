@@ -35,7 +35,7 @@ jobs:
       - name: Install System Dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc patchelf build-essential libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libfreetype6-dev libsdl1.2-dev python3-dev
+          sudo apt-get install -y gcc patchelf build-essential libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libfreetype6-dev libsdl1.2-dev python3-dev swig liblgpio-dev
 
       - name: Install Python Dependencies
         run: |
