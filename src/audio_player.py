@@ -56,11 +56,6 @@ class AudioPlayer:
         if not pygame.mixer.get_init():
             pygame.mixer.init()
 
-        print("Loading pre-show sounds...")
-        print("Loading show sounds...")
-        print("Loading post-show sounds...")
-        print("Loading activation sounds...")
-
         self._banks: dict[SoundType, _SoundBank] = {
             SoundType.PRE_SHOW:   _SoundBank(self._load_sounds(pre_show_dir),   pre_show_mode),
             SoundType.SHOW:       _SoundBank(self._load_sounds(show_dir),       show_mode),
@@ -77,6 +72,7 @@ class AudioPlayer:
         )
 
     def _load_sounds(self, directory):
+        print(f"Loading sounds from {directory}...")
         sound_list = []
         for filename in os.listdir(directory):
             if filename.lower().endswith(('.mp3', '.wav')):
