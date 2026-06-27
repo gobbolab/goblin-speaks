@@ -26,16 +26,6 @@ The stepper motor is driven via the ULN2003 board, which connects to four GPIO p
 | `pin_3` | `D27` | IN3 |
 | `pin_4` | `D22` | IN4 |
 
-### Key Descriptions
-
-| Key | Default | Description |
-|---|---|---|
-| `pin_1` – `pin_4` | `D17`, `D18`, `D27`, `D22` | GPIO pins connected to the ULN2003 IN1–IN4 inputs |
-| `dispense_steps` | `2048` | Number of stepper steps for the forward card-push stroke. 2048 steps = one full revolution of the 28BYJ-48 in half-step mode. Adjust if your printed mechanism needs more or less travel. |
-| `retract_steps` | `512` | Number of steps to retract after dispensing. Reduces drag on the remaining deck and prevents double-feeds. |
-| `step_delay` | `0.002` | Delay in seconds between each motor step. Lower values = faster motor movement. Going too low may cause the motor to stall. |
-| `dispense_delay` | `1.0` | *(Base Dispenser)* Seconds to wait between dispenses when multiple cards are requested. Defined in the base `Dispenser` class and applies to all dispenser types. |
-
 ## Configuration
 
 The dispenser is configured via `config.yml` under the `dispenser.gs_card` namespace. All keys are optional — the defaults listed below will be used if a key is absent.
@@ -52,6 +42,14 @@ dispenser:
     retract_steps: 512     
     step_delay: 0.002     
 ```
+
+| Key | Default | Description |
+|---|---|---|
+| `pin_1` – `pin_4` | `D17`, `D18`, `D27`, `D22` | GPIO pins connected to the ULN2003 IN1–IN4 inputs |
+| `dispense_steps` | `2048` | Number of stepper steps for the forward card-push stroke. 2048 steps = one full revolution of the 28BYJ-48 in half-step mode. Adjust if your printed mechanism needs more or less travel. |
+| `retract_steps` | `512` | Number of steps to retract after dispensing. Reduces drag on the remaining deck and prevents double-feeds. |
+| `step_delay` | `0.002` | Delay in seconds between each motor step. Lower values = faster motor movement. Going too low may cause the motor to stall. |
+| `dispense_delay` | `1.0` | *(Base Dispenser)* Seconds to wait between dispenses when multiple cards are requested. Defined in the base `Dispenser` class and applies to all dispenser types. |
 
 ## Methods
 
