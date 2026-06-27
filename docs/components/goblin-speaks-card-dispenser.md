@@ -27,7 +27,6 @@ The printable model for the card dispenser is available on Printables:
 | Qty | Part | Notes |
 |-----|------|-------|
 | 1 | 3D printed dispenser body | See model link above |
-| 1 | 3D printed dispenser wheel | See model link above |
 | 1 | 3D printed dispenser back | See model link above |
 | 1 | 3D printed o-ring wheel | See model link above |
 | 1 | 28BYJ-48 Stepper Motor | 5V, commonly sold with ULN2003 driver |
