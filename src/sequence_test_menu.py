@@ -48,7 +48,7 @@ class SequenceTestMenu:
             elif isinstance(component, Dispenser):
                 options[str(key_num)] = (
                     f"Test Dispenser ({name})",
-                    component.dispense
+                    component.test
                 )
                 key_num += 1
                 options[str(key_num)] = (
