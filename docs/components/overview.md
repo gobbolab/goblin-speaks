@@ -34,7 +34,7 @@ Use these to dispense fortune cards or other objects to players of the machine.
 ## Heads
 
 These are the available heads in the framework.
-Mount these to your animatronic body to give your fortune teller some character.
+Mount these to your animatronic body to give your machine some character.
 
 | Name | Description | Details |
 |---|---|---|

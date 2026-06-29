@@ -1,63 +1,34 @@
 ---
 layout: default
 title: Home
-description: Goblin Speaks documentation home.
+description: Goblin Speaks Penny Arcade Framework documentation home.
 ---
 
-# Goblin Speaks Fortune Teller Framework
+# Goblin Speaks Penny Arcade Framework
 
-Inspired by the penny arcade machines of the 1930s and novelty fortune teller machines like Zoltar, this project aims to deliver a framework of open source components and software which anyone can leverage to build their own working fortune teller machine.
+Inspired by the penny arcade machines of the 1930s, this project aims to deliver a framework of open source components and software which anyone can leverage to build their own working penny arcade machine. This can be anything from a fortune teller machine, to an animatronic show or even an interactive game.
+
+The project gets its name from the first machine built using the framework: a novelty fortune teller in the style of classic machines like Zoltar, dubbed "Goblin Speaks."
 
 ![Gypsy grandma machine](images/gypsy-grandma.jpg)
 
-These machines are designed to be "bartop" or "goblin" sized, rather than full life sized cabinets. (But really build it whatever size you like, I'm not your mom.)
-The scope of project is to provide all of the core aspects of the machine, such as animatronics, card dispensers software etc. 
-Actual physical construction of the cabinet and any other accessories or decorations will be up to the builder.
+The framework is modular and config-driven. You declare which components are attached to your machine (animatronics, dispensers, activators, etc.) and define a sequence of actions that run when the machine is activated.
 
 The Goblin Speaks machine is built around the Raspberry Pi single board computer.
 
 ## Project State
 
-We are still developing the first iteration of the machine.
+We are still developing the first iteration of a machine on this framework.
+The project is not ready for general release, and code here changes often.
 Here is a video of the in progress prototype:
 
 
 <iframe width="560" height="315" src="https://youtube.com/embed/22QMtMoQO5U?si=L_L5Q7h8ckz2mF6Z" title="Goblin Speaks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
-## Getting a Serial Number
+## Serial Numbers
 
-Builders who complete a Goblin Speaks machine can apply for a serial number for the completed machine.
-More details on this process will be available once the first iteration of the machine is completed.
-
-For a machine to be considered completed it must meet the following criteria:
-
-- Use of Goblin Speaks Framework
-- Support one mode of activation
-- Play a show for the player/audience
-- Dispense an object
-
-#### Use of Goblin Speaks Framework
-
-The machine must use at least some piece of the Goblin Speaks framework such as components, software, model files etc.
-How much or how little the framework is used is up to you.
-These machines can come in all shapes and sizes so there is no need to be picky on what is or is not considered a Goblin Speaks machine.
-If the machine operates, meets these criteria, and you consider it a Goblin Speaks machine, than it is a Goblin Speaks machine.
-
-##### Mode of Activation
-
-The machine must support some kind of mode of activation.
-This could be a coin mechanism, motion sensor, a button or whatever else you decide for your machine.
-
-##### Playing a Show
-
-The machine must perform some kind of show for the player once activated.
-This could mean activating an animatronic, playing audio, activating lights etc.
-
-##### Dispense Object
-
-The machine must dispense some kind of phsyical object to the player once the show is over.
-For example a fortune card, small toy or token.
+Builders who complete a Goblin Speaks machine can apply for a serial number. Learn more about the requirements and process [here](serial-numbers.md).
 
 ## Components
 

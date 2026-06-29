@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Goblin Speaks Card Dispenser
-description: A 3D-printable stepper motor card dispenser designed to dispense standard poker-sized cards for the Goblin Speaks Fortune Teller framework.
+description: A 3D-printable stepper motor card dispenser designed to dispense standard poker-sized cards for the Goblin Speaks Penny Arcade framework.
 ---
 
 # Goblin Speaks Card Dispenser
