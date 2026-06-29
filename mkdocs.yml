@@ -16,7 +16,7 @@ nav:
       - Components:
           - Dispenser: software/components/dispenser.md
           - SingleStepperDispenser: software/components/single-stepper.md
-      - Contributing: software/contributing.md
+      - Plugins: software/plugins.md
   - Physical Components:
       - Overview: components/overview.md
       - Goblin Speaks Animatronic Body: components/goblin-speaks-animatronic-body.md

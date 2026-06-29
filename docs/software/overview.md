@@ -41,9 +41,8 @@ The `AudioPlayer` class handles all sound playback for the machine. It uses `pyg
 
 [Read more about the Audio Player](audio-player.md)
 
-## Contributing
+## Plugins
 
-The framework is designed to be modular and moddable, allowing you to design and integrate your own components.
-Pull requests are welcome for new component types or improvements to existing ones.
+The framework supports plugins, allowing you to create and use your own custom components without modifying the core codebase. Drop a Python file into the plugins directory and reference it in your config — no need to touch the framework source.
 
-[Read more about Contributing](contributing.md)
+[Read more about Plugins](plugins.md)

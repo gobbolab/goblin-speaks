@@ -1,3 +1,7 @@
+# Optional: custom plugins directory (default: ~/.goblin-speaks/plugins)
+# plugins:
+#   directory: ~/.goblin-speaks/plugins
+
 components:
   goblin_body:
     type: animatronic
