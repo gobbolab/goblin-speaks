@@ -10,7 +10,7 @@ description: Details on software used to run the Goblin Speaks Penny Arcade Fram
 
 The Goblin Speaks software is a config-driven Python framework for building penny arcade style machines on Raspberry Pi. A single YAML file defines the machine's physical components — animatronics, dispensers, audio — and its play sequence, so you can change what your machine does without writing any code.
 
-The framework is built around abstract interfaces for each component type, making it highly moddable. Create custom components by implementing an interface, registering it with the factory, and referencing it in your config. It runs as a systemd service via `tmux` and provides a `typer`-based CLI for operation and testing.
+The framework is built around abstract interfaces for each component type, making it highly moddable. You can even write software for your own components using the built in plugin system. It runs as a systemd service via `tmux` and provides a `typer`-based CLI for operation and testing.
 
 ## Raspberry Pi Setup
 
