@@ -19,5 +19,4 @@ class AnimatronicFactory:
             raise ValueError(f"Unknown animatronic type: {animatronic_type}")
 
         animatronic_class = AnimatronicFactory._animatronics[animatronic_type]
-        print(f"Creating Animatronic: {animatronic_type}")
         return animatronic_class(config_prefix=config_prefix)
