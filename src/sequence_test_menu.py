@@ -51,11 +51,6 @@ class SequenceTestMenu:
                     component.test
                 )
                 key_num += 1
-                options[str(key_num)] = (
-                    f"Step Dispenser ({name})",
-                    lambda c=component: c.step(10)
-                )
-                key_num += 1
 
             elif isinstance(component, AudioPlayer):
                 options[str(key_num)] = (

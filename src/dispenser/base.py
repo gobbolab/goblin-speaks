@@ -33,10 +33,3 @@ class Dispenser(ABC):
         raw = input("Number of items to dispense [1]: ").strip()
         count = int(raw) if raw else 1
         self.dispense(count)
-
-    def step(self, steps):
-        """
-        Move the dispenser mechanism a set number of steps.
-        May be overridden by concrete subclasses that support it.
-        """
-        pass

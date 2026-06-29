@@ -44,10 +44,3 @@ class SingleStepperDispenser(Dispenser):
         print("Dispensing...")
         self.motor.move_backward(self.dispense_steps, self.step_delay)
         self.motor.move_forward(self.retract_steps, self.step_delay)
-
-    def step(self, steps):
-        """
-        Move the dispenser motor a set number of steps
-        """
-        print("Stepping dispenser motor...")
-        self.motor.move_backward(steps)
