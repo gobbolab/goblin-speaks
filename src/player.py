@@ -17,19 +17,8 @@ class SequencePlayer:
             component_name = step.get('component')
             action_name = step.get('action')
 
-            if component_name not in self.components:
-                raise ValueError(
-                    f"Sequence step {i + 1} references unknown component '{component_name}'. "
-                    f"Available: {list(self.components.keys())}"
-                )
-
-            component = self.components[component_name]
-
-            if not hasattr(component, action_name):
-                raise ValueError(
-                    f"Sequence step {i + 1}: component '{component_name}' "
-                    f"has no action '{action_name}'"
-                )
+            component = self._get_component(i, component_name)
+            self._validate_action(i, component, component_name, action_name)
 
             raw_args = step.get('args', {})
             resolved_args = self._resolve_args(raw_args, outputs)
@@ -43,6 +32,21 @@ class SequencePlayer:
                 outputs[output_name] = result
 
         print("Play sequence finished.")
+
+    def _get_component(self, step_index, component_name):
+        if component_name not in self.components:
+            raise ValueError(
+                f"Sequence step {step_index + 1} references unknown component '{component_name}'. "
+                f"Available: {list(self.components.keys())}"
+            )
+        return self.components[component_name]
+
+    def _validate_action(self, step_index, component, component_name, action_name):
+        if not hasattr(component, action_name):
+            raise ValueError(
+                f"Sequence step {step_index + 1}: component '{component_name}' "
+                f"has no action '{action_name}'"
+            )
 
     def _resolve_args(self, raw_args, outputs):
         resolved = {}

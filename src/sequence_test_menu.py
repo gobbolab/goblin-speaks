@@ -1,4 +1,4 @@
-from player.sequence import SequencePlayer
+from player import SequencePlayer
 from audio_player import AudioPlayer, SoundType
 from animatronic.base import Animatronic
 from dispenser.base import Dispenser
