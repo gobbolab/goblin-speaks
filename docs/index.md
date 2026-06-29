@@ -6,15 +6,11 @@ description: Goblin Speaks Penny Arcade Framework documentation home.
 
 # Goblin Speaks Penny Arcade Framework
 
-Inspired by the penny arcade machines of the 1930s, this project aims to deliver a framework of open source components and software which anyone can leverage to build their own working penny arcade machine. This can be anything from a fortune teller machine, to an animatronic show or even an interactive game.
+Inspired by the penny arcade machines of the 1930s, this project aims to deliver a moddable and modular framework of open source components and software which anyone can leverage to build their own working penny arcade machine. This can be anything from a fortune teller machine, an animatronic show, an interactive game or something totally different.
 
 The project gets its name from the first machine built using the framework: a novelty fortune teller in the style of classic machines like Zoltar, dubbed "Goblin Speaks."
 
 ![Gypsy grandma machine](images/gypsy-grandma.jpg)
-
-The framework is modular and config-driven. You declare which components are attached to your machine (animatronics, dispensers, activators, etc.) and define a sequence of actions that run when the machine is activated.
-
-The Goblin Speaks machine is built around the Raspberry Pi single board computer.
 
 ## Project State
 
@@ -28,11 +24,7 @@ Here is a video of the in progress prototype:
 
 ## Serial Numbers
 
-Builders who complete a Goblin Speaks machine can apply for a serial number. Learn more about the requirements and process [here](serial-numbers.md).
-
-## Components
-
-You can learn more about the available components which can be used to build a Goblin Speaks machine [here](components/overview.md).
+Builders who complete a machine which leverages this framework can apply for a serial number. Learn more about the requirements and process [here](serial-numbers.md).
 
 ## Software
 
@@ -40,6 +32,11 @@ The framework software is designed to run on Raspberry Pi.
 Learn more [here](software.md).
 
 See the code on the github repository: https://github.com/gobbolab/goblin-speaks
+
+## Components
+
+Learn more about the available components which can be used to build a machine [here](components/overview.md).
+If what you need is not directly available, the framework supports plugins allowing you to integrate your own components.
 
 ## Contributing
 
