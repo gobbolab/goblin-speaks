@@ -1,5 +1,5 @@
 from src.config import Config
-from src.plugin_loader import PluginLoader
+from src.plugin import PluginLoader
 from .single_stepper import SingleStepperDispenser
 from .base import Dispenser
 

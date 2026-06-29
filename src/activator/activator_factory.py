@@ -1,5 +1,5 @@
 from src.config import Config
-from src.plugin_loader import PluginLoader
+from src.plugin import PluginLoader
 from .gs_button import GSButton
 from .base import Activator
 

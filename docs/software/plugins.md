@@ -65,32 +65,48 @@ Each plugin file must contain a class that:
 | Activator | `Activator` | `start(callback)`, `shutdown()` |
 | Animatronic | `Animatronic` | `animate(duration)`, `test()` |
 
+## CLI
+
+The `goblin-speaks plugin` command creates a new plugin skeleton file with the correct directory structure and method stubs already in place.
+
+```
+goblin-speaks plugin <component_type> <name>
+```
+
+- `component_type` — one of `dispenser`, `activator`, or `animatronic`
+- `name` — the snake_case name for your plugin (this becomes the filename and the config key)
+
+The skeleton is generated programmatically from the base class, so it will always include the correct abstract methods and their signatures.
+
 ## Tutorial: Creating a Dispenser Plugin
 
 This walkthrough creates a minimal dispenser plugin to show the basics.
 
-### Step 1: Create the Plugin Directory
+### Step 1: Generate the Skeleton
 
 ```bash
-mkdir -p ~/.goblin-speaks/plugins/dispenser
+goblin-speaks plugin dispenser my_dispenser
 ```
 
-### Step 2: Write the Plugin
+This creates the plugin directory and skeleton file automatically:
 
-Create a file at `~/.goblin-speaks/plugins/dispenser/my_dispenser.py`:
+```
+Created plugin skeleton: ~/.goblin-speaks/plugins/dispenser/my_dispenser.py
+```
+
+The generated file will look like this:
 
 ```python
 class MyDispenser(Dispenser):
     def __init__(self, config_prefix=None):
         super().__init__(config_prefix)
+        print("TODO: initialize MyDispenser")
 
     def _dispense_one(self):
-        print("MyDispenser: dispensing item!")
+        print("TODO: implement _dispense_one")
 ```
 
-No imports are needed — `Dispenser` and `Config` are provided automatically by the plugin loader. The class extends `Dispenser` and implements `_dispense_one()`, which is the only required abstract method.
-
-### Step 3: Update Your Config
+### Step 2: Update Your Config
 
 In your `/etc/goblin-speaks/config.yml`, reference the plugin by its filename:
 
@@ -103,7 +119,7 @@ components:
 
 The `class: my_dispenser` value matches the filename `my_dispenser.py`.
 
-### Step 4: Use It
+### Step 3: Use It
 
 Run your machine as usual. The framework will find the built-in dispensers first, and when it doesn't find `my_dispenser` among them, it will load it from your plugins directory.
 

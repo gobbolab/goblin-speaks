@@ -6,13 +6,7 @@ from src.config import Config
 
 
 class PluginLoader:
-    _instance = None
     _plugins = {}
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-        return cls._instance
 
     @staticmethod
     def _get_plugin_dir():
