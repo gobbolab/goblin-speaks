@@ -1,6 +1,6 @@
 import typer
 import sys
-from audio_player import AudioPlayer
+from audio import AudioPlayer
 from version import __version__
 from update import perform_update
 from player import SequencePlayer

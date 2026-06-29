@@ -95,8 +95,8 @@ Each component type exposes different actions you can call from the sequence:
 
 | Action | Args | Returns | Description |
 |--------|------|---------|-------------|
-| `play` | `sound_type` | `float` (duration) | Play a single sound from a sound bank. |
-| `play_sequence` | `sound_types` (list) | `float` (total duration) | Queue and play sounds from multiple banks in order. |
+| `play` | `bank_name`, `file_name` (optional), `block` (optional) | `float` (duration) | Play a sound from a sound bank. If `file_name` is given, plays that specific file; otherwise plays the next sound. If `block` is `true`, waits for the sound to finish. |
+| `play_sequence` | `sound_types` (list), `block` (optional) | `float` (total duration) | Queue and play sounds from multiple banks in order. If `block` is `true`, waits for all sounds to finish. |
 
 **Animatronic**
 

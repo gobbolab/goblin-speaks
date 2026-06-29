@@ -2,6 +2,17 @@
 # plugins:
 #   directory: ~/.goblin-speaks/plugins
 
+audio_player:
+  sound_banks:
+    pre_show:
+      mode: sequential
+    show:
+      mode: sequential
+    post_show:
+      mode: sequential
+    activation:
+      mode: random
+
 components:
   goblin_body:
     type: animatronic
@@ -24,3 +35,18 @@ sequence:
       duration: $duration
   - component: card_dispenser
     action: dispense
+
+# Play a specific sound file and block until it finishes:
+#  - component: audio
+#    action: play
+#    args:
+#      bank_name: activation
+#      file_name: greeting
+#      block: true
+#
+# Block until an entire sound sequence finishes:
+#  - component: audio
+#    action: play_sequence
+#    args:
+#      sound_types: [pre_show, show, post_show]
+#      block: true

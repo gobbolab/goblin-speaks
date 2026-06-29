@@ -1,5 +1,4 @@
 from src.config import Config
-from audio_player import SoundType
 
 
 class SequencePlayer:
@@ -66,10 +65,6 @@ class SequencePlayer:
             return outputs[ref_name]
         if isinstance(value, list):
             return [self._resolve_value(v, outputs) for v in value]
-        try:
-            return SoundType(value)
-        except (ValueError, KeyError):
-            pass
         return value
 
     def shutdown(self):

@@ -1,5 +1,5 @@
 from player import SequencePlayer
-from audio_player import AudioPlayer, SoundType
+from audio import AudioPlayer
 from animatronic.base import Animatronic
 from dispenser.base import Dispenser
 from activator.base import Activator
@@ -53,11 +53,12 @@ class SequenceTestMenu:
                 key_num += 1
 
             elif isinstance(component, AudioPlayer):
-                options[str(key_num)] = (
-                    f"Test Audio ({name})",
-                    lambda c=component: c.play(SoundType.ACTIVATION)
-                )
-                key_num += 1
+                for bank_name in component.bank_names:
+                    options[str(key_num)] = (
+                        f"Test Audio ({name} - {bank_name})",
+                        lambda c=component, b=bank_name: c.play(b)
+                    )
+                    key_num += 1
 
             elif isinstance(component, Activator):
                 def _test_activator(c=component):
