@@ -23,11 +23,6 @@ Custom implementations must provide the following method:
 ### `_dispense_one()`
 Performs the actual hardware action to dispense a single item. This is called internally by the `dispense()` template method.
 
-## Optional Methods
-
-### `step(steps)`
-Moves the dispenser mechanism an arbitrary number of steps. This is useful for manual calibration and testing via the CLI but is not required. It defaults to a no-op if not overridden.
-
 ## Configuration
 
 The base dispenser reads the following global configuration values from `config.yml` under the `dispenser` namespace:
