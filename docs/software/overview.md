@@ -8,18 +8,9 @@ description: Details on software used to run the Goblin Speaks Penny Arcade Fram
 
 ## Overview
 
-The Goblin Speaks software is a Python-based application designed to run on Raspberry Pi. It uses a fully config-driven architecture where the machine's physical components and its play sequence are both defined in a single YAML configuration file. This means you can change what your machine does — and in what order — without writing any code.
+The Goblin Speaks software is a config-driven Python framework for building penny arcade style machines on Raspberry Pi. A single YAML file defines the machine's physical components — animatronics, dispensers, audio — and its play sequence, so you can change what your machine does without writing any code.
 
-The software orchestrates various aspects of the machine including:
-
-- **Animatronics control**: Manages animatronic routines via the [`Animatronic`](https://github.com/gobbolab/goblin-speaks/blob/main/src/animatronic/base.py) interface
-- **Dispensing**: Controls item or prize dispensers via the [`Dispenser`](https://github.com/gobbolab/goblin-speaks/blob/main/src/dispenser/base.py) interface
-- **Audio playback**: Handles audio selection and playback via the [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class
-- **Command-line interface**: Provides CLI commands for machine operation and testing
-
-The software is built using the `typer` framework, which provides a clean command-line interface. Under the default setup, it runs as a systemd service in a tmux terminal session, allowing the Raspberry Pi to continue operating normally while the Goblin Speaks application runs in the background.
-
-The framework is designed to be highly moddable. Each core component type (Animatronics, Dispensers, Activators) is defined by an abstract interface. You can create your own custom components (like a dispenser for a different type of prize) by implementing the required interface, registering it with the appropriate factory, and adding it to your config file. This allows for endless customization of the machine's physical hardware and behavior without modifying the core framework.
+The framework is built around abstract interfaces for each component type, making it highly moddable. Create custom components by implementing an interface, registering it with the factory, and referencing it in your config. It runs as a systemd service via `tmux` and provides a `typer`-based CLI for operation and testing.
 
 ## Raspberry Pi Setup
 
