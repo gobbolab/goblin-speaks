@@ -5,7 +5,5 @@ Section: misc
 Priority: optional
 Maintainer: gobbolab
 Depends: tmux
-Description: Goblin Speaks Fortune Teller Framework
- A Python-based fortune teller machine application for Raspberry Pi.
- Orchestrates animatronics, card dispensing, audio playback, and coin
- activation for an interactive fortune teller experience.
+Description: Goblin Speaks Penny Arcade Framework
+ A Python-based penny arcade machine application for Raspberry Pi.
