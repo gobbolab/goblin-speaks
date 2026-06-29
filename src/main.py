@@ -21,7 +21,7 @@ def run():
     sys.exit(0)
 
 @app.command()
-def test():
+def menu():
     player = load_player()
     menu = SequenceTestMenu(player)
     menu.run()

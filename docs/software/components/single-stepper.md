@@ -57,4 +57,4 @@ dispenser:
 Dispenses `count` items by running the full forward stroke followed by the retract. If more than one item is being dispensed, it will wait `dispense_delay` seconds between each dispense. This is the method called by the player during the fortune-telling sequence.
 
 ### `step(steps)`
-Moves the motor backward by an arbitrary number of steps. Useful for manual calibration and testing via the `goblin-speaks test` CLI command.
+Moves the motor backward by an arbitrary number of steps. Useful for manual calibration and testing via the `goblin-speaks menu` CLI command.

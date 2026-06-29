@@ -18,7 +18,7 @@ Starts the machine and begins the main play loop.
 goblin-speaks run
 ```
 
-### `test`
+### `menu`
 
 Launches an interactive test menu that lets you test individual components without running a full play sequence. The menu dynamically lists all components loaded from your config and allows you to:
 
@@ -29,7 +29,7 @@ Launches an interactive test menu that lets you test individual components witho
 - Test each activator (waits for a trigger event)
 
 ```bash
-goblin-speaks test
+goblin-speaks menu
 ```
 
 ### `update`

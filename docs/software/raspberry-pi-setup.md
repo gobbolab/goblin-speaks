@@ -63,7 +63,7 @@ The application will:
 - Listen for the configured activation methods
 - Execute the play sequence when activated
 
-#### `goblin-speaks test`
+#### `goblin-speaks menu`
 Opens an interactive test menu with the following options:
 
 - **1. Play**: Executes a full play sequence (audio + animation + dispensing)
