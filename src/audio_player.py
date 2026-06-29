@@ -40,7 +40,7 @@ class AudioPlayer:
         post_show_mode  = get_conf('post_show_sound_mode',  'sequential')
         activation_mode = get_conf('activation_sound_mode', 'sequential')
 
-        print("Initializing Audio Player")
+        print("\nInitializing Audio Player")
         print("Values Loaded:")
         print(f"Pre-Show Sound Dir: {pre_show_dir}")
         print(f"Pre-Show Sound Mode: {pre_show_mode}")
