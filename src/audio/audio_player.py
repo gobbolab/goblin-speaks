@@ -26,7 +26,7 @@ class AudioPlayer:
 
         self._banks = self._init_banks(banks_config, sounds_dir)
 
-        print("Loading complete.")
+        print("Loaded soundbanks:")
         for name, bank in self._banks.items():
             print(f"  {name}: {len(bank)} sounds")
         print("")
