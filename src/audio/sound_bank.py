@@ -25,7 +25,8 @@ class SoundBank:
         sound_list = []
         name_to_sound = {}
         if not os.path.isdir(directory):
-            print(f"  Directory not found: {directory}")
+            print(f"  Directory not found: {directory}, creating it.")
+            os.makedirs(directory, exist_ok=True)
             return sound_list, name_to_sound
         for filename in sorted(os.listdir(directory)):
             if filename.lower().endswith(('.mp3', '.wav')):

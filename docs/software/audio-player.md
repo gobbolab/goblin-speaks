@@ -41,7 +41,7 @@ The `sounds_dir` key sets the root directory where sound bank subdirectories are
 
 On startup, each bank's directory is scanned for `.mp3` and `.wav` files. Files are loaded in alphabetical order, which determines their sequential playback order.
 
-If a bank's directory does not exist, a warning is logged and the bank is initialized with no sounds.
+If a bank's directory does not exist, it is created automatically and the bank is initialized with no sounds. This ensures the expected directory structure is always in place, ready for sound files to be added.
 
 ## Playback Modes
 
