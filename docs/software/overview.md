@@ -8,9 +8,10 @@ description: Details on software used to run the Goblin Speaks Fortune Teller Fr
 
 ## Overview
 
-The Goblin Speaks software is a Python-based application designed to run on Raspberry Pi. It orchestrates various aspects of the fortune teller machine including:
+The Goblin Speaks software is a Python-based application designed to run on Raspberry Pi. It uses a fully config-driven architecture where the machine's physical components and its play sequence are both defined in a single YAML configuration file. This means you can change what your machine does — and in what order — without writing any code.
 
-- **Play orchestration**: Manages the sequence of events (audio, animation, dispensing) via the [`Player`](https://github.com/gobbolab/goblin-speaks/tree/main/src/player) module. The `DefaultPlayer` handles selecting a random audio file, triggering the animatronic for the duration of the audio, and then dispensing a card.
+The software orchestrates various aspects of the fortune teller machine including:
+
 - **Animatronics control**: Manages animatronic routines via the [`Animatronic`](https://github.com/gobbolab/goblin-speaks/blob/main/src/animatronic/base.py) interface
 - **Dispensing**: Controls item or prize dispensers via the [`Dispenser`](https://github.com/gobbolab/goblin-speaks/blob/main/src/dispenser/base.py) interface
 - **Audio playback**: Handles audio selection and playback via the [`AudioPlayer`](https://github.com/gobbolab/goblin-speaks/blob/main/src/audio_player.py) class
@@ -18,7 +19,7 @@ The Goblin Speaks software is a Python-based application designed to run on Rasp
 
 The software is built using the `typer` framework, which provides a clean command-line interface. Under the default setup, it runs as a systemd service in a tmux terminal session, allowing the Raspberry Pi to continue operating normally while the Goblin Speaks application runs in the background.
 
-The framework is designed to be highly moddable. Each core component (Animatronics, Dispensers, Players) is defined by an abstract interface. You can create your own custom components (like dispenser for a different type of prize) by simply implementing the required interface and plugging it into the framework. This allows for endless customization of the fortune teller's physical hardware and software flow.
+The framework is designed to be highly moddable. Each core component type (Animatronics, Dispensers, Activators) is defined by an abstract interface. You can create your own custom components (like a dispenser for a different type of prize) by implementing the required interface, registering it with the appropriate factory, and adding it to your config file. This allows for endless customization of the fortune teller's physical hardware and behavior without modifying the core framework.
 
 ## Raspberry Pi Setup
 
@@ -28,10 +29,11 @@ The software is designed to run on Raspberry Pi. A setup script is provided in t
 
 ## Configuration
 
-A wide range of settings are available to configure a Goblin Speaks machine.
-These values are held in a yaml file located in `/etc/goblin-speaks/config.yml`
-Using the config file is entirely optional as all values have fallback defaults.
-Details on the available config values and their defaults can be found in the docs for each configurable component of the framework.
+The machine is configured through a YAML file located at `/etc/goblin-speaks/config.yml`. The config file has two main sections:
+
+This config-driven approach means you can completely change your machine's behavior — add new components, reorder the play sequence etc. by editing this file.
+
+[Read more about Configuration](configuration.md)
 
 ## Audio Player
 
