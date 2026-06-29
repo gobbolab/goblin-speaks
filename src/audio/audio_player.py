@@ -4,6 +4,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 from src.config import Config
 from audio.sound_bank import SoundBank
+from terminal_helper import print_header
 
 
 class AudioPlayer:
@@ -15,7 +16,8 @@ class AudioPlayer:
 
         banks_config = config.get('audio_player.sound_banks', {})
 
-        print("\nInitializing Audio Player")
+        print("")
+        print_header("LOADING AUDIO PLAYER")
         print(f"Sounds directory: {sounds_dir}")
 
         pygame.mixer.pre_init(44100, -16, 1, 2048)

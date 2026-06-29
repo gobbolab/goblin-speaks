@@ -5,11 +5,11 @@
 audio_player:
   sound_banks:
     pre_show:
-      mode: sequential
+      mode: random
     show:
       mode: sequential
     post_show:
-      mode: sequential
+      mode: random
     activation:
       mode: random
 

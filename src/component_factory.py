@@ -2,6 +2,7 @@ from src.config import Config
 from animatronic import AnimatronicFactory
 from dispenser import DispenserFactory
 from activator import ActivatorFactory
+from terminal_helper import print_header
 
 
 _FACTORY_MAP = {
@@ -20,6 +21,8 @@ class ComponentFactory:
 
         if not components_config:
             raise ValueError("No 'components' section found in config")
+
+        print_header("LOADING COMPONENTS")
 
         components = {}
         for name, comp_config in components_config.items():
