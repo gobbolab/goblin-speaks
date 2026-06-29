@@ -1,18 +1,12 @@
 components:
-  audio:
-    type: audio_player
-    pre_show_sound_dir: /opt/goblin-speaks/sounds/pre_show
-    # ...
   goblin_body:
     type: animatronic
     class: gs_body
-    arm_pin: 0
-    # ...
   card_dispenser:
     type: dispenser
     class: gs_card
-    pin_1: 17
-    # ...
+    dispense_steps: 2048
+    step_delay: 0.0015
 
 sequence:
   - component: audio
