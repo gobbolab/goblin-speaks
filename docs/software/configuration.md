@@ -38,7 +38,7 @@ components:
 |------|-------------|-------------------|
 | `animatronic` | Controls animatronic movement and routines | `gs_body` |
 | `dispenser` | Controls item/prize dispensing mechanisms | `single_stepper` |
-| `activator` | Triggers that start the play sequence (buttons, sensors, etc.) | `gs_button` |
+| `activator` | Triggers that start the play sequence (buttons, sensors, etc.) | `gpiozero_button` |
 
 ### Component Names
 

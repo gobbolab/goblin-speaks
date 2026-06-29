@@ -1,13 +1,13 @@
 from src.config import Config
 from src.plugin import PluginLoader
-from .gs_button import GSButton
+from .gpiozero_button import GpioZeroButton
 from .base import Activator
 
 class ActivatorFactory:
     """Factory for creating activator instances based on configuration"""
 
     _activators = {
-        'gs_button': GSButton,
+        'gpiozero_button': GpioZeroButton,
     }
 
     @staticmethod
@@ -15,7 +15,7 @@ class ActivatorFactory:
         config = Config()
 
         if activator_type is None:
-            activator_type = config.get('activator.type', 'gs_button')
+            activator_type = config.get('activator.type', 'gpiozero_button')
 
         if activator_type in ActivatorFactory._activators:
             activator_class = ActivatorFactory._activators[activator_type]

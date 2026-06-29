@@ -12,7 +12,7 @@ The Goblin Speaks framework supports plugins for all core component types: **Dis
 
 When a factory creates a component, it follows this order:
 
-1. **Built-in components** are checked first (e.g., `single_stepper`, `gs_body`, `gs_button`)
+1. **Built-in components** are checked first (e.g., `single_stepper`, `gs_body`, `gpiozero_button`)
 2. **Plugins** are checked if no built-in component matches the requested type
 
 Plugins are discovered automatically by scanning a plugins directory for Python files. Each file should contain a class that extends the appropriate abstract base class for its component type.
