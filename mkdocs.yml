@@ -11,6 +11,7 @@ nav:
   - Software:
       - Overview: software/overview.md
       - Configuration: software/configuration.md
+      - CLI: software/cli.md
       - Raspberry Pi Setup: software/raspberry-pi-setup.md
       - Audio Player: software/audio-player.md
       - Components:

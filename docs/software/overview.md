@@ -27,6 +27,12 @@ The software is designed to run on Raspberry Pi. A setup script is provided in t
 
 [Read more about Raspberry Pi Setup](raspberry-pi-setup.md)
 
+## CLI
+
+The software provides a command-line interface built with `typer`. It includes commands for running the machine, testing individual components through an interactive menu, updating to the latest release, and generating plugin skeleton files.
+
+[Read more about the CLI](cli.md)
+
 ## Configuration
 
 The machine is configured through a YAML file located at `/etc/goblin-speaks/config.yml`. The config file has two main sections:
