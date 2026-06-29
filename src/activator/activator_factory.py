@@ -9,15 +9,15 @@ class ActivatorFactory:
     }
     
     @staticmethod
-    def create(activator_type: str = None) -> object:
+    def create(activator_type: str = None, config_prefix: str = None) -> object:
         config = Config()
-        
+
         if activator_type is None:
             activator_type = config.get('activator.type', 'gs_button')
-        
+
         if activator_type not in ActivatorFactory._activators:
             raise ValueError(f"Unknown activator type: {activator_type}")
-        
+
         activator_class = ActivatorFactory._activators[activator_type]
         print(f"Creating activator: {activator_type}")
-        return activator_class()
+        return activator_class(config_prefix=config_prefix)

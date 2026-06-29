@@ -6,7 +6,11 @@ from audio_player import AudioPlayer
 from version import __version__
 from update import perform_update
 from player import DefaultPlayer
+from player.sequence import SequencePlayer
 from test_menu import TestMenu
+from sequence_test_menu import SequenceTestMenu
+from component_factory import ComponentFactory
+from src.config import Config
 import activator
 
 app = typer.Typer(help="Goblin Speaks fortune teller software")
@@ -21,7 +25,10 @@ def run():
 @app.command()
 def test():
     player = load_player()
-    menu = TestMenu(player)
+    if isinstance(player, SequencePlayer):
+        menu = SequenceTestMenu(player)
+    else:
+        menu = TestMenu(player)
     menu.run()
     player.shutdown()
     sys.exit(0)
@@ -34,6 +41,13 @@ def update():
     perform_update()
 
 def load_player():
+    config = Config()
+
+    if config.get('components'):
+        components = ComponentFactory.create_all()
+        components['audio'] = AudioPlayer()
+        return SequencePlayer(components)
+
     audio_player = AudioPlayer()
     animatronic_instance = animatronic.AnimatronicFactory.create()
     dispenser_instance = dispenser.DispenserFactory.create()

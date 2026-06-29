@@ -5,15 +5,12 @@ import threading
 import time
 
 class GSBody(Animatronic):
-    def __init__(self, *args, **kwargs):
-        """
-        Initializes the GSBody with configuration from goblin-speaks-config.yml
-        """
+    def __init__(self, config_prefix=None):
         config = Config()
-        
-        # Helper function to automatically prefix keys
+        prefix = config_prefix or 'animatronic.gs_body'
+
         def get_conf(key, default):
-            return config.get(f'animatronic.gs_body.{key}', default)
+            return config.get(f'{prefix}.{key}', default)
         
         # Load servo pin configuration with defaults
         self.arm_pin   = get_conf('arm_pin', 0)

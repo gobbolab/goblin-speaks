@@ -4,9 +4,10 @@ from src.config import Config
 
 
 class Dispenser(ABC):
-    def __init__(self):
+    def __init__(self, config_prefix=None):
         config = Config()
-        self.dispense_delay = config.get('dispenser.dispense_delay', 1.0)
+        prefix = config_prefix or 'dispenser'
+        self.dispense_delay = config.get(f'{prefix}.dispense_delay', 1.0)
         print("Values Loaded:")
         print(f"Dispense Delay: {self.dispense_delay}")
 

@@ -9,27 +9,15 @@ class AnimatronicFactory:
     }
     
     @staticmethod
-    def create(animatronic_type: str = None) -> object:
-        """
-        Create an animatronic instance based on configuration or specified type.
-        
-        Args:
-            animatronic_type: Optional type override. If not provided, reads from config.
-        
-        Returns:
-            Animatronic instance
-        
-        Raises:
-            ValueError: If animatronic type is not found or not configured
-        """
+    def create(animatronic_type: str = None, config_prefix: str = None) -> object:
         config = Config()
-        
+
         if animatronic_type is None:
             animatronic_type = config.get('animatronic.type', 'gs_body')
-        
+
         if animatronic_type not in AnimatronicFactory._animatronics:
             raise ValueError(f"Unknown animatronic type: {animatronic_type}")
-        
+
         animatronic_class = AnimatronicFactory._animatronics[animatronic_type]
         print(f"Creating Animatronic: {animatronic_type}")
-        return animatronic_class()
+        return animatronic_class(config_prefix=config_prefix)

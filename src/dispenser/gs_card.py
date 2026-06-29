@@ -4,15 +4,18 @@ from src.config import Config
 from dispenser.base import Dispenser
 
 class GSCardDispenser(Dispenser):
-    def __init__(self, *args, **kwargs):
-        """
-        Initializes the GS Card Dispenser with 4 specific hardware pins.
-        """
-        super().__init__()
+    def __init__(self, config_prefix=None):
+        if config_prefix is None:
+            super().__init__()
+            prefix = 'dispenser.gs_card'
+        else:
+            super().__init__(config_prefix)
+            prefix = config_prefix
+
         config = Config()
-        
+
         def get_conf(key, default):
-            return config.get(f'dispenser.gs_card.{key}', default)
+            return config.get(f'{prefix}.{key}', default)
         
         pin1 = get_conf('pin_1', board.D17)
         pin2 = get_conf('pin_2', board.D18)

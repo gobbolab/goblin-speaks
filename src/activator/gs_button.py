@@ -9,10 +9,11 @@ class GSButton(Activator):
     Compatible with any component that signals via a digital GPIO pin:
     physical buttons, IR beam sensors, reed switches, etc.
     """
-    def __init__(self):
+    def __init__(self, config_prefix=None):
         config = Config()
+        prefix = config_prefix or 'activator.gs_button'
         print("Values Loaded:")
-        self.trigger_pin = config.get('activator.gs_button.trigger_pin', 21)
+        self.trigger_pin = config.get(f'{prefix}.trigger_pin', 21)
         print(f"Trigger Pin: {self.trigger_pin}")
         self.sensor = Button(self.trigger_pin, pull_up=True)
 
