@@ -31,7 +31,7 @@ Builders who complete a machine which leverages this framework can apply for a s
 The framework software is designed to run on Raspberry Pi.
 Learn more [here](software.md).
 
-See the code on the github repository: https://github.com/gobbolab/goblin-speaks
+See the code on the github repository [here](https://github.com/gobbolab/goblin-speaks)
 
 ## Components
 
