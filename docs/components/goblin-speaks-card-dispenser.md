@@ -10,7 +10,7 @@ The Goblin Speaks Card Dispenser is a 3D-printable hardware component designed t
 
 The dispenser is driven by a **28BYJ-48 stepper motor** controlled by a **ULN2003 driver board**.
 
-The dispenser integrates directly with the Goblin Speaks framework via the [`GSCardDispenser`](https://github.com/gobbolab/goblin-speaks/blob/main/src/dispenser/gs_card.py) class.
+The dispenser integrates directly with the Goblin Speaks framework via the [`SingleStepperDispenser`](https://github.com/gobbolab/goblin-speaks/blob/main/src/dispenser/single_stepper.py) class.
 
 ---
 
@@ -52,6 +52,6 @@ The printable model for the card dispenser is available on Printables:
 
 ## Software Implementation
 
-The dispenser is powered by the `GSCardDispenser` software component.
+The dispenser is powered by the `SingleStepperDispenser` software component.
 
-[Read more about the GSCardDispenser Class](../software/components/gs-card.md)
+[Read more about the SingleStepperDispenser Class](../software/components/single-stepper.md)

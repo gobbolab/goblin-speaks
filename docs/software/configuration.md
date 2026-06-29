@@ -19,7 +19,7 @@ components:
     class: gs_body
   card_dispenser:
     type: dispenser
-    class: gs_card
+    class: single_stepper
     dispense_steps: 2048
     step_delay: 0.0015
 ```
@@ -37,7 +37,7 @@ components:
 | Type | Description | Available Classes |
 |------|-------------|-------------------|
 | `animatronic` | Controls animatronic movement and routines | `gs_body` |
-| `dispenser` | Controls item/prize dispensing mechanisms | `gs_card` |
+| `dispenser` | Controls item/prize dispensing mechanisms | `single_stepper` |
 | `activator` | Triggers that start the play sequence (buttons, sensors, etc.) | `gs_button` |
 
 ### Component Names
@@ -121,7 +121,7 @@ components:
     class: gs_body
   card_dispenser:
     type: dispenser
-    class: gs_card
+    class: single_stepper
     dispense_steps: 2048
     step_delay: 0.0015
 

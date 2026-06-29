@@ -4,7 +4,7 @@ components:
     class: gs_body
   card_dispenser:
     type: dispenser
-    class: gs_card
+    class: single_stepper
     dispense_steps: 2048
     step_delay: 0.0015
 

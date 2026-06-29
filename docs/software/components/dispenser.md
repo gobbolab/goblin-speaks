@@ -8,7 +8,7 @@ description: Details on the Dispenser abstract base class.
 
 The [`Dispenser`](https://github.com/gobbolab/goblin-speaks/blob/main/src/dispenser/base.py) interface provides the core abstraction for all dispensers in the Goblin Speaks framework. 
 
-All specific dispenser implementations (like the `GSCardDispenser`) must inherit from this abstract base class and implement its required methods.
+All specific dispenser implementations (like the `SingleStepperDispenser`) must inherit from this abstract base class and implement its required methods.
 
 ## Template Method: `dispense(count=1)`
 
@@ -34,11 +34,11 @@ The base dispenser reads the following global configuration values from `config.
 
 ```yaml
 dispenser:
-  type: gs_card
+  type: single_stepper
   dispense_delay: 1.0
 ```
 
 | Config Key | Default | Description |
 |---|---|---|
-| `type` | `gs_card` | The specific class type to instantiate from the `DispenserFactory`. |
+| `type` | `single_stepper` | The specific class type to instantiate from the `DispenserFactory`. |
 | `dispense_delay` | `1.0` | Number of seconds to pause between dispenses if the player calls `dispense(count)` where `count` is greater than 1. |

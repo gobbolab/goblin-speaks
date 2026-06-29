@@ -3,11 +3,11 @@ import motor
 from src.config import Config
 from dispenser.base import Dispenser
 
-class GSCardDispenser(Dispenser):
+class SingleStepperDispenser(Dispenser):
     def __init__(self, config_prefix=None):
         if config_prefix is None:
             super().__init__()
-            prefix = 'dispenser.gs_card'
+            prefix = 'dispenser.single_stepper'
         else:
             super().__init__(config_prefix)
             prefix = config_prefix
@@ -39,9 +39,9 @@ class GSCardDispenser(Dispenser):
 
     def _dispense_one(self):
         """
-        Performs a single card dispense.
+        Performs a single dispense.
         """
-        print("Dispensing card...")
+        print("Dispensing...")
         self.motor.move_backward(self.dispense_steps, self.step_delay)
         self.motor.move_forward(self.retract_steps, self.step_delay)
 

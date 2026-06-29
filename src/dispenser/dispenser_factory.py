@@ -1,11 +1,11 @@
 from src.config import Config
-from .gs_card import GSCardDispenser
+from .single_stepper import SingleStepperDispenser
 
 class DispenserFactory:
     """Factory for creating dispenser instances based on configuration"""
     
     _dispensers = {
-        'gs_card': GSCardDispenser,
+        'single_stepper': SingleStepperDispenser,
     }
     
     @staticmethod
@@ -13,7 +13,7 @@ class DispenserFactory:
         config = Config()
 
         if dispenser_type is None:
-            dispenser_type = config.get('dispenser.type', 'gs_card')
+            dispenser_type = config.get('dispenser.type', 'single_stepper')
 
         if dispenser_type not in DispenserFactory._dispensers:
             raise ValueError(f"Unknown dispenser type: {dispenser_type}")

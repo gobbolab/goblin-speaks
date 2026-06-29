@@ -15,7 +15,7 @@ nav:
       - Audio Player: software/audio-player.md
       - Components:
           - Dispenser: software/components/dispenser.md
-          - GSCardDispenser: software/components/gs-card.md
+          - SingleStepperDispenser: software/components/single-stepper.md
       - Contributing: software/contributing.md
   - Physical Components:
       - Overview: components/overview.md
