@@ -49,6 +49,8 @@ plugins:
 
 A plugin is a single `.py` file placed in the appropriate component type subdirectory. The **filename** (without the `.py` extension) becomes the name you use to reference the plugin in your configuration.
 
+The framework automatically provides the base class and `Config` to your plugin — you do not need to import them. They are injected into the plugin's namespace before it runs.
+
 Each plugin file must contain a class that:
 
 - Extends the correct abstract base class (`Dispenser`, `Activator`, or `Animatronic`)
@@ -78,9 +80,6 @@ mkdir -p ~/.goblin-speaks/plugins/dispenser
 Create a file at `~/.goblin-speaks/plugins/dispenser/my_dispenser.py`:
 
 ```python
-from src.dispenser.base import Dispenser
-
-
 class MyDispenser(Dispenser):
     def __init__(self, config_prefix=None):
         super().__init__(config_prefix)
@@ -89,7 +88,7 @@ class MyDispenser(Dispenser):
         print("MyDispenser: dispensing item!")
 ```
 
-The class extends `Dispenser` and implements `_dispense_one()`, which is the only required abstract method.
+No imports are needed — `Dispenser` and `Config` are provided automatically by the plugin loader. The class extends `Dispenser` and implements `_dispense_one()`, which is the only required abstract method.
 
 ### Step 3: Update Your Config
 

@@ -56,6 +56,10 @@ class PluginLoader:
                     f"plugins.{component_type}.{module_name}", file_path
                 )
                 module = importlib.util.module_from_spec(spec)
+                # Inject the base class and Config so plugins can use them
+                # without importing from the framework's internal paths
+                module.__dict__[base_class.__name__] = base_class
+                module.__dict__['Config'] = Config
                 sys.modules[spec.name] = module
                 spec.loader.exec_module(module)
 
