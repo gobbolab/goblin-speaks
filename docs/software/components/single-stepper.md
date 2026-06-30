@@ -28,12 +28,14 @@ The stepper motor is driven via the ULN2003 board, which connects to four GPIO p
 
 ## Configuration
 
-The dispenser is configured via `config.yml` under the `dispenser.single_stepper` namespace. All keys are optional — the defaults listed below will be used if a key is absent.
+When declared in the `components` section (the normal case), all settings go directly under the component's entry. All keys are optional — the defaults listed below will be used if a key is absent.
 
 ```yaml
-dispenser:
-  dispense_delay: 1.0       # seconds between dispenses when count > 1 item being dispensed (base Dispenser)
-  single_stepper:
+components:
+  card_dispenser:
+    type: dispenser
+    class: single_stepper
+    dispense_delay: 1.0       # seconds between dispenses when count > 1 (base Dispenser)
     pin_1: 17             
     pin_2: 18              
     pin_3: 27              

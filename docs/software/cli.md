@@ -61,4 +61,4 @@ goblin-speaks plugin <component_type> <name>
 goblin-speaks plugin dispenser my_card_dispenser
 ```
 
-This creates a file at `/etc/goblin-speaks/plugins/dispenser/my_card_dispenser.py` with a `MyCardDispenser` class that extends `Dispenser` and includes stubs for all required methods.
+This creates a file at `~/.goblin-speaks/plugins/dispenser/my_card_dispenser.py` with a `MyCardDispenser` class that extends `Dispenser` and includes stubs for all required methods.

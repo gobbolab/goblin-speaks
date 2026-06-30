@@ -25,15 +25,16 @@ Performs the actual hardware action to dispense a single item. This is called in
 
 ## Configuration
 
-The base dispenser reads the following global configuration values from `config.yml` under the `dispenser` namespace:
+The base `Dispenser` class reads `dispense_delay` from the component's config prefix. When a component is declared in the `components` section (the normal case), this key lives directly under that component's entry:
 
 ```yaml
-dispenser:
-  type: single_stepper
-  dispense_delay: 1.0
+components:
+  card_dispenser:
+    type: dispenser
+    class: single_stepper
+    dispense_delay: 1.0
 ```
 
 | Config Key | Default | Description |
 |---|---|---|
-| `type` | `single_stepper` | The specific class type to instantiate from the `DispenserFactory`. |
 | `dispense_delay` | `1.0` | Number of seconds to pause between dispenses if the player calls `dispense(count)` where `count` is greater than 1. |
