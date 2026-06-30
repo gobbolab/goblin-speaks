@@ -6,11 +6,31 @@ description: Goblin Speaks Penny Arcade Framework documentation home.
 
 # Goblin Speaks Penny Arcade Framework
 
-Inspired by the penny arcade machines of the 1930s, this project aims to deliver a moddable and modular framework of open source components and software which anyone can leverage to build their own working penny arcade machine. This can be anything from a fortune teller machine, an animatronic show, an interactive game or something totally different.
+**An open source framework for building your own penny arcade amusement machine.**
 
-The project gets its name from the first machine built using the framework: a novelty fortune teller in the style of classic machines like Zoltar, dubbed "Goblin Speaks."
+Goblin Speaks is a moddable, modular framework of open source software and hardware components for building penny arcade style machines on a Raspberry Pi.
+Whether you're building a fortune teller, an animatronic show, an interactive game, or something else entirely, Goblin Speaks gives you the building blocks to do it.
+
+The project is inspired by vintage penny arcade machines and fortune teller machines.
+It gets its name from the first machine built using the framework, the Goblin Speaks fortune teller.
 
 ![Gypsy grandma machine](images/gypsy-grandma.jpg)
+
+## How It Works
+
+A Goblin Speaks machine is assembled from a small set of component types, each built behind a common interface so they can be mixed, matched, or replaced:
+
+- **Activators** trigger the show — a coin reader, a button, a motion sensor.
+- **Animatronics** bring the machine to life — articulating mouths, arms, heads.
+- **Dispensers** hand the player a physical reward — a fortune card, token, or toy.
+- **Audio** plays narration, sound effects, and music throughout the show.
+
+You wire these together in a single config file (`/etc/goblin-speaks/config.yml`) that declares which components make up your machine and the sequence of actions to run each time it's activated.
+The framework provides several ready to use components like animatronic character frames, coin readers and card dispensers.
+Most likely your unique machine will require some components that are not provided directly by the framework.
+The framework provides a plugin system, allowing you to write a Python file implementing the component's interface — drop it in the plugins directory, and reference it from your config; no need to touch the framework source itself.
+
+[Read more about the Software](software/overview.md) · [Read more about Components](components/overview.md)
 
 ## Project State
 
@@ -18,29 +38,10 @@ We are still developing the first iteration of a machine on this framework.
 The project is not ready for general release, and code here changes often.
 Here is a video of the in progress prototype:
 
-
 <iframe width="560" height="315" src="https://youtube.com/embed/22QMtMoQO5U?si=L_L5Q7h8ckz2mF6Z" title="Goblin Speaks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+## Get Involved
 
-## Software
+- **Complete a machine** — builders who finish a machine using the framework can apply for a [serial number](serial-numbers.md).
 
-The framework software is designed to run on Raspberry Pi.
-[Read more about the Software](software/overview.md).
-
-[Read more about the code on GitHub](https://github.com/gobbolab/goblin-speaks)
-
-## Components
-
-Learn more about the available components which can be used to build a machine.
-If what you need is not directly available, the framework supports plugins allowing you to integrate your own components.
-[Read more about Components](components/overview.md).
-
-## Contributing
-
-If you design your own component, have a new feature for the software, or anything else you think should be part of the project, just open a PR with all the details. 
-Code and 3D model files should be shared with a permissible license that allows others to use and iterate the designs.
-
-## Serial Numbers
-
-Builders who complete a machine which leverages this framework can apply for a serial number.
-[Read more about Serial Numbers](serial-numbers.md).
+[Browse the code on GitHub](https://github.com/gobbolab/goblin-speaks)
