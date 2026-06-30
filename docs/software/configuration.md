@@ -6,7 +6,7 @@ description: How to configure components and play sequences for a Goblin Speaks 
 
 # Configuration
 
-The Goblin Speaks machine is configured through a single YAML file located at `/etc/goblin-speaks/config.yml`. The config file defines which components are attached to your machine and the named sequences of actions that can run on your machine.
+The Goblin Speaks machine is configured through a single YAML file located at `/etc/goblin-speaks/config.yml`. The config file defines which components are attached to your machine, the named sequences of actions that can run on your machine, and which activators (buttons, sensors, etc.) trigger each sequence.
 
 ## Components
 
@@ -38,7 +38,6 @@ components:
 |------|-------------|-------------------|
 | `animatronic` | Controls animatronic movement and routines | `gs_body` |
 | `dispenser` | Controls item/prize dispensing mechanisms | `single_stepper` |
-| `activator` | Triggers that start the play sequence (buttons, sensors, etc.) | `gpiozero_button` |
 
 ### Component Names
 
@@ -68,7 +67,7 @@ sequences:
       action: dispense
 ```
 
-Defining multiple named sequences lets a single machine support more than one routine — for example a full `fortune` sequence and a shorter `greeting` sequence — which can later be wired up to different [activators](configuration.md#component-types). The [test menu](cli.md#menu) lists every sequence defined in `sequences` so you can run each one individually.
+Defining multiple named sequences lets a single machine support more than one routine — for example a full `fortune` sequence and a shorter `greeting` sequence — which can be wired up to different [activators](#activators). The [test menu](cli.md#menu) lists every sequence defined in `sequences` so you can run each one individually.
 
 ### Step Fields
 
@@ -113,9 +112,43 @@ Each component type exposes different actions you can call from a sequence:
 |--------|------|---------|-------------|
 | `dispense` | `count` (int, optional) | — | Dispense one or more items. Defaults to 1. |
 
+## Activators
+
+The `activators` section declares the triggers that start sequences when the machine is running. Each activator is given a name (your choice), a `type`, the `sequence` it should play when triggered, and any type-specific settings.
+
+```yaml
+activators:
+  fortune_button:
+    type: gpiozero_button
+    sequence: fortune
+    trigger_pin: 21
+  greeting_sensor:
+    type: gpiozero_button
+    sequence: greeting
+    trigger_pin: 17
+```
+
+### Activator Fields
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `type` | Yes | The activator implementation to use. |
+| `sequence` | Yes | The name of a sequence (defined in `sequences`) to play when this activator fires. |
+| *(other keys)* | No | Type-specific settings passed through to the implementation. |
+
+### Activator Types
+
+#### `gpiozero_button`
+
+A GPIO button or digital sensor backed by the [gpiozero](https://gpiozero.readthedocs.io/) library. Compatible with physical buttons, IR beam sensors, reed switches, and any other component that signals via a digital GPIO pin.
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `trigger_pin` | `21` | The GPIO pin number to listen on. |
+
 ## Full Example
 
-Below is a complete configuration file that sets up a machine with an animatronic body, a card dispenser, and a `fortune` sequence that plays audio, animates the body for the duration of the audio, then dispenses a card:
+Below is a complete configuration file that sets up a machine with an animatronic body, a card dispenser, a GPIO button that triggers the `fortune` sequence, and the sequences themselves:
 
 ```yaml
 components:
@@ -127,6 +160,12 @@ components:
     class: single_stepper
     dispense_steps: 2048
     step_delay: 0.0015
+
+activators:
+  fortune_button:
+    type: gpiozero_button
+    sequence: fortune
+    trigger_pin: 21
 
 sequences:
   fortune:

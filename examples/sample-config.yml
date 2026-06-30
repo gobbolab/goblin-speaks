@@ -2,6 +2,16 @@
 # plugins:
 #   directory: ~/.goblin-speaks/plugins
 
+activators:
+  fortune_button:
+    type: gpiozero_button
+    sequence: fortune
+    trigger_pin: 21
+  greeting_sensor:
+    type: gpiozero_button
+    sequence: greeting
+    trigger_pin: 17
+
 audio_player:
   sound_banks:
     pre_fortune:
