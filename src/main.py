@@ -10,6 +10,7 @@ from plugin import PluginLoader, PluginGenerator
 from dispenser.base import Dispenser
 from activator.base import Activator
 from animatronic.base import Animatronic
+from terminal_helper import print_logo
 
 app = typer.Typer(help="Goblin Speaks fortune teller software")
 
@@ -68,17 +69,6 @@ def load_player():
     return SequencePlayer(components)
 
 if __name__ == "__main__":
-    print(r"""
-     _____       _     _ _         _____                  _        
-    |  __ \     | |   | (_)       /  ___|                | |       
-    | |  \/ ___ | |__ | |_ _ __   \ `--. _ __   ___  __ _| | _____ 
-    | | __ / _ \| '_ \| | | '_ \   `--. \ '_ \ / _ \/ _` | |/ / __|
-    | |_\ \ (_) | |_) | | | | | | /\__/ / |_) |  __/ (_| |   <\__ \
-     \____/\___/|_.__/|_|_|_| |_| \____/| .__/ \___|\__,_|_|\_\___/
-                                        | |                        
-                                        |_|                        
-          """)
-    print(f"                Penny Arcade Framework - {__version__}")
-    print("")
+    print_logo(__version__)
 
     app()
