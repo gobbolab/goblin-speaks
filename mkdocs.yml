@@ -8,6 +8,7 @@ theme:
 
 nav:
   - Home: index.md
+  - Goblin Speaks Example: goblin-speaks-example.md
   - Software:
       - Overview: software/overview.md
       - Configuration: software/configuration.md

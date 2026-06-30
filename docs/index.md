@@ -30,13 +30,11 @@ The framework provides a plugin system, allowing you to write a Python file impl
 
 [Read more about the Software](software/overview.md) · [Read more about Components](components/overview.md)
 
-## Project State
+## See it in Action
 
-We are still developing the first iteration of a machine on this framework.
-The project is not ready for general release, and code here changes often.
-Here is a video of the in progress prototype:
+The framework's namesake machine, the Goblin Speaks fortune teller, is a fortune telling cabinet built entirely from the framework's components: a [Goblin Speaks Body](components/goblin-speaks-animatronic-body.md) and [Head](components/goblin-speaks-head.md) animate as the machine speaks, and a [Card Dispenser](components/goblin-speaks-card-dispenser.md) hands the player a fortune card at the end of the show.
 
-<iframe width="560" height="315" src="https://youtube.com/embed/22QMtMoQO5U?si=L_L5Q7h8ckz2mF6Z" title="Goblin Speaks" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[See how the Goblin Speaks machine works](goblin-speaks-example.md)
 
 ## Get Involved
 
