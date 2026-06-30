@@ -20,9 +20,9 @@ goblin-speaks run
 
 ### `menu`
 
-Launches an interactive test menu that lets you test individual components without running a full play sequence. The menu dynamically lists all components loaded from your config and allows you to:
+Launches an interactive test menu that lets you test individual components without running a full play sequence. The menu dynamically lists all components and sequences loaded from your config and allows you to:
 
-- Play the full sequence
+- Play each sequence defined in `sequences`
 - Test each animatronic
 - Test each dispenser
 - Test audio playback

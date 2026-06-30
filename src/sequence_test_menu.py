@@ -34,8 +34,12 @@ class SequenceTestMenu:
         options = {}
         key_num = 1
 
-        options[str(key_num)] = ("Play Sequence", self.player.play)
-        key_num += 1
+        for name in self.player.sequence_names:
+            options[str(key_num)] = (
+                f"Play Sequence ({name})",
+                lambda n=name: self.player.play(n)
+            )
+            key_num += 1
 
         for name, component in self.player.components.items():
             if isinstance(component, Animatronic):

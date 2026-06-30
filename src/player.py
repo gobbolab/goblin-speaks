@@ -6,13 +6,19 @@ class SequencePlayer:
     def __init__(self, components: dict):
         self.components = components
         config = Config()
-        self._sequence = config.get('sequence', [])
+        self._sequences = config.get('sequences', {})
 
-    def play(self):
-        print("Starting play sequence...")
+    @property
+    def sequence_names(self):
+        return list(self._sequences.keys())
+
+    def play(self, sequence_name):
+        sequence = self._get_sequence(sequence_name)
+
+        print(f"Starting sequence '{sequence_name}'...")
         outputs = {}
 
-        for i, step in enumerate(self._sequence):
+        for i, step in enumerate(sequence):
             component_name = step.get('component')
             action_name = step.get('action')
 
@@ -30,7 +36,15 @@ class SequencePlayer:
             if output_name:
                 outputs[output_name] = result
 
-        print("Play sequence finished.")
+        print(f"Sequence '{sequence_name}' finished.")
+
+    def _get_sequence(self, sequence_name):
+        if sequence_name not in self._sequences:
+            raise ValueError(
+                f"Unknown sequence '{sequence_name}'. "
+                f"Available: {list(self._sequences.keys())}"
+            )
+        return self._sequences[sequence_name]
 
     def _get_component(self, step_index, component_name):
         if component_name not in self.components:

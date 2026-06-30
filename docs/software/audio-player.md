@@ -52,7 +52,7 @@ Each sound bank has an independent playback mode which is used when a specific f
 
 ## Playing Sounds
 
-Sound playback is controlled through the `audio` component in your [sequence](configuration.md#sequence). The built-in `audio` component is always available — you don't need to declare it in `components`.
+Sound playback is controlled through the `audio` component in your [sequences](configuration.md#sequences). The built-in `audio` component is always available — you don't need to declare it in `components`.
 
 ### By Bank (Next Sound)
 

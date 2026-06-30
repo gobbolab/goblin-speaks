@@ -6,7 +6,7 @@ description: How to configure components and play sequences for a Goblin Speaks 
 
 # Configuration
 
-The Goblin Speaks machine is configured through a single YAML file located at `/etc/goblin-speaks/config.yml`. The config file defines which components are attached to your machine and the sequence of actions that run each time the machine is activated.
+The Goblin Speaks machine is configured through a single YAML file located at `/etc/goblin-speaks/config.yml`. The config file defines which components are attached to your machine and the named sequences of actions that can run on your machine.
 
 ## Components
 
@@ -42,30 +42,33 @@ components:
 
 ### Component Names
 
-The name you give a component (e.g. `goblin_body`, `card_dispenser`) is how you reference it in the `sequence` section. Choose descriptive names that make sense for your build.
+The name you give a component (e.g. `goblin_body`, `card_dispenser`) is how you reference it in the `sequences` section. Choose descriptive names that make sense for your build.
 
 ### Built-in Components
 
 The `audio` component is always available and does not need to be declared in the `components` section. It provides access to the [Audio Player](audio-player.md) and its sound banks.
 
-## Sequence
+## Sequences
 
-The `sequence` section defines the ordered list of steps that the `SequencePlayer` executes each time the machine is activated. Steps run in order from top to bottom.
+The `sequences` section defines named sequences of steps that the `SequencePlayer` can execute. Each key under `sequences` is a sequence name you choose, mapped to an ordered list of steps. Steps within a sequence run in order from top to bottom.
 
 ```yaml
-sequence:
-  - component: audio
-    action: play_sequence
-    args:
-      sound_types: [pre_fortune, fortune, post_fortune]
-    output: duration
-  - component: goblin_body
-    action: animate
-    args:
-      duration: $duration
-  - component: card_dispenser
-    action: dispense
+sequences:
+  fortune:
+    - component: audio
+      action: play_sequence
+      args:
+        sound_types: [pre_fortune, fortune, post_fortune]
+      output: duration
+    - component: goblin_body
+      action: animate
+      args:
+        duration: $duration
+    - component: card_dispenser
+      action: dispense
 ```
+
+Defining multiple named sequences lets a single machine support more than one routine — for example a full `fortune` sequence and a shorter `greeting` sequence — which can later be wired up to different [activators](configuration.md#component-types). The [test menu](cli.md#menu) lists every sequence defined in `sequences` so you can run each one individually.
 
 ### Step Fields
 
@@ -89,7 +92,7 @@ Variable references work inside lists as well. A reference to an output that has
 
 ### Available Actions
 
-Each component type exposes different actions you can call from the sequence:
+Each component type exposes different actions you can call from a sequence:
 
 **Audio** (`audio`)
 
@@ -112,7 +115,7 @@ Each component type exposes different actions you can call from the sequence:
 
 ## Full Example
 
-Below is a complete configuration file that sets up a machine with an animatronic body, a card dispenser, and a play sequence that plays audio, animates the body for the duration of the audio, then dispenses a card:
+Below is a complete configuration file that sets up a machine with an animatronic body, a card dispenser, and a `fortune` sequence that plays audio, animates the body for the duration of the audio, then dispenses a card:
 
 ```yaml
 components:
@@ -125,16 +128,17 @@ components:
     dispense_steps: 2048
     step_delay: 0.0015
 
-sequence:
-  - component: audio
-    action: play_sequence
-    args:
-      sound_types: [pre_fortune, fortune, post_fortune]
-    output: duration
-  - component: goblin_body
-    action: animate
-    args:
-      duration: $duration
-  - component: card_dispenser
-    action: dispense
+sequences:
+  fortune:
+    - component: audio
+      action: play_sequence
+      args:
+        sound_types: [pre_fortune, fortune, post_fortune]
+      output: duration
+    - component: goblin_body
+      action: animate
+      args:
+        duration: $duration
+    - component: card_dispenser
+      action: dispense
 ```

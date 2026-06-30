@@ -16,7 +16,7 @@ The machine is driven by this configuration file, which consists of three main s
 
 - `audio_player` — configures the sound banks used by the machine.
 - `components` — defines the machine's physical components and what software they run.
-- `sequence` — defines how the machine runs.
+- `sequences` — defines the named sequences the machine can run.
 
 ```yaml
 audio_player:
@@ -40,18 +40,19 @@ components:
     dispense_steps: 2048
     step_delay: 0.0015
 
-sequence:
-  - component: audio
-    action: play_sequence
-    args:
-      sound_types: [pre_fortune, fortune, post_fortune]
-    output: duration
-  - component: goblin_body
-    action: animate
-    args:
-      duration: $duration
-  - component: card_dispenser
-    action: dispense
+sequences:
+  fortune:
+    - component: audio
+      action: play_sequence
+      args:
+        sound_types: [pre_fortune, fortune, post_fortune]
+      output: duration
+    - component: goblin_body
+      action: animate
+      args:
+        duration: $duration
+    - component: card_dispenser
+      action: dispense
 ```
 
 ### Sound Banks
@@ -63,7 +64,7 @@ The [Audio Player](software/audio-player.md) is set up with four sound banks, ea
 - `fortune` — the fortune voice line itself, played in `sequential` order so every fortune gets told before any repeat.
 - `post_fortune` — a line asking the player to play again, played in `random` order so it varies between activations.
 
-These sound banks are used later in the sequence section to allow the machine to combine random pre_fortune and post_fortune lines with a sequentially selected fortune.
+These sound banks are used later in the `fortune` sequence to allow the machine to combine random pre_fortune and post_fortune lines with a sequentially selected fortune.
 
 ### Components
 
@@ -76,7 +77,7 @@ See the [Configuration](software/configuration.md) page for the full set of comp
 
 ### Sequence
 
-Each activation runs through three steps:
+The `fortune` sequence runs through three steps:
 
 1. `audio.play_sequence` plays one sound from each of `pre_fortune`, `fortune`, and `post_fortune` in order, and captures the total playback duration as `$duration`.
 2. `goblin_body.animate` runs the body's animation routine for `$duration`, so the goblin's mouth and arm move for exactly as long as it's speaking.

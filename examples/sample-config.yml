@@ -23,18 +23,24 @@ components:
     dispense_steps: 2048
     step_delay: 0.0015
 
-sequence:
-  - component: audio
-    action: play_sequence
-    args:
-      sound_types: [pre_fortune, fortune, post_fortune]
-    output: duration
-  - component: goblin_body
-    action: animate
-    args:
-      duration: $duration
-  - component: card_dispenser
-    action: dispense
+sequences:
+  fortune:
+    - component: audio
+      action: play_sequence
+      args:
+        sound_types: [pre_fortune, fortune, post_fortune]
+      output: duration
+    - component: goblin_body
+      action: animate
+      args:
+        duration: $duration
+    - component: card_dispenser
+      action: dispense
+  greeting:
+    - component: audio
+      action: play
+      args:
+        bank_name: activation
 
 # Play a specific sound file and block until it finishes:
 #  - component: audio
