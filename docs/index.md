@@ -43,5 +43,6 @@ Here is a video of the in progress prototype:
 ## Get Involved
 
 - **Complete a machine** — builders who finish a machine using the framework can apply for a [serial number](serial-numbers.md).
+- **Design a component** — built your own component for the framework? Open a PR to link it from the [Components Overview](components/overview.md).
 
 [Browse the code on GitHub](https://github.com/gobbolab/goblin-speaks)
