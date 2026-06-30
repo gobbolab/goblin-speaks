@@ -17,6 +17,6 @@ def print_logo(version: str):
      \____/\___/|_.__/|_|_|_| |_| \____/| .__/ \___|\__,_|_|\_\___/
                                         | |
                                         |_|
-          """, fg=typer.colors.BLUE)
-    typer.secho(f"                Penny Arcade Framework - {version}", fg=typer.colors.BLUE)
+          """, fg=typer.colors.BLUE, bold=True)
+    typer.secho(f"                Penny Arcade Framework - {version}", fg=typer.colors.BLUE, bold=True)
     typer.echo("")
