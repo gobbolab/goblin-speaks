@@ -6,11 +6,9 @@ description: Goblin Speaks Penny Arcade Framework documentation home.
 
 # Goblin Speaks Penny Arcade Framework
 
-**An open source framework for building your own penny arcade amusement machine.**
+**An open source framework for building your own penny arcade amusement machine on Raspberry Pi.**
 
-Goblin Speaks is a moddable, modular framework of open source software and hardware components for building penny arcade style machines on a Raspberry Pi.
 Whether you're building a fortune teller, an animatronic show, an interactive game, or something else entirely, Goblin Speaks gives you the building blocks to do it.
-
 The project is inspired by vintage penny arcade machines and fortune teller machines.
 It gets its name from the first machine built using the framework, the Goblin Speaks fortune teller.
 
@@ -18,7 +16,7 @@ It gets its name from the first machine built using the framework, the Goblin Sp
 
 ## How It Works
 
-A Goblin Speaks machine is assembled from a small set of component types, each built behind a common interface so they can be mixed, matched, or replaced:
+A Goblin Speaks machine is assembled from a set of component types, each built behind a common interface so they can be mixed, matched, or replaced:
 
 - **Activators** trigger the show — a coin reader, a button, a motion sensor.
 - **Animatronics** bring the machine to life — articulating mouths, arms, heads.
