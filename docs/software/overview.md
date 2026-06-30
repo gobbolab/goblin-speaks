@@ -8,7 +8,7 @@ description: Details on software used to run the Goblin Speaks Penny Arcade Fram
 
 ## Overview
 
-The Goblin Speaks software is a config-driven Python framework for building penny arcade style machines on Raspberry Pi. A single YAML file defines the machine's physical components — animatronics, dispensers, audio — and its play sequence, so you can change what your machine does without writing any code.
+The Goblin Speaks software is a config-driven Python framework for running penny arcade style machines on Raspberry Pi. A single YAML file defines the machine's physical components — animatronics, dispensers, audio — and its play sequence, so you can change what your machine does without writing any code.
 
 The framework is built around abstract interfaces for each component type, making it highly moddable. You can even write software for your own components using the built in plugin system. It runs as a systemd service via `tmux` and provides a `typer`-based CLI for operation and testing.
 
@@ -26,7 +26,7 @@ The software provides a command-line interface built with `typer`. It includes c
 
 ## Configuration
 
-The machine is configured through a YAML file located at `/etc/goblin-speaks/config.yml`. The config file has two main sections:
+The machine is configured through a YAML file located at `/etc/goblin-speaks/config.yml`.
 
 This config-driven approach means you can completely change your machine's behavior — add new components, reorder the play sequence etc. by editing this file.
 
@@ -34,7 +34,7 @@ This config-driven approach means you can completely change your machine's behav
 
 ## Audio Player
 
-The `AudioPlayer` class handles all sound playback for the machine. It uses `pygame.mixer` for low-latency audio playback and manages four independent sound banks, each with its own directory and playback mode.
+The `AudioPlayer` class handles all sound playback for the machine.
 
 [Read more about the Audio Player](audio-player.md)
 
