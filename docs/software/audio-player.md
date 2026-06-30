@@ -18,20 +18,20 @@ audio_player:
   sound_banks:
     activation:
       mode: random
-    pre_show:
+    pre_fortune:
       mode: sequential
-    show:
+    fortune:
       mode: sequential
-    post_show:
+    post_fortune:
       mode: sequential
 ```
 
 With the config above, the audio player will load sounds from:
 
 - `~/.goblin-speaks/sounds/activation/`
-- `~/.goblin-speaks/sounds/pre_show/`
-- `~/.goblin-speaks/sounds/show/`
-- `~/.goblin-speaks/sounds/post_show/`
+- `~/.goblin-speaks/sounds/pre_fortune/`
+- `~/.goblin-speaks/sounds/fortune/`
+- `~/.goblin-speaks/sounds/post_fortune/`
 
 ### Sounds Directory
 
@@ -62,7 +62,7 @@ The `play` action selects the next sound from a bank based on its playback mode.
 - component: audio
   action: play
   args:
-    bank_name: show
+    bank_name: fortune
 ```
 
 ### By Filename
@@ -86,7 +86,7 @@ This is useful for chaining sounds from different banks together to make full ph
 - component: audio
   action: play_sequence
   args:
-    sound_types: [pre_show, show, post_show]
+    sound_types: [pre_fortune, fortune, post_fortune]
 ```
 
 Unknown bank names in the sequence are skipped with a warning. Banks with no loaded sounds are also skipped silently.
@@ -105,7 +105,7 @@ Both `play` and `play_sequence` are **non-blocking by default** — they return 
 - component: audio
   action: play_sequence
   args:
-    sound_types: [pre_show, show, post_show]
+    sound_types: [pre_fortune, fortune, post_fortune]
     block: true
 ```
 
@@ -117,7 +117,7 @@ Both actions return the total duration of the played audio in seconds. Use `outp
 - component: audio
   action: play_sequence
   args:
-    sound_types: [pre_show, show, post_show]
+    sound_types: [pre_fortune, fortune, post_fortune]
   output: duration
 - component: goblin_body
   action: animate

@@ -57,7 +57,7 @@ sequence:
   - component: audio
     action: play_sequence
     args:
-      sound_types: [pre_show, show, post_show]
+      sound_types: [pre_fortune, fortune, post_fortune]
     output: duration
   - component: goblin_body
     action: animate
@@ -129,7 +129,7 @@ sequence:
   - component: audio
     action: play_sequence
     args:
-      sound_types: [pre_show, show, post_show]
+      sound_types: [pre_fortune, fortune, post_fortune]
     output: duration
   - component: goblin_body
     action: animate

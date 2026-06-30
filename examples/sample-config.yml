@@ -4,11 +4,11 @@
 
 audio_player:
   sound_banks:
-    pre_show:
+    pre_fortune:
       mode: random
-    show:
+    fortune:
       mode: sequential
-    post_show:
+    post_fortune:
       mode: random
     activation:
       mode: random
@@ -27,7 +27,7 @@ sequence:
   - component: audio
     action: play_sequence
     args:
-      sound_types: [pre_show, show, post_show]
+      sound_types: [pre_fortune, fortune, post_fortune]
     output: duration
   - component: goblin_body
     action: animate
@@ -48,5 +48,5 @@ sequence:
 #  - component: audio
 #    action: play_sequence
 #    args:
-#      sound_types: [pre_show, show, post_show]
+#      sound_types: [pre_fortune, fortune, post_fortune]
 #      block: true

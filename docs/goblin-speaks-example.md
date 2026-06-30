@@ -21,11 +21,11 @@ The machine is driven by this configuration file, which consists of three main s
 ```yaml
 audio_player:
   sound_banks:
-    pre_show:
+    pre_fortune:
       mode: random
-    show:
+    fortune:
       mode: sequential
-    post_show:
+    post_fortune:
       mode: random
     activation:
       mode: random
@@ -44,7 +44,7 @@ sequence:
   - component: audio
     action: play_sequence
     args:
-      sound_types: [pre_show, show, post_show]
+      sound_types: [pre_fortune, fortune, post_fortune]
     output: duration
   - component: goblin_body
     action: animate
@@ -59,11 +59,11 @@ sequence:
 The [Audio Player](software/audio-player.md) is set up with four sound banks, each holding a different kind of sound:
 
 - `activation` — a sound played when the machine is activated
-- `pre_show` — a general intro voice line, played in `random` order so it varies between activations.
-- `show` — the fortune voice line itself, played in `sequential` order so every fortune gets told before any repeat.
-- `post_show` — a line asking the player to play again, played in `random` order so it varies between activations.
+- `pre_fortune` — a general intro voice line, played in `random` order so it varies between activations.
+- `fortune` — the fortune voice line itself, played in `sequential` order so every fortune gets told before any repeat.
+- `post_fortune` — a line asking the player to play again, played in `random` order so it varies between activations.
 
-These sound banks are used later in the sequence section to allow the machine to combine random pre_show and post_show lines with a sequentially selected fortune.
+These sound banks are used later in the sequence section to allow the machine to combine random pre_fortune and post_fortune lines with a sequentially selected fortune.
 
 ### Components
 
@@ -78,6 +78,6 @@ See the [Configuration](software/configuration.md) page for the full set of comp
 
 Each activation runs through three steps:
 
-1. `audio.play_sequence` plays one sound from each of `pre_show`, `show`, and `post_show` in order, and captures the total playback duration as `$duration`.
+1. `audio.play_sequence` plays one sound from each of `pre_fortune`, `fortune`, and `post_fortune` in order, and captures the total playback duration as `$duration`.
 2. `goblin_body.animate` runs the body's animation routine for `$duration`, so the goblin's mouth and arm move for exactly as long as it's speaking.
 3. `card_dispenser.dispense` pushes out a single fortune card once the show finishes.
