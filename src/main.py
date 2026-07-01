@@ -4,7 +4,7 @@ import sys
 from audio import AudioPlayer
 from version import __version__
 from update import perform_update
-from player import SequencePlayer
+from sequence_player import SequencePlayer
 from sequence_test_menu import SequenceTestMenu
 from component_factory import ComponentFactory
 from plugin import create_plugin
