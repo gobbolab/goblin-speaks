@@ -8,11 +8,8 @@ from player import SequencePlayer
 from sequence_test_menu import SequenceTestMenu
 from component_factory import ComponentFactory
 from config import Config
-from plugin import PluginLoader, PluginGenerator
-from dispenser.base import Dispenser
-from activator.base import Activator
+from plugin import create_plugin
 from activator import ActivatorFactory
-from animatronic.base import Animatronic
 from terminal_helper import print_logo
 
 app = typer.Typer(help="Goblin Speaks fortune teller software")
@@ -50,32 +47,14 @@ def update():
     """
     perform_update()
 
-_BASE_CLASS_MAP = {
-    'dispenser': Dispenser,
-    'activator': Activator,
-    'animatronic': Animatronic,
-}
-
 @app.command()
 def plugin(component_type: str, name: str):
     """Create a new plugin skeleton file. Usage: goblin-speaks plugin dispenser my_dispenser"""
-    if component_type not in _BASE_CLASS_MAP:
-        print(f"Unknown component type: '{component_type}'. Available: {list(_BASE_CLASS_MAP.keys())}")
+    try:
+        create_plugin(component_type, name)
+    except (ValueError, FileExistsError) as e:
+        print(e)
         sys.exit(1)
-
-    base_class = _BASE_CLASS_MAP[component_type]
-    plugin_dir = PluginLoader._get_plugin_dir() / component_type
-    plugin_file = plugin_dir / f"{name}.py"
-
-    if plugin_file.exists():
-        print(f"Plugin already exists: {plugin_file}")
-        sys.exit(1)
-
-    plugin_dir.mkdir(parents=True, exist_ok=True)
-
-    skeleton = PluginGenerator.generate_skeleton(base_class, name)
-    plugin_file.write_text(skeleton)
-    print(f"Created plugin skeleton: {plugin_file}")
 
 def load_player():
     components = ComponentFactory.create_all()
