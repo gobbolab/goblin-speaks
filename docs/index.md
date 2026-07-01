@@ -26,7 +26,7 @@ A Goblin Speaks machine is assembled from a set of component types, each built b
 You wire these together in a single config file (`/etc/goblin-speaks/config.yml`) that declares which components make up your machine and the sequence of actions to run each time it's activated.
 The framework provides several ready to use components like animatronic character frames, coin readers and card dispensers.
 Most likely your unique machine will require some components that are not provided directly by the framework.
-The framework provides a plugin system, allowing you to write a Python file implementing the component's interface — drop it in the plugins directory, and reference it from your config; no need to touch the framework source itself.
+For this, a plugin system, allowing you to write a Python file implementing the component's interface — drop it in the plugins directory, and reference it from your config; no need to touch the framework source itself.
 
 [Read more about the Software](software/overview.md) · [Read more about Components](components/overview.md)
 
