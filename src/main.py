@@ -4,8 +4,7 @@ import sys
 from audio import AudioPlayer
 from version import __version__
 from update import perform_update
-from sequence_player import SequencePlayer
-from sequence_test_menu import SequenceTestMenu
+from sequence import SequencePlayer, SequenceTestMenu
 from component_factory import ComponentFactory
 from plugin import create_plugin
 from activator import ActivatorFactory
@@ -60,5 +59,4 @@ def load_player():
 
 if __name__ == "__main__":
     print_logo(__version__)
-
     app()

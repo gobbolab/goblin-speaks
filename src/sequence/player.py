@@ -1,9 +1,8 @@
 import threading
-from src.config import Config
+from config import Config
 
 
 class SequencePlayer:
-
     def __init__(self, components: dict, activators: list = None):
         self.components = components
         config = Config()
