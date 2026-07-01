@@ -1,3 +1,4 @@
+import threading
 from src.config import Config
 
 
@@ -7,12 +8,27 @@ class SequencePlayer:
         self.components = components
         config = Config()
         self._sequences = config.get('sequences', {})
+        self._active = set()
+        self._active_lock = threading.Lock()
 
     @property
     def sequence_names(self):
         return list(self._sequences.keys())
 
     def play(self, sequence_name):
+        with self._active_lock:
+            if sequence_name in self._active:
+                print(f"Sequence '{sequence_name}' already playing, ignoring trigger.")
+                return
+            self._active.add(sequence_name)
+
+        try:
+            self._run(sequence_name)
+        finally:
+            with self._active_lock:
+                self._active.discard(sequence_name)
+
+    def _run(self, sequence_name):
         sequence = self._get_sequence(sequence_name)
 
         print(f"Starting sequence '{sequence_name}'...")
