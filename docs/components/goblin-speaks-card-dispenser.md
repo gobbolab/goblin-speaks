@@ -54,4 +54,4 @@ The printable model for the card dispenser is available on Printables:
 
 The dispenser is powered by the `SingleStepperDispenser` software component.
 
-[Read more about the SingleStepperDispenser Class](../software/components/single-stepper.md)
+[Read more about the SingleStepperDispenser Class](../software/component-classes/single-stepper-dispenser.md)

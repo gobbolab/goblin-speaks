@@ -15,9 +15,9 @@ nav:
       - CLI: software/cli.md
       - Raspberry Pi Setup: software/raspberry-pi-setup.md
       - Audio Player: software/audio-player.md
-      - Components:
-          - Dispenser: software/components/dispenser.md
-          - SingleStepperDispenser: software/components/single-stepper.md
+      - Component Classes:
+          - Dispenser Interface: software/component-classes/dispenser-interface.md
+          - SingleStepperDispenser: software/component-classes/single-stepper-dispenser.md
       - Plugins: software/plugins.md
   - Physical Components:
       - Overview: components/overview.md
