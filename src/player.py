@@ -4,12 +4,21 @@ from src.config import Config
 
 class SequencePlayer:
 
-    def __init__(self, components: dict):
+    def __init__(self, components: dict, activators: list = None):
         self.components = components
         config = Config()
         self._sequences = config.get('sequences', {})
         self._active = set()
         self._active_lock = threading.Lock()
+        self.activators = []
+        for activator, sequence_name in (activators or []):
+            if sequence_name not in self._sequences:
+                raise ValueError(
+                    f"Activator references unknown sequence '{sequence_name}'. "
+                    f"Available: {self.sequence_names}"
+                )
+            activator.start(lambda sn=sequence_name: self.play(sn))
+            self.activators.append(activator)
 
     @property
     def sequence_names(self):
@@ -98,6 +107,9 @@ class SequencePlayer:
         return value
 
     def shutdown(self):
+        for activator in self.activators:
+            if hasattr(activator, 'shutdown'):
+                activator.shutdown()
         for name, component in self.components.items():
             if hasattr(component, 'shutdown'):
                 print(f"Shutting down '{name}'...")

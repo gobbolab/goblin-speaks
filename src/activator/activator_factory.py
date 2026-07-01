@@ -32,3 +32,17 @@ class ActivatorFactory:
             f"Built-in: {list(ActivatorFactory._activators.keys())}. "
             f"Plugins: {list(plugins.keys())}"
         )
+
+    @staticmethod
+    def create_all() -> list:
+        config = Config()
+        activators_config = config.get('activators', {})
+        result = []
+        for name, act_config in activators_config.items():
+            act_type = act_config.get('type')
+            sequence_name = act_config.get('sequence')
+            if not sequence_name:
+                raise ValueError(f"Activator '{name}' is missing a 'sequence' field")
+            activator = ActivatorFactory.create(act_type, config_prefix=f'activators.{name}')
+            result.append((activator, sequence_name))
+        return result
