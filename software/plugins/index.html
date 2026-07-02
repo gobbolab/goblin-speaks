@@ -1,0 +1,1294 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="How to create and use plugins to extend the Goblin Speaks framework with custom components.">
+      
+      
+      
+      
+        <link rel="prev" href="../component-classes/single-stepper-dispenser/">
+      
+      
+        <link rel="next" href="../../components/overview/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Plugins - Goblin Speaks Penny Arcade Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plugins" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Goblin Speaks Penny Arcade Framework" class="md-header__button md-logo" aria-label="Goblin Speaks Penny Arcade Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Goblin Speaks Penny Arcade Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plugins
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Goblin Speaks Penny Arcade Framework" class="md-nav__button md-logo" aria-label="Goblin Speaks Penny Arcade Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Goblin Speaks Penny Arcade Framework
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../goblin-speaks-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../raspberry-pi-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raspberry Pi Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audio-player/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio Player
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Component Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../component-classes/dispenser-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispenser Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../component-classes/single-stepper-dispenser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SingleStepperDispenser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-plugins-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Plugins Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-plugin-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Plugin Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tutorial-creating-a-dispenser-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tutorial: Creating a Dispenser Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tutorial: Creating a Dispenser Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-generate-the-skeleton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Generate the Skeleton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-update-your-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Update Your Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Use It
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physical Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Physical Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/goblin-speaks-animatronic-body/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Animatronic Body
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/goblin-speaks-card-dispenser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Card Dispenser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/goblin-speaks-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Head
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-plugins-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Plugins Work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plugin-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plugin Directory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plugin Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-plugin-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Plugin Directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating a Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Interfaces
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tutorial-creating-a-dispenser-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tutorial: Creating a Dispenser Plugin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tutorial: Creating a Dispenser Plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-generate-the-skeleton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Generate the Skeleton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-update-your-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Update Your Config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-use-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Use It
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="plugins">Plugins</h1>
+<p>The Goblin Speaks framework supports plugins for all core component types: <strong>Dispensers</strong>, <strong>Animatronics</strong>, and <strong>Activators</strong>. Plugins let you create your own custom components and use them in your machine without modifying the framework source code.</p>
+<h2 id="how-plugins-work">How Plugins Work</h2>
+<p>When a factory creates a component, it follows this order:</p>
+<ol>
+<li><strong>Built-in components</strong> are checked first (e.g., <code>single_stepper</code>, <code>gs_body</code>, <code>gpiozero_button</code>)</li>
+<li><strong>Plugins</strong> are checked if no built-in component matches the requested type</li>
+</ol>
+<p>Plugins are discovered automatically by scanning a plugins directory for Python files. Each file should contain a class that extends the appropriate abstract base class for its component type.</p>
+<h2 id="plugin-directory">Plugin Directory</h2>
+<p>By default, plugins are loaded from:</p>
+<pre><code>~/.goblin-speaks/plugins/
+</code></pre>
+<p>Inside this directory, create a subdirectory for each component type you want to extend:</p>
+<pre><code>~/.goblin-speaks/plugins/
+    dispenser/
+    activator/
+    animatronic/
+</code></pre>
+<p>You only need to create subdirectories for the component types you're adding plugins for.</p>
+<h3 id="custom-plugin-directory">Custom Plugin Directory</h3>
+<p>You can change the plugins directory in your <code>config.yml</code>:</p>
+<pre><code class="language-yaml">plugins:
+  directory: /path/to/your/plugins
+</code></pre>
+<h2 id="creating-a-plugin">Creating a Plugin</h2>
+<p>A plugin is a single <code>.py</code> file placed in the appropriate component type subdirectory. The <strong>filename</strong> (without the <code>.py</code> extension) becomes the name you use to reference the plugin in your configuration.</p>
+<p>The framework automatically provides the base class and <code>Config</code> to your plugin — you do not need to import them. They are injected into the plugin's namespace before it runs.</p>
+<p>Each plugin file must contain a class that:</p>
+<ul>
+<li>Extends the correct abstract base class (<code>Dispenser</code>, <code>Activator</code>, or <code>Animatronic</code>)</li>
+<li>Implements all required abstract methods</li>
+<li>Accepts <code>config_prefix=None</code> as a constructor parameter</li>
+</ul>
+<h3 id="component-interfaces">Component Interfaces</h3>
+<table>
+<thead>
+<tr>
+<th>Component Type</th>
+<th>Base Class</th>
+<th>Required Methods</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dispenser</td>
+<td><code>Dispenser</code></td>
+<td><code>_dispense_one()</code></td>
+</tr>
+<tr>
+<td>Activator</td>
+<td><code>Activator</code></td>
+<td><code>start(callback)</code>, <code>shutdown()</code></td>
+</tr>
+<tr>
+<td>Animatronic</td>
+<td><code>Animatronic</code></td>
+<td><code>animate(duration)</code>, <code>test()</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="cli">CLI</h2>
+<p>The <code>goblin-speaks plugin</code> command creates a new plugin skeleton file with the correct directory structure and method stubs already in place.</p>
+<pre><code>goblin-speaks plugin &lt;component_type&gt; &lt;name&gt;
+</code></pre>
+<ul>
+<li><code>component_type</code> — one of <code>dispenser</code>, <code>activator</code>, or <code>animatronic</code></li>
+<li><code>name</code> — the snake_case name for your plugin (this becomes the filename and the config key)</li>
+</ul>
+<p>The skeleton is generated programmatically from the base class, so it will always include the correct abstract methods and their signatures.</p>
+<h2 id="tutorial-creating-a-dispenser-plugin">Tutorial: Creating a Dispenser Plugin</h2>
+<p>This walkthrough creates a minimal dispenser plugin to show the basics.</p>
+<h3 id="step-1-generate-the-skeleton">Step 1: Generate the Skeleton</h3>
+<pre><code class="language-bash">goblin-speaks plugin dispenser my_dispenser
+</code></pre>
+<p>This creates the plugin directory and skeleton file automatically:</p>
+<pre><code>Created plugin skeleton: ~/.goblin-speaks/plugins/dispenser/my_dispenser.py
+</code></pre>
+<p>The generated file will look like this:</p>
+<pre><code class="language-python">class MyDispenser(Dispenser):
+    def __init__(self, config_prefix=None):
+        super().__init__(config_prefix)
+        print(&quot;TODO: initialize MyDispenser&quot;)
+
+    def _dispense_one(self):
+        print(&quot;TODO: implement _dispense_one&quot;)
+</code></pre>
+<h3 id="step-2-update-your-config">Step 2: Update Your Config</h3>
+<p>In your <code>/etc/goblin-speaks/config.yml</code>, reference the plugin by its filename:</p>
+<pre><code class="language-yaml">components:
+  my_prize_dispenser:
+    type: dispenser
+    class: my_dispenser
+</code></pre>
+<p>The <code>class: my_dispenser</code> value matches the filename <code>my_dispenser.py</code>.</p>
+<h3 id="step-3-use-it">Step 3: Use It</h3>
+<p>Run your machine as usual. The framework will find the built-in dispensers first, and when it doesn't find <code>my_dispenser</code> among them, it will load it from your plugins directory.</p>
+<pre><code class="language-bash">goblin-speaks run
+</code></pre>
+<p>You should see output like:</p>
+<pre><code>Loaded plugin: my_dispenser (MyDispenser)
+Creating component 'my_prize_dispenser' (type: dispenser, class: my_dispenser)
+</code></pre>
+<h2 id="tips">Tips</h2>
+<ul>
+<li><strong>One class per file.</strong> The plugin loader uses the first subclass of the base class it finds in each file. Additional classes are ignored.</li>
+<li><strong>Files starting with <code>_</code> are skipped.</strong> Use this for helper modules that shouldn't be loaded as plugins (e.g., <code>_utils.py</code>).</li>
+<li><strong>Errors don't crash the app.</strong> If a plugin fails to load, a warning is printed and the plugin is skipped. Other plugins and built-in components are unaffected.</li>
+<li><strong>Plugins are cached.</strong> The plugin directory is only scanned once per component type per application run. If you add a new plugin, restart the application.</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

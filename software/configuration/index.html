@@ -1,0 +1,1538 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="How to configure components and play sequences for a Goblin Speaks machine.">
+      
+      
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../cli/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Configuration - Goblin Speaks Penny Arcade Framework</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Goblin Speaks Penny Arcade Framework" class="md-header__button md-logo" aria-label="Goblin Speaks Penny Arcade Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Goblin Speaks Penny Arcade Framework
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Goblin Speaks Penny Arcade Framework" class="md-nav__button md-logo" aria-label="Goblin Speaks Penny Arcade Framework" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Goblin Speaks Penny Arcade Framework
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../goblin-speaks-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Example
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Software
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#audio-player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio Player
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Activators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activator-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activator Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activator-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activator Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Activator Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpiozero_button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gpiozero_button
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variable References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../raspberry-pi-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raspberry Pi Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audio-player/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio Player
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Component Classes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Component Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../component-classes/dispenser-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispenser Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../component-classes/single-stepper-dispenser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SingleStepperDispenser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physical Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Physical Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/goblin-speaks-animatronic-body/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Animatronic Body
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/goblin-speaks-card-dispenser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Card Dispenser
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/goblin-speaks-head/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goblin Speaks Head
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#audio-player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audio Player
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activators
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Activators">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activator-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activator Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#activator-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activator Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Activator Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gpiozero_button" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gpiozero_button
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#component-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Component Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variable-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variable References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#available-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Available Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Full Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="configuration">Configuration</h1>
+<p>The Goblin Speaks machine is configured through a single YAML file located at <code>/etc/goblin-speaks/config.yml</code>. The config file wires together an audio player, hardware components, activators that trigger sequences, and the sequences themselves.</p>
+<h2 id="audio-player">Audio Player</h2>
+<p>The <code>audio</code> component is always available and does not need to be declared anywhere in the config. It provides access to the <a href="../audio-player/">Audio Player</a> and its sound banks, and can be referenced directly from any sequence step as <code>component: audio</code>.</p>
+<p>See <a href="../audio-player/">Audio Player</a> for details on configuring sound banks and files.</p>
+<h2 id="activators">Activators</h2>
+<p>Activators are components that watch for a trigger condition — a button press, a sensor signal, a coin drop — and fire a named sequence when that condition is met. They are declared in the <code>activators</code> section. Each activator is given a name (your choice), a <code>type</code>, the <code>sequence</code> it should play when triggered, and any type-specific settings.</p>
+<pre><code class="language-yaml">activators:
+  push_button:
+    type: gpiozero_button
+    sequence: fortune
+    trigger_pin: 21
+</code></pre>
+<h3 id="activator-fields">Activator Fields</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>Yes</td>
+<td>The activator implementation to use.</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td>Yes</td>
+<td>The name of a sequence (defined in <code>sequences</code>) to play when this activator fires.</td>
+</tr>
+<tr>
+<td><em>(other keys)</em></td>
+<td>No</td>
+<td>Type-specific settings passed through to the implementation.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="activator-types">Activator Types</h3>
+<h4 id="gpiozero_button"><code>gpiozero_button</code></h4>
+<p>A GPIO button or digital sensor backed by the <a href="https://gpiozero.readthedocs.io/">gpiozero</a> library. Compatible with physical buttons, IR beam sensors, reed switches, and any other component that signals via a digital GPIO pin.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trigger_pin</code></td>
+<td><code>21</code></td>
+<td>The GPIO pin number to listen on.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="components">Components</h2>
+<p>The <code>components</code> section declares every hardware component attached to your machine other than activators. Each component is given a name (your choice) and configured with a <code>type</code>, <code>class</code>, and any component-specific settings.</p>
+<pre><code class="language-yaml">components:
+  goblin_body:
+    type: animatronic
+    class: gs_body
+  card_dispenser:
+    type: dispenser
+    class: single_stepper
+    dispense_steps: 2048
+    step_delay: 0.0015
+</code></pre>
+<h3 id="component-fields">Component Fields</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>type</code></td>
+<td>Yes</td>
+<td>The component category. Determines which factory creates it.</td>
+</tr>
+<tr>
+<td><code>class</code></td>
+<td>Yes</td>
+<td>The specific implementation class to instantiate.</td>
+</tr>
+<tr>
+<td><em>(other keys)</em></td>
+<td>No</td>
+<td>Component-specific settings passed through to the implementation.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="component-types">Component Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Available Classes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>animatronic</code></td>
+<td>Controls animatronic movement and routines</td>
+<td><code>gs_body</code></td>
+</tr>
+<tr>
+<td><code>dispenser</code></td>
+<td>Controls item/prize dispensing mechanisms</td>
+<td><code>single_stepper</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="component-names">Component Names</h3>
+<p>The name you give a component (e.g. <code>goblin_body</code>, <code>card_dispenser</code>) is how you reference it in the <code>sequences</code> section. Choose descriptive names that make sense for your build.</p>
+<h2 id="sequences">Sequences</h2>
+<p>The <code>sequences</code> section defines named sequences of steps that the machine can execute. Each key under <code>sequences</code> is a sequence name you choose, mapped to an ordered list of steps. Steps within a sequence run in order from top to bottom.</p>
+<pre><code class="language-yaml">sequences:
+  fortune:
+    - component: audio
+      action: play_sequence
+      args:
+        sound_types: [pre_fortune, fortune, post_fortune]
+      output: duration
+    - component: goblin_body
+      action: animate
+      args:
+        duration: $duration
+    - component: card_dispenser
+      action: dispense
+</code></pre>
+<p>Defining multiple named sequences lets a single machine support more than one routine — for example a full <code>fortune</code> sequence and a shorter <code>greeting</code> sequence — which can be wired up to different <a href="#activators">activators</a>. The <a href="../cli/#menu">test menu</a> lists every sequence defined in <code>sequences</code> so you can run each one individually.</p>
+<h3 id="step-fields">Step Fields</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>component</code></td>
+<td>Yes</td>
+<td>The name of a component declared in <code>components</code> (or the built-in <code>audio</code> component).</td>
+</tr>
+<tr>
+<td><code>action</code></td>
+<td>Yes</td>
+<td>The method to call on the component.</td>
+</tr>
+<tr>
+<td><code>args</code></td>
+<td>No</td>
+<td>A map of keyword arguments to pass to the action method.</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>No</td>
+<td>A variable name to capture the action's return value for use by later steps.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="variable-references">Variable References</h3>
+<p>Steps can pass data to later steps using the <code>output</code> field and <code>$variable</code> references. When a step declares <code>output: duration</code>, its return value is stored under the name <code>duration</code>. Later steps can reference it with <code>$duration</code> in their <code>args</code>.</p>
+<p>In the example above:</p>
+<ol>
+<li>The <code>audio.play_sequence</code> step returns the total duration of the queued sounds and stores it as <code>$duration</code>.</li>
+<li>The <code>goblin_body.animate</code> step receives <code>$duration</code> as its <code>duration</code> argument, so the animatronic runs for exactly as long as the audio plays.</li>
+</ol>
+<p>Variable references work inside lists as well. A reference to an output that hasn't been produced yet will raise an error at runtime.</p>
+<h3 id="available-actions">Available Actions</h3>
+<p>Each component type exposes different actions you can call from a sequence:</p>
+<p><strong>Audio</strong> (<code>audio</code>)</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>play</code></td>
+<td><code>bank_name</code>, <code>file_name</code> (optional), <code>block</code> (optional)</td>
+<td><code>float</code> (duration)</td>
+<td>Play a sound from a sound bank. If <code>file_name</code> is given, plays that specific file; otherwise plays the next sound. If <code>block</code> is <code>true</code>, waits for the sound to finish.</td>
+</tr>
+<tr>
+<td><code>play_sequence</code></td>
+<td><code>sound_types</code> (list), <code>block</code> (optional)</td>
+<td><code>float</code> (total duration)</td>
+<td>Queue and play sounds from multiple banks in order. If <code>block</code> is <code>true</code>, waits for all sounds to finish.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Animatronic</strong></p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>animate</code></td>
+<td><code>duration</code> (float)</td>
+<td>—</td>
+<td>Run the animation routine for the specified duration in seconds.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dispenser</strong></p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Args</th>
+<th>Returns</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dispense</code></td>
+<td><code>count</code> (int, optional)</td>
+<td>—</td>
+<td>Dispense one or more items. Defaults to 1.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="full-example">Full Example</h2>
+<p>Below is a complete configuration file that sets up a machine with an animatronic body, a card dispenser, a GPIO button that triggers the <code>fortune</code> sequence, and the sequences themselves:</p>
+<pre><code class="language-yaml">components:
+  goblin_body:
+    type: animatronic
+    class: gs_body
+  card_dispenser:
+    type: dispenser
+    class: single_stepper
+    dispense_steps: 2048
+    step_delay: 0.0015
+
+activators:
+  fortune_button:
+    type: gpiozero_button
+    sequence: fortune
+    trigger_pin: 21
+
+sequences:
+  fortune:
+    - component: audio
+      action: play_sequence
+      args:
+        sound_types: [pre_fortune, fortune, post_fortune]
+      output: duration
+    - component: goblin_body
+      action: animate
+      args:
+        duration: $duration
+    - component: card_dispenser
+      action: dispense
+</code></pre>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
