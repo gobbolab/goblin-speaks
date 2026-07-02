@@ -48,7 +48,7 @@ components:
 | Key | Default | Description |
 |---|---|---|
 | `pin_1` – `pin_4` | `D17`, `D18`, `D27`, `D22` | GPIO pins connected to the ULN2003 IN1–IN4 inputs |
-| `dispense_steps` | `2048` | Number of stepper steps for the forward stroke. 2048 steps = one full revolution of the 28BYJ-48 in half-step mode. Adjust if your mechanism needs more or less travel. |
+| `dispense_steps` | `2048` | Number of stepper steps for the forward stroke. 2048 steps = one full revolution of the 28BYJ-48 in full-step mode. Adjust if your mechanism needs more or less travel. |
 | `retract_steps` | `512` | Number of steps to retract after dispensing. Reduces drag on remaining items and prevents double-feeds. |
 | `step_delay` | `0.002` | Delay in seconds between each motor step. Lower values = faster motor movement. Going too low may cause the motor to stall. |
 | `dispense_delay` | `1.0` | *(Base Dispenser)* Seconds to wait between dispenses when multiple items are requested. Defined in the base `Dispenser` class and applies to all dispenser types. |

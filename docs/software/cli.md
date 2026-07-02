@@ -26,7 +26,6 @@ Launches an interactive test menu that lets you test individual components witho
 - Test each animatronic
 - Test each dispenser
 - Test audio playback
-- Test each activator (waits for a trigger event)
 
 ```bash
 goblin-speaks menu
